@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace UniversityApp
         private List<string[]> list_faculties = new List<string[]>();
         private List<string[]> data_groups;
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
-        private List<string> cells_values;
+        public string index;
 
         public ChangeStudentForm()
         {
@@ -56,9 +57,11 @@ namespace UniversityApp
 
         private void loadData()
         {
+            this.numberStudent.ReadOnly = true;
+
             FacyltiesGroupsData db = new FacyltiesGroupsData(connection);
 
-            data_groups = db.getAllData();
+            this.data_groups = db.getAllData();
 
             for (int i = 0; i < data_groups.Count; ++i)
             {
@@ -80,7 +83,7 @@ namespace UniversityApp
 
             for (int i = 0; i < list_faculties.Count(); ++i)
             {
-                facultyCombo.Items.Add(list_faculties[i][1]);
+                this.facultyCombo.Items.Add(list_faculties[i][1]);
             }
         }
 
@@ -141,7 +144,80 @@ namespace UniversityApp
 
         private void addStudent_Click(object sender, EventArgs e)
         {
+            String faculty_combo = this.facultyCombo.Text;
+            String group_combo = this.groupCombo.Text;
 
+            List<string> data = new List<string>() { this.nameStudent.Text, this.surnameStudent.Text, "", "" };
+
+            if (data[0].Length > 1 && data[1].Length > 1
+                && faculty_combo.Length > 10 && group_combo.Length > 3)
+            {
+                this.nameStudent.BackColor = Color.White;
+                this.surnameStudent.BackColor = Color.White;
+                this.facultyCombo.BackColor = Color.White;
+                this.groupCombo.BackColor = Color.White;
+
+                for (int i = 0; i < list_faculties.Count; ++i)
+                {
+                    if (list_faculties[i][1] == faculty_combo)
+                    {
+                        data[2] = list_faculties[i][0];
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < data_groups.Count; ++i)
+                {
+                    if (data_groups[i][3] == group_combo)
+                    {
+                        data[3] = data_groups[i][2];
+                        break;
+                    }
+                }
+
+                StudentData db = new StudentData(connection);
+                db.change(this.index, data);
+            }
+
+            if (data[1].Length > 1)
+            {
+                this.nameStudent.BackColor = Color.White;
+            }
+
+            if (data[2].Length > 1)
+            {
+                this.surnameStudent.BackColor = Color.White;
+            }
+
+            if (faculty_combo.Length > 10)
+            {
+                this.facultyCombo.BackColor = Color.White;
+            }
+
+            if (group_combo.Length > 3)
+            {
+                this.groupCombo.BackColor = Color.White;
+            }
+
+            if (data[0].Length < 2)
+            {
+                this.nameStudent.BackColor = Color.FromArgb(243, 0, 33);
+            }
+
+            if (data[1].Length < 2)
+            {
+                this.surnameStudent.BackColor = Color.FromArgb(243, 0, 33);
+            }
+
+            if (faculty_combo.Length <= 10)
+            {
+                this.facultyCombo.BackColor = Color.FromArgb(243, 0, 33);
+            }
+
+            if (group_combo.Length <= 2)
+            {
+                this.groupCombo.BackColor = Color.FromArgb(243, 0, 33);
+            }
         }
     }
 }

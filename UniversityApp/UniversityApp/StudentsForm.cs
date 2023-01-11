@@ -143,20 +143,33 @@ namespace UniversityApp
 
             if (db.checkAccess(2))
             {
+                int column = dataGridView1.CurrentCell.ColumnIndex;         // номер колонки
+                int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
+                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+
+
                 ChangeStudentForm form = new ChangeStudentForm();
-                int index = dataGridView1.CurrentCell.RowIndex;             // номер строкиa
+                int id = dataGridView1.CurrentCell.RowIndex;             // номер строкиa
                 int num_column = dataGridView1.Columns.Count - 1;         // номер колонки
 
-                form.GroupCombo = dataGridView1[num_column, index].Value.ToString();
-                --num_column;
-                form.FacultyStudent = dataGridView1[num_column, index].Value.ToString();
-                --num_column;
-                form.SurnameStudent = dataGridView1[num_column, index].Value.ToString();
-                --num_column;
-                form.NameStudent = dataGridView1[num_column, index].Value.ToString();
-                --num_column;
-                form.StudentID = dataGridView1[num_column, index].Value.ToString();
-                form.Show();
+                if (rows > id)
+                {
+                    form.GroupCombo = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.FacultyStudent = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.SurnameStudent = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.NameStudent = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.StudentID = dataGridView1[num_column, index].Value.ToString();
+                    form.index = dataGridView1[num_column, index].Value.ToString();
+                    form.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Вы применили изменение к пустой строке.");
+                }
             }
             else
             {
