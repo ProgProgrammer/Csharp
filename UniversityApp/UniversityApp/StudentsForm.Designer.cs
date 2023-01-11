@@ -48,6 +48,7 @@
             this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.факультетыИГруппыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -166,6 +167,7 @@
             this.aboutUserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeUserToolStripMenuItem,
             this.пользователиToolStripMenuItem,
+            this.факультетыИГруппыToolStripMenuItem,
             this.aboutUserToolStripMenuItem1});
             this.aboutUserToolStripMenuItem.Name = "aboutUserToolStripMenuItem";
             this.aboutUserToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
@@ -204,30 +206,36 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.addToolStripMenuItem.Text = "Добавить студента";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // changeToolStripMenuItem
             // 
             this.changeToolStripMenuItem.Name = "changeToolStripMenuItem";
-            this.changeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.changeToolStripMenuItem.Text = "Изменить студента";
             this.changeToolStripMenuItem.Click += new System.EventHandler(this.changeToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.deleteToolStripMenuItem.Text = "Удалить студента";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.updateToolStripMenuItem.Text = "Обновить таблицу";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
+            // 
+            // факультетыИГруппыToolStripMenuItem
+            // 
+            this.факультетыИГруппыToolStripMenuItem.Name = "факультетыИГруппыToolStripMenuItem";
+            this.факультетыИГруппыToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.факультетыИГруппыToolStripMenuItem.Text = "Факультеты и группы";
             // 
             // StudentsForm
             // 
@@ -271,5 +279,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.ToolStripMenuItem факультетыИГруппыToolStripMenuItem;
     }
 }

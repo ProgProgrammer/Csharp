@@ -119,7 +119,9 @@ namespace UniversityApp
 
         private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AuthorizationForm form = new AuthorizationForm();
+            form.CloseButton = false;
+            form.Show();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -129,7 +131,7 @@ namespace UniversityApp
             if (db.checkAccess(1))
             {
                 AddStudentForm form = new AddStudentForm();
-                form.Show();
+                form.ShowDialog();
             }
             else
             {
@@ -143,7 +145,6 @@ namespace UniversityApp
 
             if (db.checkAccess(2))
             {
-                int column = dataGridView1.CurrentCell.ColumnIndex;         // номер колонки
                 int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
                 int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
 
@@ -164,7 +165,7 @@ namespace UniversityApp
                     --num_column;
                     form.StudentID = dataGridView1[num_column, index].Value.ToString();
                     form.index = dataGridView1[num_column, index].Value.ToString();
-                    form.Show();
+                    form.ShowDialog();
                 }
                 else
                 {

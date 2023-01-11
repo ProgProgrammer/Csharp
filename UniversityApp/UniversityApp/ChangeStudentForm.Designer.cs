@@ -35,15 +35,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.addStudent = new System.Windows.Forms.Button();
+            this.changeStudent = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupCombo = new System.Windows.Forms.ComboBox();
             this.facultyCombo = new System.Windows.Forms.ComboBox();
             this.nameStudent = new System.Windows.Forms.TextBox();
             this.numberStudent = new System.Windows.Forms.TextBox();
-            this.topLabelPanel = new System.Windows.Forms.Label();
-            this.closeButton = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.closeButton = new System.Windows.Forms.Label();
+            this.topLabelPanel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +57,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.addStudent);
+            this.panel1.Controls.Add(this.changeStudent);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.groupCombo);
             this.panel1.Controls.Add(this.facultyCombo);
@@ -129,17 +129,17 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Имя";
             // 
-            // addStudent
+            // changeStudent
             // 
-            this.addStudent.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addStudent.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.addStudent.Location = new System.Drawing.Point(233, 421);
-            this.addStudent.Name = "addStudent";
-            this.addStudent.Size = new System.Drawing.Size(169, 40);
-            this.addStudent.TabIndex = 7;
-            this.addStudent.Text = "ИЗМЕНИТЬ";
-            this.addStudent.UseVisualStyleBackColor = true;
-            this.addStudent.Click += new System.EventHandler(this.addStudent_Click);
+            this.changeStudent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.changeStudent.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.changeStudent.Location = new System.Drawing.Point(233, 421);
+            this.changeStudent.Name = "changeStudent";
+            this.changeStudent.Size = new System.Drawing.Size(169, 40);
+            this.changeStudent.TabIndex = 7;
+            this.changeStudent.Text = "ИЗМЕНИТЬ";
+            this.changeStudent.UseVisualStyleBackColor = true;
+            this.changeStudent.Click += new System.EventHandler(this.changeStudent_Click);
             // 
             // label3
             // 
@@ -187,19 +187,17 @@
             this.numberStudent.Size = new System.Drawing.Size(245, 40);
             this.numberStudent.TabIndex = 1;
             // 
-            // topLabelPanel
+            // panel2
             // 
-            this.topLabelPanel.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.topLabelPanel.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.topLabelPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.topLabelPanel.Location = new System.Drawing.Point(3, 0);
-            this.topLabelPanel.Name = "topLabelPanel";
-            this.topLabelPanel.Size = new System.Drawing.Size(643, 94);
-            this.topLabelPanel.TabIndex = 3;
-            this.topLabelPanel.Text = "Изменение данных студента";
-            this.topLabelPanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.topLabelPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseDown);
-            this.topLabelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseMove);
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(136)))), ((int)(((byte)(210)))));
+            this.panel2.Controls.Add(this.closeButton);
+            this.panel2.Controls.Add(this.topLabelPanel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.panel2.Size = new System.Drawing.Size(647, 94);
+            this.panel2.TabIndex = 0;
             // 
             // closeButton
             // 
@@ -218,17 +216,19 @@
             this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
             this.closeButton.MouseHover += new System.EventHandler(this.closeButton_MouseHover);
             // 
-            // panel2
+            // topLabelPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(136)))), ((int)(((byte)(210)))));
-            this.panel2.Controls.Add(this.closeButton);
-            this.panel2.Controls.Add(this.topLabelPanel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel2.Size = new System.Drawing.Size(647, 94);
-            this.panel2.TabIndex = 0;
+            this.topLabelPanel.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.topLabelPanel.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.topLabelPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.topLabelPanel.Location = new System.Drawing.Point(3, 0);
+            this.topLabelPanel.Name = "topLabelPanel";
+            this.topLabelPanel.Size = new System.Drawing.Size(643, 94);
+            this.topLabelPanel.TabIndex = 3;
+            this.topLabelPanel.Text = "Изменение данных студента";
+            this.topLabelPanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.topLabelPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseDown);
+            this.topLabelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseMove);
             // 
             // ChangeStudentForm
             // 
@@ -257,7 +257,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button addStudent;
+        private System.Windows.Forms.Button changeStudent;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox groupCombo;
         private System.Windows.Forms.ComboBox facultyCombo;

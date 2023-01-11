@@ -14,6 +14,7 @@ namespace UniversityApp
     public partial class AuthorizationForm : Form
     {
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
+        private bool close_button = true;
         public AuthorizationForm()
         {
             InitializeComponent();
@@ -21,10 +22,22 @@ namespace UniversityApp
             this.passwordField.AutoSize = false;
             this.passwordField.Size = new System.Drawing.Size(246, 40);
         }
+        public bool CloseButton
+        {
+            get { return close_button; }
+            set { close_button = value; }
+        }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (close_button)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void closeButton_MouseHover(object sender, EventArgs e)
@@ -63,13 +76,48 @@ namespace UniversityApp
             string login = this.loginField.Text;
             string password = this.passwordField.Text;
 
-            UserData db = new UserData(connection);
-
-            if (db.authorization(login, password))
+            if (login.Length > 2 && password.Length > 4)
             {
-                this.Hide();
-                StudentsForm studentsForm = new StudentsForm();
-                studentsForm.Show();
+                this.loginField.BackColor = Color.White;
+                this.passwordField.BackColor = Color.White;
+
+                UserData db = new UserData(connection);
+
+                if (db.authorization(login, password))
+                {
+                    this.Hide();
+                    int num = Application.OpenForms.Count;
+                    Form form;
+
+                    if (num > 1)
+                    {
+                        form = Application.OpenForms[num - 2];
+                        form.Close();
+                    }
+
+                    StudentsForm studentsForm = new StudentsForm();
+                    studentsForm.Show();
+                }
+            }
+
+            if (login.Length > 2)
+            {
+                this.loginField.BackColor = Color.White;
+            }
+
+            if (password.Length > 4)
+            {
+                this.passwordField.BackColor = Color.White;
+            }
+
+            if (login.Length < 3)
+            {
+                this.loginField.BackColor = Color.FromArgb(243, 0, 33);
+            }
+
+            if (password.Length < 5)
+            {
+                this.passwordField.BackColor = Color.FromArgb(243, 0, 33);
             }
         }
     }

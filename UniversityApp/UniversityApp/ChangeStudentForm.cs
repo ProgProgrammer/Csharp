@@ -142,7 +142,7 @@ namespace UniversityApp
             }
         }
 
-        private void addStudent_Click(object sender, EventArgs e)
+        private void changeStudent_Click(object sender, EventArgs e)
         {
             String faculty_combo = this.facultyCombo.Text;
             String group_combo = this.groupCombo.Text;
