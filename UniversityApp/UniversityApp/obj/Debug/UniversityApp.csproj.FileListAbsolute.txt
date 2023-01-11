@@ -23,3 +23,5 @@ C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\bin\De
 C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\bin\Debug\MySql.Data.xml
 C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.csproj.CopyComplete
 C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.StudentsForm.resources
+C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.AddStudentForm.resources
+C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.ChangeStudentForm.resources

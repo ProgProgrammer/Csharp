@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,53 @@ namespace UniversityApp
 {
     public partial class StudentsForm : Form
     {
+        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
+
         public StudentsForm()
         {
             InitializeComponent();
+            loadDataStudents();
+        }
+
+        private void loadDataStudents()
+        {
+            StudentData db_student = new StudentData(connection);
+            List<string[]> data_students = db_student.getAllData();
+
+            FacyltiesGroupsData db_fac_gr = new FacyltiesGroupsData(connection);
+            List<string[]> data_faculty_groups = db_fac_gr.getAllData();
+            List<string[]> data = new List<string[]>();
+
+            for (int i = 0; i < data_students.Count; ++i)
+            {
+                data.Add(new string[5]);
+
+                for (int a = 0; a < data[i].Length; ++a)
+                {
+                    data[i][a] = data_students[i][a];
+                }
+            }
+
+            for (int i = 0; i < data.Count; ++i)
+            {
+                for (int a = 0; a < data_faculty_groups.Count; ++a)
+                {
+                    if (data[i][3] == data_faculty_groups[a][0])
+                    {
+                        data[i][3] = data_faculty_groups[a][1];
+                    }
+
+                    if (data[i][4] == data_faculty_groups[a][2])
+                    {
+                        data[i][4] = data_faculty_groups[a][3];
+                    }
+                }
+            }
+
+            foreach (string[] s in data)
+            {
+                dataGridView1.Rows.Add(s);
+            }
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -70,6 +115,101 @@ namespace UniversityApp
                 this.Left += e.X - lastPoint.X;
                 this.Top += e.Y - lastPoint.Y;
             }
+        }
+
+        private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StudentData db = new StudentData(connection);
+
+            if (db.checkAccess(1))
+            {
+                AddStudentForm form = new AddStudentForm();
+                form.Show();
+            }
+            else
+            {
+                MessageBox.Show("Нет доступа к добавлению студентов.");
+            }
+        }
+
+        private void changeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StudentData db = new StudentData(connection);
+
+            if (db.checkAccess(2))
+            {
+                ChangeStudentForm form = new ChangeStudentForm();
+                int index = dataGridView1.CurrentCell.RowIndex;             // номер строкиa
+                int num_column = dataGridView1.Columns.Count - 1;         // номер колонки
+
+                form.GroupCombo = dataGridView1[num_column, index].Value.ToString();
+                --num_column;
+                form.FacultyStudent = dataGridView1[num_column, index].Value.ToString();
+                --num_column;
+                form.SurnameStudent = dataGridView1[num_column, index].Value.ToString();
+                --num_column;
+                form.NameStudent = dataGridView1[num_column, index].Value.ToString();
+                --num_column;
+                form.StudentID = dataGridView1[num_column, index].Value.ToString();
+                form.Show();
+            }
+            else
+            {
+                MessageBox.Show("Нет доступа к изменению студентов.");
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StudentData db = new StudentData(connection);
+
+            if (db.checkAccess(3))
+            {
+                int column = dataGridView1.CurrentCell.ColumnIndex;         // номер колонки
+                int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
+                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+
+                if (rows > index)
+                {
+                    string id = dataGridView1[column, index].Value.ToString();  // номер студенческого билета
+
+                    StudentData stud_db = new StudentData(connection);
+
+                    if (stud_db.delete(id))                       // метод удаления студента из базы данных
+                    {
+                        dataGridView1.Rows.RemoveAt(index);       // удаление студента из таблицы
+                    }
+                    else
+                    {
+                        MessageBox.Show("Удаление не удалось.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы применили удаление к пустой строке.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет доступа к удалению студентов.");
+            }
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int rows_count = dataGridView1.Rows.Count - 2;
+
+            for (int i = rows_count; i >= 0; --i)
+            {
+                dataGridView1.Rows.RemoveAt(i);
+            }
+
+            loadDataStudents();
         }
     }
 }

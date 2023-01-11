@@ -8,9 +8,9 @@ namespace UniversityApp
 {
     internal interface IDataBase
     {
-        List<string[]> getData();
-        bool add(List<string[]> data_user);
-        bool change(List<int> arr_index, string[] arr_data);
-        bool delete(int index);
+        List<string[]> getAllData();
+        bool add(List<string> data);
+        bool change(string index, List<string> data);
+        bool delete(string index);
     }
 }

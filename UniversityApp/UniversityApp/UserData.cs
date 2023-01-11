@@ -18,48 +18,55 @@ namespace UniversityApp
         public UserData(MySqlConnection connection) : base(connection)
         {
         }
+
         public bool authorization(string login, string password)
         {
             DataTable table = new DataTable();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` WHERE login = @login AND password = @password", connection);  // создание команды
-            command.Parameters.Add("@table", MySqlDbType.VarChar).Value = name_table;    // присвоение значения псевдониму
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;         // присвоение значения псевдониму
             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;   // присвоение значения псевдониму
 
-            if (this.userExistCheck(table, adapter, command))
+            if (File.Exists(file_path))
             {
-                using (StreamWriter writer = new StreamWriter(file_path, false))
+                if (this.userExistCheck(table, adapter, command))
                 {
-                    this.login = login;
-                    this.password = password;
+                    using (StreamWriter writer = new StreamWriter(file_path, false))
+                    {
+                        this.login = login;
+                        this.password = password;
 
-                    writer.WriteLineAsync(login);
-                    writer.WriteAsync(password);
+                        writer.WriteLineAsync(login);
+                        writer.WriteAsync(password);
 
-                    return true;
+                        return true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Нет такого пользователя в базе данных либо не правильный пароль.");
+
+                    return false;
                 }
             }
-            else
-            {
-                MessageBox.Show("Нет такого пользователя в базе данных.");
 
-                return false;
-            }
+            MessageBox.Show("Нет такого файла.");
+
+            return false;
         }
-        public override List<string[]> getData()
+        public override List<string[]> getAllData()
         {
             return new List<string[]>();
         }
-        public override bool add(List<string[]> data_user)
+        public override bool add(List<string> data)
         {
             return false;
         }
-        public override bool change(List<int> arr_index, string[] arr_data)
+        public override bool change(string index, List<string> data)
         {
             return false;
         }
-        public override bool delete(int index)
+        public override bool delete(string index)
         {
             return false;
         }

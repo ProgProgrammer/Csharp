@@ -41,9 +41,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aboutUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutUserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutUserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -167,8 +166,7 @@
             this.aboutUserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeUserToolStripMenuItem,
             this.пользователиToolStripMenuItem,
-            this.aboutUserToolStripMenuItem1,
-            this.exitToolStripMenuItem});
+            this.aboutUserToolStripMenuItem1});
             this.aboutUserToolStripMenuItem.Name = "aboutUserToolStripMenuItem";
             this.aboutUserToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.aboutUserToolStripMenuItem.Text = "Главная";
@@ -178,12 +176,7 @@
             this.changeUserToolStripMenuItem.Name = "changeUserToolStripMenuItem";
             this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.changeUserToolStripMenuItem.Text = "Изменить пользователя";
-            // 
-            // aboutUserToolStripMenuItem1
-            // 
-            this.aboutUserToolStripMenuItem1.Name = "aboutUserToolStripMenuItem1";
-            this.aboutUserToolStripMenuItem1.Size = new System.Drawing.Size(206, 22);
-            this.aboutUserToolStripMenuItem1.Text = "О программе";
+            this.changeUserToolStripMenuItem.Click += new System.EventHandler(this.changeUserToolStripMenuItem_Click);
             // 
             // пользователиToolStripMenuItem
             // 
@@ -191,12 +184,11 @@
             this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.пользователиToolStripMenuItem.Text = "Пользователи";
             // 
-            // exitToolStripMenuItem
+            // aboutUserToolStripMenuItem1
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.exitToolStripMenuItem.Text = "Выход";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.aboutUserToolStripMenuItem1.Name = "aboutUserToolStripMenuItem1";
+            this.aboutUserToolStripMenuItem1.Size = new System.Drawing.Size(206, 22);
+            this.aboutUserToolStripMenuItem1.Text = "О программе";
             // 
             // actionsToolStripMenuItem
             // 
@@ -212,26 +204,30 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addToolStripMenuItem.Text = "Добавить студента";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // changeToolStripMenuItem
             // 
             this.changeToolStripMenuItem.Name = "changeToolStripMenuItem";
-            this.changeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.changeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changeToolStripMenuItem.Text = "Изменить студента";
+            this.changeToolStripMenuItem.Click += new System.EventHandler(this.changeToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteToolStripMenuItem.Text = "Удалить студента";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.updateToolStripMenuItem.Text = "Обновить таблицу";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
             // StudentsForm
             // 
@@ -256,7 +252,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label closeButton;
         private System.Windows.Forms.Label topLabelPanel;
@@ -264,7 +260,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutUserToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeToolStripMenuItem;

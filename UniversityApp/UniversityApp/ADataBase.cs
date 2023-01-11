@@ -7,11 +7,16 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Runtime.InteropServices;
+using System.IO;
+using System.Windows.Forms;
 
 namespace UniversityApp
 {
     internal abstract class ADataBase : IDataBase
     {
+        protected string access_column_abs_class;
         protected const string file_path = @"..\files\authorization_data.txt";
         protected string login;
         protected string password;
@@ -20,11 +25,71 @@ namespace UniversityApp
         public ADataBase(MySqlConnection connection)
         {
             this.connection = connection;
-        }
+        }            
 
-        protected bool accessCheck()
+        protected bool readFile()
         {
-            return true;
+            if (File.Exists(file_path))
+            {
+                int i = 0;
+
+                using (StreamReader fs = new StreamReader(file_path))
+                {
+                    while (true)
+                    {
+                        string temp = fs.ReadLine();  // Читаем строку из файла во временную переменную.                    
+                        if (temp == null) break;      // Если достигнут конец файла, прерываем считывание.
+
+                        if (i == 0)
+                        {
+                            login = temp;             // Пишем считанную строку в итоговую переменную.
+                        }
+                        else
+                        {
+                            password = temp;          // Пишем считанную строку в итоговую переменную.
+                            break;
+                        }
+
+                        ++i;
+                    }
+                }
+
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Нет файла 'authorization_data.txt' с логином и паролем по адресу: " + file_path + ".");
+
+                return false;
+            }
+        }
+        protected bool accessCheck(string cell_name, string login, int id)
+        {
+            MySqlCommand command = new MySqlCommand($"SELECT `{cell_name}` FROM users WHERE login=@login", this.connection);
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;    // присвоение значения псевдониму
+
+            openConnection();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                string access = reader[0].ToString();
+                
+                if (access[id] == '1')
+                {
+                    reader.Close();
+                    closeConnection();
+
+                    return true;
+                }
+            }
+
+            reader.Close();
+            closeConnection(); 
+            
+            MessageBox.Show("Нет доступа.");
+
+            return false;
         }
 
         protected void openConnection()
@@ -59,10 +124,27 @@ namespace UniversityApp
                 return false;
             }
         }
+        public bool checkAccess(int id)
+        {
+            UserData db = new UserData(connection);
 
-        public abstract List<string[]> getData();
-        public abstract bool add(List<string[]> data_user);
-        public abstract bool change(List<int> arr_index, string[] arr_data);
-        public abstract bool delete(int index);
+            if (readFile())
+            {
+                if (db.authorization(login, password))
+                {
+                    if (accessCheck(access_column_abs_class, login, id))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public abstract List<string[]> getAllData();
+        public abstract bool add(List<string> data);
+        public abstract bool change(string index, List<string> data);
+        public abstract bool delete(string index);
     }
 }
