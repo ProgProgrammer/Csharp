@@ -100,6 +100,12 @@
       <DependentUpon>StudentsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Users form\UserData.cs" />
+    <Compile Include="Users form\UserRemovalConfirmationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users form\UserRemovalConfirmationForm.Designer.cs">
+      <DependentUpon>UserRemovalConfirmationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users form\UsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Users form\AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users form\ChangeUserForm.resx">
+      <DependentUpon>ChangeUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users form\UserRemovalConfirmationForm.resx">
+      <DependentUpon>UserRemovalConfirmationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users form\UsersForm.resx">
       <DependentUpon>UsersForm.cs</DependentUpon>

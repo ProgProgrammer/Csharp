@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Users_form;
 
 namespace UniversityApp
 {
@@ -109,6 +110,115 @@ namespace UniversityApp
             else
             {
                 MessageBox.Show("Нет доступа к добавлению пользователей.");
+            }
+        }
+
+        private void changeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserData db = new UserData(connection);
+
+            if (db.checkAccess(2))
+            {
+                int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
+                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+
+
+                ChangeUserForm form = new ChangeUserForm();
+                int num_column = dataGridView1.Columns.Count - 1;         // номер колонки
+
+                if (rows > index)
+                {
+                    form.AccessFacultiesGroups = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.AccessStudent = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.AccessUser = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    --num_column;
+                    form.Surname = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.Name = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.Password = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.Login = dataGridView1[num_column, index].Value.ToString();
+                    form.index = dataGridView1[num_column, index].Value.ToString();
+                    form.ShowDialog();
+
+                    if (form.change_result)
+                    {
+                        List<string> data = form.data;
+                        int column = data.Count + 1;
+                        int count = data.Count - 1;
+
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = "0";
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы применили изменение к пустой строке.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет доступа к изменению пользователей.");
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserRemovalConfirmationForm form = new UserRemovalConfirmationForm();
+            form.ShowDialog();
+
+            if (form.result)
+            {
+                UserData db = new UserData(connection);
+
+                if (db.checkAccess(3))
+                {
+                    int column = dataGridView1.CurrentCell.ColumnIndex;         // номер выделенной пользователем колонки
+                    int index = dataGridView1.CurrentCell.RowIndex;             // номер выделенной пользователем строки
+                    int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+
+                    if (rows > index)
+                    {
+                        string id = dataGridView1[column, index].Value.ToString();  // логин
+
+                        if (db.delete(id))                       // метод удаления пользователя из базы данных
+                        {
+                            dataGridView1.Rows.RemoveAt(index);       // удаление пользователя из таблицы
+                        }
+                        else
+                        {
+                            MessageBox.Show("Удаление не удалось.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Вы применили удаление к пустой строке.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Нет доступа к удалению пользователей.");
+                }
             }
         }
 

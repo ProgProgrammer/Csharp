@@ -60,8 +60,8 @@ namespace UniversityApp
 
         private void addUser_Click(object sender, EventArgs e)
         {
-            List<string> data = new List<string>() { this.login.Text, this.password.Text, this.name.Text, this.surname.Text, this.accessUser.Text, 
-                                                    this.accessStudent.Text, this.accessFacultiesGroups.Text };
+            List<string> data = new List<string>() { this.login.Text, this.password.Text, this.name.Text, this.surname.Text, "0", 
+                                                    this.accessUser.Text, this.accessStudent.Text, this.accessFacultiesGroups.Text };
 
             if (this.login.Text.Length > 2 && this.password.Text.Length > 4
                 && this.name.Text.Length > 1 && this.surname.Text.Length > 2

@@ -8,20 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UniversityApp
+namespace UniversityApp.Users_form
 {
-    public partial class StudentRemovalConfirmationForm : Form
+    public partial class UserRemovalConfirmationForm : Form
     {
         public bool result = false;  // инфорамция о том, было ли подтверждение удаления или нет
 
-        public StudentRemovalConfirmationForm()
+        public UserRemovalConfirmationForm()
         {
             InitializeComponent();
-        }
-
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void yesDelete_Click(object sender, EventArgs e)
@@ -31,6 +26,11 @@ namespace UniversityApp
         }
 
         private void noDelete_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -51,7 +51,6 @@ namespace UniversityApp
         }
 
         Point lastPoint;
-
 
         private void topLabelPanel_MouseDown(object sender, MouseEventArgs e)
         {

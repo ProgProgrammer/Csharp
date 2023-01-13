@@ -209,6 +209,7 @@ namespace UniversityApp
                 this.groupCombo.BackColor = Color.White;
             }
 
+
             if (data[0].Length < 2)
             {
                 this.nameStudent.BackColor = Color.FromArgb(243, 0, 33);
