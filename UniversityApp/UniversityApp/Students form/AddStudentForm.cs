@@ -18,6 +18,8 @@ namespace UniversityApp
         private List<string[]> list_faculties = new List<string[]>();
         private List<string[]> data_groups;
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
+        public bool add_result = false;
+        public List<string[]> data_result = new List<string[]>();
 
         public AddStudentForm()
         {
@@ -127,7 +129,21 @@ namespace UniversityApp
                 }
 
                 StudentData db = new StudentData(connection);
-                db.add(data);
+                if (db.add(data))
+                {
+                    int count = data.Count - 1;
+                    this.data_result.Add(new string[data.Count]);
+                    int count_result = data_result.Count - 1;
+                    data[count] = group_combo;
+                    data[count - 1] = faculty_combo;
+
+                    for (int i = 0; i <= count; ++i)
+                    {
+                        this.data_result[count_result][i] = data[i];
+                    }
+
+                    add_result = true;
+                }
             }
 
 

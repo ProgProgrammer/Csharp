@@ -25,3 +25,6 @@ C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\De
 C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.StudentsForm.resources
 C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.AddStudentForm.resources
 C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.ChangeStudentForm.resources
+C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.StudentRemovalConfirmationForm.resources
+C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.UsersForm.resources
+C:\Users\vladi\Desktop\Programming\GIT\Csharp\UniversityApp\UniversityApp\obj\Debug\UniversityApp.AddUserForm.resources

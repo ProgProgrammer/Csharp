@@ -30,25 +30,25 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Label();
             this.topLabelPanel = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aboutUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutUserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.факультетыИГруппыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.факультетыИГруппыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -62,7 +62,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 451);
+            this.panel1.Size = new System.Drawing.Size(925, 451);
             this.panel1.TabIndex = 2;
             // 
             // dataGridView1
@@ -77,33 +77,8 @@
             this.Column5});
             this.dataGridView1.Location = new System.Drawing.Point(14, 137);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(775, 302);
+            this.dataGridView1.Size = new System.Drawing.Size(900, 302);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "№ студенческого билета";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Имя";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Фамилия";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Факультет";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Группа";
-            this.Column5.Name = "Column5";
             // 
             // panel2
             // 
@@ -114,7 +89,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 130);
+            this.panel2.Size = new System.Drawing.Size(925, 130);
             this.panel2.TabIndex = 0;
             // 
             // closeButton
@@ -124,7 +99,7 @@
             this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.closeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.closeButton.Location = new System.Drawing.Point(758, 24);
+            this.closeButton.Location = new System.Drawing.Point(886, 24);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(39, 37);
             this.closeButton.TabIndex = 1;
@@ -142,9 +117,9 @@
             this.topLabelPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.topLabelPanel.Location = new System.Drawing.Point(0, 24);
             this.topLabelPanel.Name = "topLabelPanel";
-            this.topLabelPanel.Size = new System.Drawing.Size(800, 106);
+            this.topLabelPanel.Size = new System.Drawing.Size(925, 106);
             this.topLabelPanel.TabIndex = 0;
-            this.topLabelPanel.Text = "Главный экран";
+            this.topLabelPanel.Text = "Студенты";
             this.topLabelPanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.topLabelPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseDown);
             this.topLabelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseMove);
@@ -156,19 +131,19 @@
             this.actionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(925, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
-            this.menuStrip1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseMove);
+            this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseDown);
+            this.menuStrip1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseMove);
             // 
             // aboutUserToolStripMenuItem
             // 
             this.aboutUserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeUserToolStripMenuItem,
-            this.пользователиToolStripMenuItem,
+            this.usersToolStripMenuItem,
             this.факультетыИГруппыToolStripMenuItem,
-            this.aboutUserToolStripMenuItem1});
+            this.aboutProgram});
             this.aboutUserToolStripMenuItem.Name = "aboutUserToolStripMenuItem";
             this.aboutUserToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.aboutUserToolStripMenuItem.Text = "Главная";
@@ -176,21 +151,29 @@
             // changeUserToolStripMenuItem
             // 
             this.changeUserToolStripMenuItem.Name = "changeUserToolStripMenuItem";
-            this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.changeUserToolStripMenuItem.Text = "Изменить пользователя";
+            this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.changeUserToolStripMenuItem.Text = "Сменить пользователя";
             this.changeUserToolStripMenuItem.Click += new System.EventHandler(this.changeUserToolStripMenuItem_Click);
             // 
-            // пользователиToolStripMenuItem
+            // usersToolStripMenuItem
             // 
-            this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.пользователиToolStripMenuItem.Text = "Пользователи";
+            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.usersToolStripMenuItem.Text = "Пользователи";
+            this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
-            // aboutUserToolStripMenuItem1
+            // факультетыИГруппыToolStripMenuItem
             // 
-            this.aboutUserToolStripMenuItem1.Name = "aboutUserToolStripMenuItem1";
-            this.aboutUserToolStripMenuItem1.Size = new System.Drawing.Size(206, 22);
-            this.aboutUserToolStripMenuItem1.Text = "О программе";
+            this.факультетыИГруппыToolStripMenuItem.Name = "факультетыИГруппыToolStripMenuItem";
+            this.факультетыИГруппыToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.факультетыИГруппыToolStripMenuItem.Text = "Факультеты и группы";
+            // 
+            // aboutProgram
+            // 
+            this.aboutProgram.Name = "aboutProgram";
+            this.aboutProgram.Size = new System.Drawing.Size(200, 22);
+            this.aboutProgram.Text = "О программе";
+            this.aboutProgram.Click += new System.EventHandler(this.aboutProgram_Click);
             // 
             // actionsToolStripMenuItem
             // 
@@ -231,17 +214,51 @@
             this.updateToolStripMenuItem.Text = "Обновить таблицу";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
-            // факультетыИГруппыToolStripMenuItem
+            // Column1
             // 
-            this.факультетыИГруппыToolStripMenuItem.Name = "факультетыИГруппыToolStripMenuItem";
-            this.факультетыИГруппыToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.факультетыИГруппыToolStripMenuItem.Text = "Факультеты и группы";
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.HeaderText = "№ студенческого билета";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 144;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Имя";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 54;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column3.HeaderText = "Фамилия";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 81;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column4.HeaderText = "Факультет";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 88;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column5.HeaderText = "Группа";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 67;
             // 
             // StudentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(926, 450);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StudentsForm";
@@ -267,18 +284,18 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem aboutUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutUserToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aboutProgram;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem пользователиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem факультетыИГруппыToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.ToolStripMenuItem факультетыИГруппыToolStripMenuItem;
     }
 }

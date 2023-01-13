@@ -18,6 +18,8 @@ namespace UniversityApp
         private List<string[]> data_groups;
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         public string index;
+        public bool change_result = false;
+        public List<string> data;
 
         public ChangeStudentForm()
         {
@@ -25,31 +27,31 @@ namespace UniversityApp
             loadData();
         }
 
-        public string StudentID
+        public string StudentID         // для установки значений в текстовые поля
         {
             get { return numberStudent.Text; }
             set { numberStudent.Text = value; }
         }
 
-        public string NameStudent
+        public string NameStudent      // для установки значений в текстовые поля
         {
             get { return nameStudent.Text; }
             set { nameStudent.Text = value; }
         }
 
-        public string SurnameStudent
+        public string SurnameStudent  // для установки значений в текстовые поля
         {
             get { return surnameStudent.Text; }
             set { surnameStudent.Text = value; }
         }
 
-        public string FacultyStudent
+        public string FacultyStudent  // для установки значений в текстовые поля
         {
             get { return facultyCombo.Text; }
             set { facultyCombo.Text = value; }
         }
 
-        public string GroupCombo
+        public string GroupCombo     // для установки значений в текстовые поля
         {
             get { return groupCombo.Text; }
             set { groupCombo.Text = value; }
@@ -176,7 +178,15 @@ namespace UniversityApp
                 }
 
                 StudentData db = new StudentData(connection);
-                db.change(this.index, data);
+                if (db.change(this.index, data))
+                {
+                    int count = data.Count - 1;
+                    data[count] = group_combo;
+                    --count;
+                    data[count] = faculty_combo;
+                    this.data = data;
+                    change_result = true;
+                }
             }
 
             if (data[1].Length > 1)

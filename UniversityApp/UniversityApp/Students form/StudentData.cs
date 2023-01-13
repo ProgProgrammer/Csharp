@@ -45,7 +45,7 @@ namespace UniversityApp
             {
                 if (db.authorization(login, password))
                 {
-                    if (accessCheck(access_column, login, 0))
+                    if (accessCheck(login, 0))
                     {
                         MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` ORDER BY id", this.connection);
                         List<string[]> data = new List<string[]>();
@@ -87,7 +87,7 @@ namespace UniversityApp
             {
                 if (db.authorization(login, password))
                 {
-                    if (accessCheck(access_column, login, 1))
+                    if (accessCheck(login, 1))
                     {
                         if (checkStudent(data))
                         {
@@ -136,7 +136,7 @@ namespace UniversityApp
             return false;
         }
 
-        public override bool change(string index, List<string> data)
+        public override bool change(string index, List<string> data)   // изменение данных о студенте
         {
             UserData db = new UserData(connection);
 
@@ -144,7 +144,7 @@ namespace UniversityApp
             {
                 if (db.authorization(login, password))
                 {
-                    if (accessCheck(access_column, login, 2))
+                    if (accessCheck(login, 2))
                     {
                         if (checkStudent(data))
                         {
@@ -200,7 +200,7 @@ namespace UniversityApp
             {
                 if (db.authorization(login, password))
                 {
-                    if (accessCheck(access_column, login, 3))
+                    if (accessCheck(login, 3))
                     {
                         MySqlCommand command = new MySqlCommand($"DELETE FROM `{name_table}` WHERE student_number = @student_id", connection);
                         command.Parameters.Add("@student_id", MySqlDbType.VarChar).Value = index;

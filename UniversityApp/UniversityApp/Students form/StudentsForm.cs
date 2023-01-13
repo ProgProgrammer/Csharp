@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,10 +19,10 @@ namespace UniversityApp
         public StudentsForm()
         {
             InitializeComponent();
-            loadDataStudents();
+            loadData();
         }
 
-        private void loadDataStudents()
+        private void loadData()
         {
             StudentData db_student = new StudentData(connection);
             List<string[]> data_students = db_student.getAllData();
@@ -103,25 +104,11 @@ namespace UniversityApp
             Application.Exit();
         }
 
-        private void menuStrip1_MouseDown(object sender, MouseEventArgs e)
-        {
-            lastPoint = new Point(e.X, e.Y);
-        }
-
-        private void menuStrip1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
-            }
-        }
-
         private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AuthorizationForm form = new AuthorizationForm();
-            form.CloseButton = false;
-            form.Show();
+            form.NameForm = form.students_line;  // не закрывать приложение при закрытии окна авторизации
+            form.ShowDialog();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -132,6 +119,16 @@ namespace UniversityApp
             {
                 AddStudentForm form = new AddStudentForm();
                 form.ShowDialog();
+
+                if (form.add_result)
+                {
+                    List<string[]> data = form.data_result;
+
+                    foreach (string[] s in data)
+                    {
+                        dataGridView1.Rows.Add(s);
+                    }
+                }
             }
             else
             {
@@ -150,10 +147,9 @@ namespace UniversityApp
 
 
                 ChangeStudentForm form = new ChangeStudentForm();
-                int id = dataGridView1.CurrentCell.RowIndex;             // номер строкиa
                 int num_column = dataGridView1.Columns.Count - 1;         // номер колонки
 
-                if (rows > id)
+                if (rows > index)
                 {
                     form.GroupCombo = dataGridView1[num_column, index].Value.ToString();
                     --num_column;
@@ -166,6 +162,24 @@ namespace UniversityApp
                     form.StudentID = dataGridView1[num_column, index].Value.ToString();
                     form.index = dataGridView1[num_column, index].Value.ToString();
                     form.ShowDialog();
+
+                    if (form.change_result)
+                    {
+                        List<string> data = form.data;
+                        int column = data.Count;
+                        int count = data.Count - 1;
+
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                    }
                 }
                 else
                 {
@@ -180,37 +194,43 @@ namespace UniversityApp
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StudentData db = new StudentData(connection);
+            StudentRemovalConfirmationForm form = new StudentRemovalConfirmationForm();
+            form.ShowDialog();
 
-            if (db.checkAccess(3))
+            if (form.result)
             {
-                int column = dataGridView1.CurrentCell.ColumnIndex;         // номер колонки
-                int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
-                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+                StudentData db = new StudentData(connection);
 
-                if (rows > index)
+                if (db.checkAccess(3))
                 {
-                    string id = dataGridView1[column, index].Value.ToString();  // номер студенческого билета
+                    int column = dataGridView1.CurrentCell.ColumnIndex;         // номер выделенной пользователем колонки
+                    int index = dataGridView1.CurrentCell.RowIndex;             // номер выделенной пользователем строки
+                    int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
 
-                    StudentData stud_db = new StudentData(connection);
-
-                    if (stud_db.delete(id))                       // метод удаления студента из базы данных
+                    if (rows > index)
                     {
-                        dataGridView1.Rows.RemoveAt(index);       // удаление студента из таблицы
+                        string id = dataGridView1[column, index].Value.ToString();  // номер студенческого билета
+
+                        StudentData stud_db = new StudentData(connection);
+
+                        if (stud_db.delete(id))                       // метод удаления студента из базы данных
+                        {
+                            dataGridView1.Rows.RemoveAt(index);       // удаление студента из таблицы
+                        }
+                        else
+                        {
+                            MessageBox.Show("Удаление не удалось.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Удаление не удалось.");
+                        MessageBox.Show("Вы применили удаление к пустой строке.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Вы применили удаление к пустой строке.");
+                    MessageBox.Show("Нет доступа к удалению студентов.");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Нет доступа к удалению студентов.");
             }
         }
 
@@ -223,7 +243,19 @@ namespace UniversityApp
                 dataGridView1.Rows.RemoveAt(i);
             }
 
-            loadDataStudents();
+            loadData();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsersForm form = new UsersForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void aboutProgram_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа создана Андреевым Владимиром Александровичем, студентом группы ВМ-20, ВолгГТУ. 2023 год.");
         }
     }
 }

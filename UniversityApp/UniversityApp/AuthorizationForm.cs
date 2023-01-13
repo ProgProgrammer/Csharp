@@ -14,7 +14,12 @@ namespace UniversityApp
     public partial class AuthorizationForm : Form
     {
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
-        private bool close_button = true;
+        private static string empty_line = "";
+        private string name_form = empty_line;
+
+        public string users_line = "user";
+        public string students_line = "student";
+        public string facylties_groups_line = "facylties_groups";
         public AuthorizationForm()
         {
             InitializeComponent();
@@ -22,15 +27,15 @@ namespace UniversityApp
             this.passwordField.AutoSize = false;
             this.passwordField.Size = new System.Drawing.Size(246, 40);
         }
-        public bool CloseButton
+        public string NameForm
         {
-            get { return close_button; }
-            set { close_button = value; }
+            get { return name_form; }
+            set { name_form = value; }
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            if (close_button)
+            if (name_form == empty_line)
             {
                 Application.Exit();
             }
@@ -95,8 +100,21 @@ namespace UniversityApp
                         form.Close();
                     }
 
-                    StudentsForm studentsForm = new StudentsForm();
-                    studentsForm.Show();
+                    if (name_form == users_line)
+                    {
+                        UsersForm usersForm = new UsersForm();
+                        usersForm.Show();
+                    }
+                    else if (name_form == students_line)
+                    {
+                        StudentsForm studentsForm = new StudentsForm();
+                        studentsForm.Show();
+                    }
+                    else
+                    {
+                        StudentsForm studentsForm = new StudentsForm();
+                        studentsForm.Show();
+                    }
                 }
             }
 

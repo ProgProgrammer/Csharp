@@ -16,7 +16,7 @@ namespace UniversityApp
 {
     internal abstract class ADataBase : IDataBase
     {
-        protected string access_column_abs_class;
+        protected string access_column_abs_class;  // название запрашиваемой ячейки с доступом
         protected const string file_path = @"..\files\authorization_data.txt";
         protected string login;
         protected string password;
@@ -63,9 +63,9 @@ namespace UniversityApp
                 return false;
             }
         }
-        protected bool accessCheck(string cell_name, string login, int id)
+        protected bool accessCheck(string login, int id)  // проверка доступа конкретного юзера
         {
-            MySqlCommand command = new MySqlCommand($"SELECT `{cell_name}` FROM users WHERE login=@login", this.connection);
+            MySqlCommand command = new MySqlCommand($"SELECT `{access_column_abs_class}` FROM users WHERE login=@login", this.connection);
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;    // присвоение значения псевдониму
 
             openConnection();
@@ -132,7 +132,7 @@ namespace UniversityApp
             {
                 if (db.authorization(login, password))
                 {
-                    if (accessCheck(access_column_abs_class, login, id))
+                    if (accessCheck(login, id))
                     {
                         return true;
                     }
