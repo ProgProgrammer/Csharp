@@ -17,7 +17,7 @@ namespace UniversityApp
     internal abstract class ADataBase : IDataBase
     {
         protected string access_column_abs_class;  // название запрашиваемой ячейки с доступом
-        protected const string file_path = @"..\files\authorization_data.txt";
+        protected const string file_path = @"authorization_data.txt";
         protected string login;
         protected string password;
         protected MySqlConnection connection;
