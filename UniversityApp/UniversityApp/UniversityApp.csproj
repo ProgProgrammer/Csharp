@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADataBase.cs" />
+    <Compile Include="Interface\ADataBase.cs" />
     <Compile Include="Students form\AddStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,7 +83,7 @@
       <DependentUpon>ChangeUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FacyltiesGroupsData.cs" />
-    <Compile Include="IDataBase.cs" />
+    <Compile Include="Interface\IDataBase.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Students form\StudentData.cs" />
