@@ -73,7 +73,7 @@ namespace UniversityApp
 
             return false;
         }
-        public override List<string[]> getAllData()
+        public List<string[]> getAllData()
         {
             if (readFile())
             {
@@ -106,6 +106,8 @@ namespace UniversityApp
                     }
                     else
                     {
+                        MessageBox.Show("Нет прав доступа на чтение.");
+
                         return new List<string[]>();
                     }
                 }

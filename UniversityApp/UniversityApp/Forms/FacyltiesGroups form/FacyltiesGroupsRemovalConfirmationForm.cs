@@ -7,20 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UniversityApp.Forms.FacyltiesGroups_form;
 
-namespace UniversityApp.Forms.Main_form
+namespace UniversityApp.Forms.FacyltiesGroups_form
 {
-    public partial class MainForm : Form
+    public partial class FacyltiesGroupsRemovalConfirmationForm : Form
     {
-        public MainForm()
+        public bool result = false;  // инфорамция о том, было ли подтверждение удаления или нет
+
+        public FacyltiesGroupsRemovalConfirmationForm()
         {
             InitializeComponent();
+        }
+        private void yesDelete_Click(object sender, EventArgs e)
+        {
+            result = true;
+            this.Close();
+        }
+
+        private void noDelete_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void closeButton_MouseHover(object sender, EventArgs e)
@@ -52,37 +63,6 @@ namespace UniversityApp.Forms.Main_form
                 this.Left += e.X - lastPoint.X;
                 this.Top += e.Y - lastPoint.Y;
             }
-        }
-
-        private void studentsButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            StudentsForm studentsForm = new StudentsForm();
-            studentsForm.Show();
-        }
-
-        private void usersButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            UsersForm usersForm = new UsersForm();
-            usersForm.Show();
-        }
-
-        private void facyltiesGroupsButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FacyltiesGroupsForm facyltiesGroupsForm = new FacyltiesGroupsForm();
-            facyltiesGroupsForm.Show();
-        }
-
-        private void facyltiesButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupsButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

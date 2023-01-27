@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.FacyltiesGroups_form;
 using UniversityApp.Users_form;
 
 namespace UniversityApp
@@ -79,6 +80,13 @@ namespace UniversityApp
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)    // открытие формы студентов
         {
             StudentsForm form = new StudentsForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void facultiesGroupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacyltiesGroupsForm form = new FacyltiesGroupsForm();
             this.Close();
             form.Show();
         }

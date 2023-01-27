@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.FacyltiesGroups_form;
 using UniversityApp.Forms.Main_form;
 
 namespace UniversityApp
@@ -110,6 +111,11 @@ namespace UniversityApp
                     {
                         StudentsForm studentsForm = new StudentsForm();
                         studentsForm.Show();
+                    }
+                    else if (name_form == facylties_groups_line)
+                    {
+                        FacyltiesGroupsForm facyltiesGroupsForm = new FacyltiesGroupsForm();
+                        facyltiesGroupsForm.Show();
                     }
                     else
                     {

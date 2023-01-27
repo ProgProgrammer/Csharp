@@ -37,7 +37,25 @@ namespace UniversityApp
             access_column_abs_class = access_column;
         }
 
-        public override List<string[]> getAllData()
+        public List<string[]> getFGData()  // метод для проверки доступа перед запросом информации о факультетах и группах в БД
+        {
+            UserData db = new UserData(connection);
+
+            if (readFile())
+            {
+                if (db.authorization(login, password))
+                {
+                    if (accessCheck(login, 0))
+                    {
+                        return getFacultiesGroupsData();
+                    }
+                }
+            }
+
+            return new List<string[]>();
+        }
+
+        public List<string[]> getAllData()
         {
             UserData db = new UserData(connection);
 
@@ -48,7 +66,9 @@ namespace UniversityApp
                     if (accessCheck(login, 0))
                     {
                         MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` ORDER BY id", this.connection);
+                        List<string[]> data_students = new List<string[]>();
                         List<string[]> data = new List<string[]>();
+                        List<string[]> data_faculty_groups = getFacultiesGroupsData();
 
                         openConnection();
 
@@ -57,21 +77,49 @@ namespace UniversityApp
 
                         while (reader.Read())
                         {
-                            data.Add(new string[num_cell_data]);
+                            data_students.Add(new string[num_cell_data]);
 
                             for (int i = 0; i < num_cell_data; ++i)
                             {
-                                data[data.Count - 1][i] = reader[i + 1].ToString();
+                                data_students[data_students.Count - 1][i] = reader[i + 1].ToString();
                             }
                         }
 
                         reader.Close();
                         closeConnection();
 
+                        for (int i = 0; i < data_students.Count; ++i)
+                        {
+                            data.Add(new string[5]);
+
+                            for (int a = 0; a < data[i].Length; ++a)
+                            {
+                                data[i][a] = data_students[i][a];
+                            }
+                        }
+
+                        for (int i = 0; i < data.Count; ++i)
+                        {
+                            for (int a = 0; a < data_faculty_groups.Count; ++a)
+                            {
+                                if (data[i][3] == data_faculty_groups[a][0])
+                                {
+                                    data[i][3] = data_faculty_groups[a][1];
+                                }
+
+                                if (data[i][4] == data_faculty_groups[a][2])
+                                {
+                                    data[i][4] = data_faculty_groups[a][3];
+                                }
+                            }
+                        }
+
                         return data;
                     }
                     else
                     {
+                        MessageBox.Show("Нет прав доступа на чтение.");
+
                         return new List<string[]>();
                     }
                 }
@@ -79,6 +127,7 @@ namespace UniversityApp
 
             return new List<string[]>();
         }
+
         public override bool add(List<string> data)
         {
             UserData db = new UserData(connection);
@@ -91,8 +140,7 @@ namespace UniversityApp
                     {
                         if (checkStudent(data))
                         {
-                            FacyltiesGroupsData form = new FacyltiesGroupsData(connection);
-                            List<string[]> list_faculties_groups = form.getAllData();
+                            List<string[]> list_faculties_groups = getFacultiesGroupsData();
 
                             for (int i = 0; i < list_faculties_groups.Count; ++i)
                             {
@@ -148,8 +196,7 @@ namespace UniversityApp
                     {
                         if (checkStudent(data))
                         {
-                            FacyltiesGroupsData form = new FacyltiesGroupsData(connection);
-                            List<string[]> list_faculties_groups = form.getAllData();
+                            List<string[]> list_faculties_groups = getFacultiesGroupsData();
 
                             for (int i = 0; i < list_faculties_groups.Count; ++i)
                             {

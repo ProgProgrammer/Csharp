@@ -29,9 +29,8 @@ namespace UniversityApp
 
         private void loadData()
         {
-            FacyltiesGroupsData db = new FacyltiesGroupsData(connection);
-
-            data_groups = db.getAllData();
+            StudentData db = new StudentData(connection);
+            data_groups = db.getFGData();
 
             for (int i = 0; i < data_groups.Count; ++i)
             {

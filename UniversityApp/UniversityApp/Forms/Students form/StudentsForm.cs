@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.FacyltiesGroups_form;
 
 namespace UniversityApp
 {
@@ -25,37 +26,7 @@ namespace UniversityApp
         private void loadData()
         {
             StudentData db_student = new StudentData(connection);
-            List<string[]> data_students = db_student.getAllData();
-
-            FacyltiesGroupsData db_fac_gr = new FacyltiesGroupsData(connection);
-            List<string[]> data_faculty_groups = db_fac_gr.getAllData();
-            List<string[]> data = new List<string[]>();
-
-            for (int i = 0; i < data_students.Count; ++i)
-            {
-                data.Add(new string[5]);
-
-                for (int a = 0; a < data[i].Length; ++a)
-                {
-                    data[i][a] = data_students[i][a];
-                }
-            }
-
-            for (int i = 0; i < data.Count; ++i)
-            {
-                for (int a = 0; a < data_faculty_groups.Count; ++a)
-                {
-                    if (data[i][3] == data_faculty_groups[a][0])
-                    {
-                        data[i][3] = data_faculty_groups[a][1];
-                    }
-
-                    if (data[i][4] == data_faculty_groups[a][2])
-                    {
-                        data[i][4] = data_faculty_groups[a][3];
-                    }
-                }
-            }
+            List<string[]> data = db_student.getAllData();
 
             foreach (string[] s in data)
             {
@@ -199,16 +170,16 @@ namespace UniversityApp
 
             if (form.result)
             {
-                StudentData db = new StudentData(connection);
+                int index = dataGridView1.CurrentCell.RowIndex;             // номер выделенной пользователем строки
+                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
 
-                if (db.checkAccess(3))
+                if (rows > index)
                 {
-                    int column = dataGridView1.CurrentCell.ColumnIndex;         // номер выделенной пользователем колонки
-                    int index = dataGridView1.CurrentCell.RowIndex;             // номер выделенной пользователем строки
-                    int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+                    StudentData db = new StudentData(connection);
 
-                    if (rows > index)
+                    if (db.checkAccess(3))
                     {
+                        int column = dataGridView1.CurrentCell.ColumnIndex;         // номер выделенной пользователем колонки
                         string id = dataGridView1[column, index].Value.ToString();  // номер студенческого билета
 
                         if (db.delete(id))                            // метод удаления студента из базы данных
@@ -222,12 +193,12 @@ namespace UniversityApp
                     }
                     else
                     {
-                        MessageBox.Show("Вы применили удаление к пустой строке.");
+                        MessageBox.Show("Нет доступа к удалению студентов.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Нет доступа к удалению студентов.");
+                    MessageBox.Show("Вы применили удаление к пустой строке.");
                 }
             }
         }
@@ -247,6 +218,13 @@ namespace UniversityApp
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UsersForm form = new UsersForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void facultiesGroupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacyltiesGroupsForm form = new FacyltiesGroupsForm();
             this.Close();
             form.Show();
         }
