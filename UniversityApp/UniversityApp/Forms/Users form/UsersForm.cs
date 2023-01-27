@@ -201,7 +201,7 @@ namespace UniversityApp
                     {
                         string id = dataGridView1[column, index].Value.ToString();  // логин
 
-                        if (db.delete(id))                       // метод удаления пользователя из базы данных
+                        if (db.delete(id))                            // метод удаления пользователя из базы данных
                         {
                             dataGridView1.Rows.RemoveAt(index);       // удаление пользователя из таблицы
                         }

@@ -50,75 +50,84 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\ADataBase.cs" />
-    <Compile Include="Students form\AddStudentForm.cs">
+    <Compile Include="Forms\Main form\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Students form\AddStudentForm.Designer.cs">
+    <Compile Include="Forms\Main form\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\ADataBase.cs" />
+    <Compile Include="Forms\Students form\AddStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Students form\AddStudentForm.Designer.cs">
       <DependentUpon>AddStudentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Users form\AddUserForm.cs">
+    <Compile Include="Forms\Users form\AddUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Users form\AddUserForm.Designer.cs">
+    <Compile Include="Forms\Users form\AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuthorizationForm.cs">
+    <Compile Include="Forms\Authorization form\AuthorizationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include=".Designer.cs">
+    <Compile Include="Forms\Authorization form\.Designer.cs">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Students form\ChangeStudentForm.cs">
+    <Compile Include="Forms\Students form\ChangeStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Students form\ChangeStudentForm.Designer.cs">
+    <Compile Include="Forms\Students form\ChangeStudentForm.Designer.cs">
       <DependentUpon>ChangeStudentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Users form\ChangeUserForm.cs">
+    <Compile Include="Forms\Users form\ChangeUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Users form\ChangeUserForm.Designer.cs">
+    <Compile Include="Forms\Users form\ChangeUserForm.Designer.cs">
       <DependentUpon>ChangeUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FacyltiesGroupsData.cs" />
     <Compile Include="Interface\IDataBase.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Students form\StudentData.cs" />
-    <Compile Include="Students form\StudentRemovalConfirmationForm.cs">
+    <Compile Include="Forms\Students form\StudentData.cs" />
+    <Compile Include="Forms\Students form\StudentRemovalConfirmationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Students form\StudentRemovalConfirmationForm.Designer.cs">
+    <Compile Include="Forms\Students form\StudentRemovalConfirmationForm.Designer.cs">
       <DependentUpon>StudentRemovalConfirmationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Students form\StudentsForm.cs">
+    <Compile Include="Forms\Students form\StudentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Students form\StudentsForm.Designer.cs">
+    <Compile Include="Forms\Students form\StudentsForm.Designer.cs">
       <DependentUpon>StudentsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Users form\UserData.cs" />
-    <Compile Include="Users form\UserRemovalConfirmationForm.cs">
+    <Compile Include="Forms\Users form\UserData.cs" />
+    <Compile Include="Forms\Users form\UserRemovalConfirmationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Users form\UserRemovalConfirmationForm.Designer.cs">
+    <Compile Include="Forms\Users form\UserRemovalConfirmationForm.Designer.cs">
       <DependentUpon>UserRemovalConfirmationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Users form\UsersForm.cs">
+    <Compile Include="Forms\Users form\UsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Users form\UsersForm.Designer.cs">
+    <Compile Include="Forms\Users form\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Students form\AddStudentForm.resx">
+    <EmbeddedResource Include="Forms\Main form\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Students form\AddStudentForm.resx">
       <DependentUpon>AddStudentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AuthorizationForm.resx">
+    <EmbeddedResource Include="Forms\Authorization form\AuthorizationForm.resx">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Students form\ChangeStudentForm.resx">
+    <EmbeddedResource Include="Forms\Students form\ChangeStudentForm.resx">
       <DependentUpon>ChangeStudentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -131,22 +140,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Students form\StudentRemovalConfirmationForm.resx">
+    <EmbeddedResource Include="Forms\Students form\StudentRemovalConfirmationForm.resx">
       <DependentUpon>StudentRemovalConfirmationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Students form\StudentsForm.resx">
+    <EmbeddedResource Include="Forms\Students form\StudentsForm.resx">
       <DependentUpon>StudentsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Users form\AddUserForm.resx">
+    <EmbeddedResource Include="Forms\Users form\AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Users form\ChangeUserForm.resx">
+    <EmbeddedResource Include="Forms\Users form\ChangeUserForm.resx">
       <DependentUpon>ChangeUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Users form\UserRemovalConfirmationForm.resx">
+    <EmbeddedResource Include="Forms\Users form\UserRemovalConfirmationForm.resx">
       <DependentUpon>UserRemovalConfirmationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Users form\UsersForm.resx">
+    <EmbeddedResource Include="Forms\Users form\UsersForm.resx">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

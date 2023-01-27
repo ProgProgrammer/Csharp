@@ -85,9 +85,7 @@ namespace UniversityApp
             }
 
             reader.Close();
-            closeConnection(); 
-            
-            MessageBox.Show("Нет доступа.");
+            closeConnection();
 
             return false;
         }

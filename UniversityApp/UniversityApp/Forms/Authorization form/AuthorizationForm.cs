@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.Main_form;
 
 namespace UniversityApp
 {
@@ -112,8 +113,8 @@ namespace UniversityApp
                     }
                     else
                     {
-                        StudentsForm studentsForm = new StudentsForm();
-                        studentsForm.Show();
+                        MainForm mainForm = new MainForm();
+                        mainForm.Show();
                     }
                 }
             }
