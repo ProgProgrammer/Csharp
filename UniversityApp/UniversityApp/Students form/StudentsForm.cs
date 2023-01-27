@@ -211,7 +211,7 @@ namespace UniversityApp
                     {
                         string id = dataGridView1[column, index].Value.ToString();  // номер студенческого билета
 
-                        if (db.delete(id))                       // метод удаления студента из базы данных
+                        if (db.delete(id))                            // метод удаления студента из базы данных
                         {
                             dataGridView1.Rows.RemoveAt(index);       // удаление студента из таблицы
                         }
