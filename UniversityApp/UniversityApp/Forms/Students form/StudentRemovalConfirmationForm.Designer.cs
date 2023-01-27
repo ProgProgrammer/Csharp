@@ -134,7 +134,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StudentRemovalConfirmationForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "StudentRemovalConfirmationForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

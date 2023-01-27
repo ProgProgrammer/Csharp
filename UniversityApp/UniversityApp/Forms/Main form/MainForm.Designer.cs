@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.facyltiesButton = new System.Windows.Forms.Button();
+            this.facyltiesGroupsButton = new System.Windows.Forms.Button();
+            this.studentsButton = new System.Windows.Forms.Button();
+            this.usersButton = new System.Windows.Forms.Button();
             this.groupsButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Label();
             this.topLabelPanel = new System.Windows.Forms.Label();
-            this.usersButton = new System.Windows.Forms.Button();
-            this.studentsButton = new System.Windows.Forms.Button();
-            this.facyltiesGroupsButton = new System.Windows.Forms.Button();
-            this.facyltiesButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +54,54 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(646, 500);
             this.panel1.TabIndex = 4;
+            // 
+            // facyltiesButton
+            // 
+            this.facyltiesButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.facyltiesButton.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.facyltiesButton.Location = new System.Drawing.Point(143, 346);
+            this.facyltiesButton.Name = "facyltiesButton";
+            this.facyltiesButton.Size = new System.Drawing.Size(361, 40);
+            this.facyltiesButton.TabIndex = 11;
+            this.facyltiesButton.Text = "ФАКУЛЬТЕТЫ";
+            this.facyltiesButton.UseVisualStyleBackColor = true;
+            this.facyltiesButton.Click += new System.EventHandler(this.facyltiesButton_Click);
+            // 
+            // facyltiesGroupsButton
+            // 
+            this.facyltiesGroupsButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.facyltiesGroupsButton.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.facyltiesGroupsButton.Location = new System.Drawing.Point(143, 276);
+            this.facyltiesGroupsButton.Name = "facyltiesGroupsButton";
+            this.facyltiesGroupsButton.Size = new System.Drawing.Size(361, 40);
+            this.facyltiesGroupsButton.TabIndex = 10;
+            this.facyltiesGroupsButton.Text = "ФАКУЛЬТЕТЫ И ГРУППЫ";
+            this.facyltiesGroupsButton.UseVisualStyleBackColor = true;
+            this.facyltiesGroupsButton.Click += new System.EventHandler(this.facyltiesGroupsButton_Click);
+            // 
+            // studentsButton
+            // 
+            this.studentsButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.studentsButton.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.studentsButton.Location = new System.Drawing.Point(143, 136);
+            this.studentsButton.Name = "studentsButton";
+            this.studentsButton.Size = new System.Drawing.Size(361, 40);
+            this.studentsButton.TabIndex = 9;
+            this.studentsButton.Text = "СТУДЕНТЫ";
+            this.studentsButton.UseVisualStyleBackColor = true;
+            this.studentsButton.Click += new System.EventHandler(this.studentsButton_Click);
+            // 
+            // usersButton
+            // 
+            this.usersButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.usersButton.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.usersButton.Location = new System.Drawing.Point(143, 207);
+            this.usersButton.Name = "usersButton";
+            this.usersButton.Size = new System.Drawing.Size(361, 40);
+            this.usersButton.TabIndex = 8;
+            this.usersButton.Text = "ПОЛЬЗОВАТЕЛИ";
+            this.usersButton.UseVisualStyleBackColor = true;
+            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
             // 
             // groupsButton
             // 
@@ -109,54 +157,6 @@
             this.topLabelPanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.topLabelPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseDown);
             this.topLabelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseMove);
-            // 
-            // usersButton
-            // 
-            this.usersButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.usersButton.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.usersButton.Location = new System.Drawing.Point(143, 207);
-            this.usersButton.Name = "usersButton";
-            this.usersButton.Size = new System.Drawing.Size(361, 40);
-            this.usersButton.TabIndex = 8;
-            this.usersButton.Text = "ПОЛЬЗОВАТЕЛИ";
-            this.usersButton.UseVisualStyleBackColor = true;
-            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
-            // 
-            // studentsButton
-            // 
-            this.studentsButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.studentsButton.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.studentsButton.Location = new System.Drawing.Point(143, 136);
-            this.studentsButton.Name = "studentsButton";
-            this.studentsButton.Size = new System.Drawing.Size(361, 40);
-            this.studentsButton.TabIndex = 9;
-            this.studentsButton.Text = "СТУДЕНТЫ";
-            this.studentsButton.UseVisualStyleBackColor = true;
-            this.studentsButton.Click += new System.EventHandler(this.studentsButton_Click);
-            // 
-            // facyltiesGroupsButton
-            // 
-            this.facyltiesGroupsButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.facyltiesGroupsButton.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.facyltiesGroupsButton.Location = new System.Drawing.Point(143, 276);
-            this.facyltiesGroupsButton.Name = "facyltiesGroupsButton";
-            this.facyltiesGroupsButton.Size = new System.Drawing.Size(361, 40);
-            this.facyltiesGroupsButton.TabIndex = 10;
-            this.facyltiesGroupsButton.Text = "ФАКУЛЬТЕТЫ И ГРУППЫ";
-            this.facyltiesGroupsButton.UseVisualStyleBackColor = true;
-            this.facyltiesGroupsButton.Click += new System.EventHandler(this.facyltiesGroupsButton_Click);
-            // 
-            // facyltiesButton
-            // 
-            this.facyltiesButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.facyltiesButton.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.facyltiesButton.Location = new System.Drawing.Point(143, 346);
-            this.facyltiesButton.Name = "facyltiesButton";
-            this.facyltiesButton.Size = new System.Drawing.Size(361, 40);
-            this.facyltiesButton.TabIndex = 11;
-            this.facyltiesButton.Text = "ФАКУЛЬТЕТЫ";
-            this.facyltiesButton.UseVisualStyleBackColor = true;
-            this.facyltiesButton.Click += new System.EventHandler(this.facyltiesButton_Click);
             // 
             // MainForm
             // 
