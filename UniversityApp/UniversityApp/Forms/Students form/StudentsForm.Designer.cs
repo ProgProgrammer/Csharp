@@ -49,6 +49,8 @@
             this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facyltiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -183,6 +185,8 @@
             this.changeUserToolStripMenuItem,
             this.usersToolStripMenuItem,
             this.facultiesGroupsToolStripMenuItem,
+            this.facyltiesToolStripMenuItem,
+            this.groupsToolStripMenuItem,
             this.aboutProgram});
             this.aboutUserToolStripMenuItem.Name = "aboutUserToolStripMenuItem";
             this.aboutUserToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
@@ -255,6 +259,20 @@
             this.updateToolStripMenuItem.Text = "Обновить таблицу";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
+            // facyltiesToolStripMenuItem
+            // 
+            this.facyltiesToolStripMenuItem.Name = "facyltiesToolStripMenuItem";
+            this.facyltiesToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.facyltiesToolStripMenuItem.Text = "Факультеты";
+            this.facyltiesToolStripMenuItem.Click += new System.EventHandler(this.facyltiesToolStripMenuItem_Click);
+            // 
+            // groupsToolStripMenuItem
+            // 
+            this.groupsToolStripMenuItem.Name = "groupsToolStripMenuItem";
+            this.groupsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.groupsToolStripMenuItem.Text = "Группы";
+            this.groupsToolStripMenuItem.Click += new System.EventHandler(this.groupsToolStripMenuItem_Click);
+            // 
             // StudentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,5 +316,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.ToolStripMenuItem facyltiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem groupsToolStripMenuItem;
     }
 }

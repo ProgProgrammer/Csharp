@@ -62,6 +62,20 @@
     <Compile Include="Forms\FacyltiesGroups form\FacyltiesGroupsRemovalConfirmationForm.Designer.cs">
       <DependentUpon>FacyltiesGroupsRemovalConfirmationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Facylties\FacyltiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Facylties\FacyltiesForm.Designer.cs">
+      <DependentUpon>FacyltiesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Facylties\FacyltiesData.cs" />
+    <Compile Include="Forms\Groups\GroupsData.cs" />
+    <Compile Include="Forms\Groups\GroupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Groups\GroupsForm.Designer.cs">
+      <DependentUpon>GroupsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Main form\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +150,12 @@
     <EmbeddedResource Include="Forms\FacyltiesGroups form\FacyltiesGroupsRemovalConfirmationForm.resx">
       <DependentUpon>FacyltiesGroupsRemovalConfirmationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Facylties\FacyltiesForm.resx">
+      <DependentUpon>FacyltiesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Groups\GroupsForm.resx">
+      <DependentUpon>GroupsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main form\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,5 +220,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

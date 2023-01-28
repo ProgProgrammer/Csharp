@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.Facylties;
 using UniversityApp.Forms.FacyltiesGroups_form;
+using UniversityApp.Forms.Groups;
 
 namespace UniversityApp.Forms.Main_form
 {
@@ -77,12 +79,16 @@ namespace UniversityApp.Forms.Main_form
 
         private void facyltiesButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            FacyltiesForm form = new FacyltiesForm();
+            form.Show();
         }
 
         private void groupsButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            GroupsForm form = new GroupsForm();
+            form.Show();
         }
     }
 }

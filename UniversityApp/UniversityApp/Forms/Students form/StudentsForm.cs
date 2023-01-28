@@ -9,7 +9,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.Facylties;
 using UniversityApp.Forms.FacyltiesGroups_form;
+using UniversityApp.Forms.Groups;
 
 namespace UniversityApp
 {
@@ -80,6 +82,39 @@ namespace UniversityApp
             AuthorizationForm form = new AuthorizationForm();
             form.NameForm = form.students_line;  // не закрывать приложение при закрытии окна авторизации
             form.ShowDialog();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsersForm form = new UsersForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void facultiesGroupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacyltiesGroupsForm form = new FacyltiesGroupsForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void facyltiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacyltiesForm form = new FacyltiesForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void groupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GroupsForm form = new GroupsForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void aboutProgram_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа создана Андреевым Владимиром Александровичем, студентом группы ВМ-20, ВолгГТУ. 2023 год.");
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -213,25 +248,6 @@ namespace UniversityApp
             }
 
             loadData();
-        }
-
-        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UsersForm form = new UsersForm();
-            this.Close();
-            form.Show();
-        }
-
-        private void facultiesGroupsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FacyltiesGroupsForm form = new FacyltiesGroupsForm();
-            this.Close();
-            form.Show();
-        }
-
-        private void aboutProgram_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Программа создана Андреевым Владимиром Александровичем, студентом группы ВМ-20, ВолгГТУ. 2023 год.");
         }
     }
 }
