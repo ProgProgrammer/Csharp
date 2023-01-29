@@ -228,6 +228,7 @@
             this.updateUsers.Name = "updateUsers";
             this.updateUsers.Size = new System.Drawing.Size(197, 22);
             this.updateUsers.Text = "Обновить таблицу";
+            this.updateUsers.Click += new System.EventHandler(this.updateGroups_Click);
             // 
             // GroupsForm
             // 

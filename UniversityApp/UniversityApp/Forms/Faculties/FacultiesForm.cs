@@ -78,7 +78,25 @@ namespace UniversityApp.Forms.Facylties
                     ChangeFacultyForm form = new ChangeFacultyForm();
                     int num_column = dataGridView1.Columns.Count - 1;
                     form.NameFaculty = dataGridView1[num_column, index].Value.ToString();
+
+                    for (int i = 0; i < data_faculties.Count(); ++i)
+                    {
+                        if (data_faculties[i][1] == form.NameFaculty)
+                        {
+                            form.IdFaculty = data_faculties[i][0];
+                        }
+                    }
+
                     form.ShowDialog();
+
+                    if (form.change_result)
+                    {
+                        List<string> data = form.data_result;
+                        dataGridView1[0, index].Value = data[0];
+
+                        FacultiesData db_faculty = new FacultiesData(connection);
+                        data_faculties = db_faculty.getAllData();
+                    }
                 }
                 else
                 {

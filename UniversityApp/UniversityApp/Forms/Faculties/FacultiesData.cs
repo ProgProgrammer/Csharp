@@ -103,7 +103,7 @@ namespace UniversityApp.Forms.Facylties
 
         public override bool change(string index, List<string> data)   // изменение данных о студенте
         {
-            /*UserData db = new UserData(connection);
+            UserData db = new UserData(connection);
 
             if (readFile())
             {
@@ -111,45 +111,29 @@ namespace UniversityApp.Forms.Facylties
                 {
                     if (accessCheck(login, 2))
                     {
-                        List<string[]> list_faculties_groups = getFacultiesGroupsData();
+                        MySqlCommand command = new MySqlCommand($"UPDATE `{name_table}` SET name = @name WHERE id=@index", connection);
+                        command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
+                        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[0];
 
-                        for (int i = 0; i < list_faculties_groups.Count; ++i)
+                        openConnection();
+
+                        if (command.ExecuteNonQuery() == 1)
                         {
-                            if (list_faculties_groups[i][0] == data[2]
-                                && list_faculties_groups[i][2] == data[3])  // проверка на то, есть ли переданная группа в переданном факультете или нет
-                            {
-                                MySqlCommand command = new MySqlCommand($"UPDATE `{name_table}` SET name = @name, surname = @surname, num_faculty = @num_faculty, num_group = @num_group WHERE student_number=@index", connection);
-                                command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[0];
-                                command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = data[1];
-                                command.Parameters.Add("@num_faculty", MySqlDbType.VarChar).Value = data[2];
-                                command.Parameters.Add("@num_group", MySqlDbType.VarChar).Value = data[3];
-                                command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
+                            MessageBox.Show("Факультет изменен.");
+                            closeConnection();
 
-                                openConnection();
-
-                                if (command.ExecuteNonQuery() == 1)
-                                {
-                                    MessageBox.Show("Студент изменен.");
-                                    closeConnection();
-
-                                    return true;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Студент не изменен.");
-                                    closeConnection();
-
-                                    return false;
-                                }
-                            }
+                            return true;
                         }
+                        else
+                        {
+                            MessageBox.Show("Факультет не изменен.");
+                            closeConnection();
 
-                        MessageBox.Show("На этом факультете нет такой группы.");
-
-                        return false;
+                            return false;
+                        }
                     }
                 }
-            }*/
+            }
 
             return false;
         }
