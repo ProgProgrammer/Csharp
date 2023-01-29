@@ -17,7 +17,7 @@ namespace UniversityApp.Forms.Facylties
     public partial class FacultiesForm : Form
     {
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
-        List<string[]> data_faculty = new List<string[]>();
+        List<string[]> data_faculties = new List<string[]>();
 
         public FacultiesForm()
         {
@@ -28,12 +28,97 @@ namespace UniversityApp.Forms.Facylties
         private void loadData()
         {
             FacultiesData db_faculty = new FacultiesData(connection);
-            data_faculty = db_faculty.getAllData();
+            data_faculties = db_faculty.getAllData();
 
-            for (int i = 0; i < data_faculty.Count(); ++i)
+            for (int i = 0; i < data_faculties.Count(); ++i)
             {
-                dataGridView1.Rows.Add(data_faculty[i][1]);
+                dataGridView1.Rows.Add(data_faculties[i][1]);
             }
+        }
+
+        private void addFaculty_Click(object sender, EventArgs e)
+        {
+            AddFacultyForm form = new AddFacultyForm();
+            form.ShowDialog();
+
+            if (form.add_result)
+            {
+                List<string> data = form.data_result;
+
+                foreach (string s in data)
+                {
+                    dataGridView1.Rows.Add(s);
+                }
+
+                FacultiesData db_faculty = new FacultiesData(connection);
+                data_faculties = db_faculty.getAllData();
+            }
+        }
+
+        private void changeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacultyRemovalConfirmationForm form = new FacultyRemovalConfirmationForm();
+            form.ShowDialog();
+
+            if (form.result)
+            {
+                int index = dataGridView1.CurrentCell.RowIndex;                  // номер выделенной пользователем строки
+                int rows = dataGridView1.Rows.Count - 1;                         // запрос количества строк
+
+                if (rows > index)
+                {
+                    FacultiesData db = new FacultiesData(connection);
+                    string faculty_name = dataGridView1[0, index].Value.ToString();  // название факультета
+
+                    if (db.checkAccess(3))
+                    {
+                        string id = "";
+
+                        for (int i = 0; i < data_faculties.Count(); ++i)
+                        {
+                            if (faculty_name == data_faculties[i][1])
+                            {
+                                id = data_faculties[i][0];
+                                break;
+                            }
+                        }
+
+                        if (db.delete(id))                            // метод удаления факультета из базы данных
+                        {
+                            dataGridView1.Rows.RemoveAt(index);       // удаление факультета из таблицы
+                        }
+                        else
+                        {
+                            MessageBox.Show("Удаление не удалось.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Нет доступа к удалению факультетов.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы применили удаление к пустой строке.");
+                }
+            }
+        }
+
+        private void updateFaculties_Click(object sender, EventArgs e)
+        {
+            int rows_count = dataGridView1.Rows.Count - 2;
+
+            for (int i = rows_count; i >= 0; --i)
+            {
+                dataGridView1.Rows.RemoveAt(i);
+            }
+
+            loadData();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -110,77 +195,6 @@ namespace UniversityApp.Forms.Facylties
         private void aboutProgram_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Программа создана Андреевым Владимиром Александровичем, студентом группы ВМ-20, ВолгГТУ. 2023 год.");
-        }
-
-        private void addFaculty_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void changeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FacultyRemovalConfirmationForm form = new FacultyRemovalConfirmationForm();
-            form.ShowDialog();
-
-            if (form.result)
-            {
-                int index = dataGridView1.CurrentCell.RowIndex;                  // номер выделенной пользователем строки
-                int rows = dataGridView1.Rows.Count - 1;                         // запрос количества строк
-
-                if (rows > index)
-                {
-                    FacultiesData db = new FacultiesData(connection);
-                    string faculty_name = dataGridView1[0, index].Value.ToString();  // название факультета
-
-                    if (db.checkAccess(3))
-                    {
-                        string id = "";
-
-                        for (int i = 0; i < data_faculty.Count(); ++i)
-                        {
-                            if (faculty_name == data_faculty[i][1])
-                            {
-                                id = data_faculty[i][0];
-                                break;
-                            }
-                        }
-
-                        if (db.delete(id))                            // метод удаления факультета из базы данных
-                        {
-                            dataGridView1.Rows.RemoveAt(index);       // удаление факультета из таблицы
-                        }
-                        else
-                        {
-                            MessageBox.Show("Удаление не удалось.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Нет доступа к удалению факультетов.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Вы применили удаление к пустой строке.");
-                }
-            }
-        }
-
-        private void updateFaculties_Click(object sender, EventArgs e)
-        {
-            int rows_count = dataGridView1.Rows.Count - 2;
-
-            for (int i = rows_count; i >= 0; --i)
-            {
-                dataGridView1.Rows.RemoveAt(i);
-            }
-
-            loadData();
         }
     }
 }

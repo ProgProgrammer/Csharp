@@ -67,7 +67,7 @@ namespace UniversityApp.Forms.Facylties
 
         public override bool add(List<string> data)
         {
-            /*UserData db = new UserData(connection);
+            UserData db = new UserData(connection);
 
             if (readFile())
             {
@@ -75,45 +75,28 @@ namespace UniversityApp.Forms.Facylties
                 {
                     if (accessCheck(login, 1))
                     {
-                        List<string[]> list_faculties_groups = getFacultiesGroupsData();
+                        MySqlCommand command = new MySqlCommand($"INSERT INTO `{name_table}`(name) VALUES(@name_faculty)", connection);
+                        command.Parameters.Add("@name_faculty", MySqlDbType.VarChar).Value = data[0];
 
-                        for (int i = 0; i < list_faculties_groups.Count; ++i)
+                        openConnection();
+
+                        if (command.ExecuteNonQuery() == 1)
                         {
-                            if (list_faculties_groups[i][0] == data[3]
-                                && list_faculties_groups[i][2] == data[4])  // проверка на то, есть ли переданная группа в переданном факультете или нет
-                            {
-                                MySqlCommand command = new MySqlCommand($"INSERT INTO `{name_table}`(student_number, name, surname, num_faculty, num_group) VALUES(@student_number, @name, @surname, @num_faculty, @num_group)", connection);
-                                command.Parameters.Add("@student_number", MySqlDbType.VarChar).Value = data[0];
-                                command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[1];
-                                command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = data[2];
-                                command.Parameters.Add("@num_faculty", MySqlDbType.VarChar).Value = data[3];
-                                command.Parameters.Add("@num_group", MySqlDbType.VarChar).Value = data[4];
+                            MessageBox.Show("Факультет добавлен.");
+                            closeConnection();
 
-                                openConnection();
-
-                                if (command.ExecuteNonQuery() == 1)
-                                {
-                                    MessageBox.Show("Студент добавлен.");
-                                    closeConnection();
-
-                                    return true;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Студент не добавлен.");
-                                    closeConnection();
-
-                                    return false;
-                                }
-                            }
+                            return true;
                         }
+                        else
+                        {
+                            MessageBox.Show("Факультет не добавлен.");
+                            closeConnection();
 
-                        MessageBox.Show("На этом факультете нет такой группы.");
-
-                        return false;
+                            return false;
+                        }
                     }
                 }
-            }*/
+            }
 
             return false;
         }
