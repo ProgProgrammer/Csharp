@@ -114,7 +114,7 @@ namespace UniversityApp
                     }
                     else if (name_form == facylties_groups_line)
                     {
-                        FacyltiesGroupsForm facyltiesGroupsForm = new FacyltiesGroupsForm();
+                        FacultiesGroupsForm facyltiesGroupsForm = new FacultiesGroupsForm();
                         facyltiesGroupsForm.Show();
                     }
                     else

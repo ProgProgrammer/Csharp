@@ -1,6 +1,6 @@
 ﻿namespace UniversityApp.Forms.FacyltiesGroups_form
 {
-    partial class FacyltiesGroupsRemovalConfirmationForm
+    partial class FacultiesGroupsRemovalConfirmationForm
     {
         /// <summary>
         /// Required designer variable.

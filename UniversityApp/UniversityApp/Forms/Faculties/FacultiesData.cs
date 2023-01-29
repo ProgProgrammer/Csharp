@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniversityApp.Forms.Facylties
 {
-    internal class FacyltiesData
+    internal class FacultiesData
     {
     }
 }

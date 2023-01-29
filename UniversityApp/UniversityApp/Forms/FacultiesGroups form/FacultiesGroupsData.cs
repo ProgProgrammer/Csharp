@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace UniversityApp
 {
-    internal class FacyltiesGroupsData : ADataBase
+    internal class FacultiesGroupsData : ADataBase
     {
         private const string name_table = "faculties_groups";
-        private const string access_column = "access_facylties_groups";
+        private const string access_column = "access_faculties_groups";
 
-        public FacyltiesGroupsData(MySqlConnection connection) : base(connection)
+        public FacultiesGroupsData(MySqlConnection connection) : base(connection)
         {
             access_column_abs_class = access_column;
         }

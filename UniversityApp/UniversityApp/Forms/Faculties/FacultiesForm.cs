@@ -12,9 +12,9 @@ using UniversityApp.Forms.Groups;
 
 namespace UniversityApp.Forms.Facylties
 {
-    public partial class FacyltiesForm : Form
+    public partial class FacultiesForm : Form
     {
-        public FacyltiesForm()
+        public FacultiesForm()
         {
             InitializeComponent();
         }
@@ -76,9 +76,9 @@ namespace UniversityApp.Forms.Facylties
             form.Show();
         }
 
-        private void facyltiesAndGroupsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void facultiesAndGroupsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacyltiesGroupsForm form = new FacyltiesGroupsForm();
+            FacultiesGroupsForm form = new FacultiesGroupsForm();
             this.Close();
             form.Show();
         }
@@ -93,6 +93,27 @@ namespace UniversityApp.Forms.Facylties
         private void aboutProgram_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Программа создана Андреевым Владимиром Александровичем, студентом группы ВМ-20, ВолгГТУ. 2023 год.");
+        }
+
+        private void addFaculty_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void updateFaculties_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

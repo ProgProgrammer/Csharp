@@ -43,14 +43,14 @@
             this.changeUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facultiesGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facultiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.facyltiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -185,7 +185,7 @@
             this.changeUserToolStripMenuItem,
             this.usersToolStripMenuItem,
             this.facultiesGroupsToolStripMenuItem,
-            this.facyltiesToolStripMenuItem,
+            this.facultiesToolStripMenuItem,
             this.groupsToolStripMenuItem,
             this.aboutProgram});
             this.aboutUserToolStripMenuItem.Name = "aboutUserToolStripMenuItem";
@@ -212,6 +212,20 @@
             this.facultiesGroupsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.facultiesGroupsToolStripMenuItem.Text = "Факультеты и группы";
             this.facultiesGroupsToolStripMenuItem.Click += new System.EventHandler(this.facultiesGroupsToolStripMenuItem_Click);
+            // 
+            // facultiesToolStripMenuItem
+            // 
+            this.facultiesToolStripMenuItem.Name = "facultiesToolStripMenuItem";
+            this.facultiesToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.facultiesToolStripMenuItem.Text = "Факультеты";
+            this.facultiesToolStripMenuItem.Click += new System.EventHandler(this.facultiesToolStripMenuItem_Click);
+            // 
+            // groupsToolStripMenuItem
+            // 
+            this.groupsToolStripMenuItem.Name = "groupsToolStripMenuItem";
+            this.groupsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.groupsToolStripMenuItem.Text = "Группы";
+            this.groupsToolStripMenuItem.Click += new System.EventHandler(this.groupsToolStripMenuItem_Click);
             // 
             // aboutProgram
             // 
@@ -259,20 +273,6 @@
             this.updateToolStripMenuItem.Text = "Обновить таблицу";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
-            // facyltiesToolStripMenuItem
-            // 
-            this.facyltiesToolStripMenuItem.Name = "facyltiesToolStripMenuItem";
-            this.facyltiesToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.facyltiesToolStripMenuItem.Text = "Факультеты";
-            this.facyltiesToolStripMenuItem.Click += new System.EventHandler(this.facyltiesToolStripMenuItem_Click);
-            // 
-            // groupsToolStripMenuItem
-            // 
-            this.groupsToolStripMenuItem.Name = "groupsToolStripMenuItem";
-            this.groupsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.groupsToolStripMenuItem.Text = "Группы";
-            this.groupsToolStripMenuItem.Click += new System.EventHandler(this.groupsToolStripMenuItem_Click);
-            // 
             // StudentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -316,7 +316,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.ToolStripMenuItem facyltiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem facultiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem groupsToolStripMenuItem;
     }
 }

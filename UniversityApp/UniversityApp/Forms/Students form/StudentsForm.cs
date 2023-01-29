@@ -93,14 +93,14 @@ namespace UniversityApp
 
         private void facultiesGroupsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacyltiesGroupsForm form = new FacyltiesGroupsForm();
+            FacultiesGroupsForm form = new FacultiesGroupsForm();
             this.Close();
             form.Show();
         }
 
-        private void facyltiesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void facultiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacyltiesForm form = new FacyltiesForm();
+            FacultiesForm form = new FacultiesForm();
             this.Close();
             form.Show();
         }

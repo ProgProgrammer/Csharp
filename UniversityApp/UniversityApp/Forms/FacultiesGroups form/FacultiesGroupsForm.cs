@@ -14,19 +14,19 @@ using UniversityApp.Users_form;
 
 namespace UniversityApp.Forms.FacyltiesGroups_form
 {
-    public partial class FacyltiesGroupsForm : Form
+    public partial class FacultiesGroupsForm : Form
     {
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         private List<string[]> data_faculty_groups;
 
-        public FacyltiesGroupsForm()
+        public FacultiesGroupsForm()
         {
             InitializeComponent();
             loadData();
         }
         private void loadData()
         {
-            FacyltiesGroupsData db_fac_gr = new FacyltiesGroupsData(connection);
+            FacultiesGroupsData db_fac_gr = new FacultiesGroupsData(connection);
             data_faculty_groups = db_fac_gr.getAllData();
             List<string[]> data = new List<string[]>();
 
@@ -103,9 +103,9 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
             form.Show();
         }
 
-        private void facyltiesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void facultiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacyltiesForm form = new FacyltiesForm();
+            FacultiesForm form = new FacultiesForm();
             this.Close();
             form.Show();
         }
@@ -124,7 +124,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacyltiesGroupsRemovalConfirmationForm form = new FacyltiesGroupsRemovalConfirmationForm();
+            FacultiesGroupsRemovalConfirmationForm form = new FacultiesGroupsRemovalConfirmationForm();
             form.ShowDialog();
 
             if (form.result)
@@ -134,7 +134,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
                 if (rows > index)
                 {
-                    FacyltiesGroupsData db = new FacyltiesGroupsData(connection);
+                    FacultiesGroupsData db = new FacultiesGroupsData(connection);
 
                     if (db.checkAccess(3))
                     {

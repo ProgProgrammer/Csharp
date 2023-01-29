@@ -73,14 +73,14 @@ namespace UniversityApp.Forms.Main_form
         private void facyltiesGroupsButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FacyltiesGroupsForm facyltiesGroupsForm = new FacyltiesGroupsForm();
+            FacultiesGroupsForm facyltiesGroupsForm = new FacultiesGroupsForm();
             facyltiesGroupsForm.Show();
         }
 
-        private void facyltiesButton_Click(object sender, EventArgs e)
+        private void facultiesButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FacyltiesForm form = new FacyltiesForm();
+            FacultiesForm form = new FacultiesForm();
             form.Show();
         }
 

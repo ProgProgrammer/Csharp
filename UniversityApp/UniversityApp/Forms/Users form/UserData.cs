@@ -126,8 +126,8 @@ namespace UniversityApp
                         if (checkUser(data))
                         {
                             MySqlCommand command = 
-                                new MySqlCommand($"INSERT INTO `{name_table}`(login, password, name, surname, super_admin, access_user, access_student, access_facylties_groups) " +
-                                $"VALUES(@login, @password, @name, @surname, @super_admin, @access_user, @access_student, @access_facylties_groups)", connection);
+                                new MySqlCommand($"INSERT INTO `{name_table}`(login, password, name, surname, super_admin, access_user, access_student, access_faculties_groups) " +
+                                $"VALUES(@login, @password, @name, @surname, @super_admin, @access_user, @access_student, @access_faculties_groups)", connection);
                             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = data[0];
                             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = data[1];
                             command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[2];
@@ -135,7 +135,7 @@ namespace UniversityApp
                             command.Parameters.Add("@super_admin", MySqlDbType.VarChar).Value = data[4];
                             command.Parameters.Add("@access_user", MySqlDbType.VarChar).Value = data[5];
                             command.Parameters.Add("@access_student", MySqlDbType.VarChar).Value = data[6];
-                            command.Parameters.Add("@access_facylties_groups", MySqlDbType.VarChar).Value = data[7];
+                            command.Parameters.Add("@access_faculties_groups", MySqlDbType.VarChar).Value = data[7];
 
                             openConnection();
 
@@ -172,14 +172,14 @@ namespace UniversityApp
                         {
                             MySqlCommand command = new MySqlCommand($"UPDATE `{name_table}` SET password = @password, " +
                                 $"name = @name, surname = @surname, super_admin = @super_admin, access_user = @access_user, " +
-                                $"access_student = @access_student, access_facylties_groups = @access_facylties_groups WHERE login = @index", connection);
+                                $"access_student = @access_student, access_faculties_groups = @access_faculties_groups WHERE login = @index", connection);
                             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = data[0];
                             command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[1];
                             command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = data[2];
                             command.Parameters.Add("@super_admin", MySqlDbType.VarChar).Value = "0";
                             command.Parameters.Add("@access_user", MySqlDbType.VarChar).Value = data[3];
                             command.Parameters.Add("@access_student", MySqlDbType.VarChar).Value = data[4];
-                            command.Parameters.Add("@access_facylties_groups", MySqlDbType.VarChar).Value = data[5];
+                            command.Parameters.Add("@access_faculties_groups", MySqlDbType.VarChar).Value = data[5];
                             command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
 
                             openConnection();

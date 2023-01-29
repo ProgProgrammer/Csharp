@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace UniversityApp.Forms.FacyltiesGroups_form
 {
-    public partial class FacyltiesGroupsRemovalConfirmationForm : Form
+    public partial class FacultiesGroupsRemovalConfirmationForm : Form
     {
         public bool result = false;  // инфорамция о том, было ли подтверждение удаления или нет
 
-        public FacyltiesGroupsRemovalConfirmationForm()
+        public FacultiesGroupsRemovalConfirmationForm()
         {
             InitializeComponent();
         }
