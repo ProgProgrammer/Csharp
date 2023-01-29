@@ -38,26 +38,57 @@ namespace UniversityApp.Forms.Facylties
 
         private void addFaculty_Click(object sender, EventArgs e)
         {
-            AddFacultyForm form = new AddFacultyForm();
-            form.ShowDialog();
+            UserData db = new UserData(connection);
 
-            if (form.add_result)
+            if (db.checkAccess(1))
             {
-                List<string> data = form.data_result;
+                AddFacultyForm form = new AddFacultyForm();
+                form.ShowDialog();
 
-                foreach (string s in data)
+                if (form.add_result)
                 {
-                    dataGridView1.Rows.Add(s);
-                }
+                    List<string> data = form.data_result;
 
-                FacultiesData db_faculty = new FacultiesData(connection);
-                data_faculties = db_faculty.getAllData();
+                    foreach (string s in data)
+                    {
+                        dataGridView1.Rows.Add(s);
+                    }
+
+                    FacultiesData db_faculty = new FacultiesData(connection);
+                    data_faculties = db_faculty.getAllData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет доступа к добавлению факультетов.");
             }
         }
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            UserData db = new UserData(connection);
 
+            if (db.checkAccess(2))
+            {
+                int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
+                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+
+                if (rows > index)
+                {
+                    ChangeFacultyForm form = new ChangeFacultyForm();
+                    int num_column = dataGridView1.Columns.Count - 1;
+                    form.NameFaculty = dataGridView1[num_column, index].Value.ToString();
+                    form.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Вы применили изменение к пустой строке.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет доступа к изменению факультетов.");
+            }
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)

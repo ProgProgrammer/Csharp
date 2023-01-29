@@ -68,6 +68,12 @@
     <Compile Include="Forms\Faculties\AddFacultyForm.Designer.cs">
       <DependentUpon>AddFacultyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Faculties\ChangeFacultyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Faculties\ChangeFacultyForm.Designer.cs">
+      <DependentUpon>ChangeFacultyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Faculties\FacultiesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,11 +171,14 @@
     <EmbeddedResource Include="Forms\Faculties\AddFacultyForm.resx">
       <DependentUpon>AddFacultyForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Faculties\ChangeFacultyForm.resx">
+      <DependentUpon>ChangeFacultyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Faculties\FacultiesForm.resx">
+      <DependentUpon>FacultiesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Faculties\FacultyRemovalConfirmationForm.resx">
       <DependentUpon>FacultyRemovalConfirmationForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Faculties\FacyltiesForm.resx">
-      <DependentUpon>FacultiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Groups\GroupsForm.resx">
       <DependentUpon>GroupsForm.cs</DependentUpon>
