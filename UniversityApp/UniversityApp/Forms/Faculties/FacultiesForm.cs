@@ -60,7 +60,7 @@ namespace UniversityApp.Forms.Facylties
             }
             else
             {
-                MessageBox.Show("Нет доступа к добавлению факультетов.");
+                MessageBox.Show("Нет прав доступа на добавление факультетов.");
             }
         }
 
@@ -105,7 +105,7 @@ namespace UniversityApp.Forms.Facylties
             }
             else
             {
-                MessageBox.Show("Нет доступа к изменению факультетов.");
+                MessageBox.Show("Нет прав доступа на изменение факультетов.");
             }
         }
 
@@ -148,7 +148,7 @@ namespace UniversityApp.Forms.Facylties
                     }
                     else
                     {
-                        MessageBox.Show("Нет доступа к удалению факультетов.");
+                        MessageBox.Show("Нет прав доступа на удаление факультетов.");
                     }
                 }
                 else

@@ -210,6 +210,7 @@
             this.addUser.Name = "addUser";
             this.addUser.Size = new System.Drawing.Size(197, 22);
             this.addUser.Text = "Добавить новую свзяь";
+            this.addUser.Click += new System.EventHandler(this.addGroup_Click);
             // 
             // changeToolStripMenuItem
             // 
@@ -222,6 +223,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.deleteToolStripMenuItem.Text = "Удалить связь";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // updateUsers
             // 

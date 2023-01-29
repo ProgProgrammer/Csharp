@@ -27,8 +27,8 @@ namespace UniversityApp.Forms.Groups
 
         private void loadData()
         {
-            FacultiesData db_faculty = new FacultiesData(connection);
-            data_groups = db_faculty.getAllData();
+            GroupsData db_group = new GroupsData(connection);
+            data_groups = db_group.getAllData();
 
             for (int i = 0; i < data_groups.Count(); ++i)
             {
@@ -42,7 +42,7 @@ namespace UniversityApp.Forms.Groups
 
             if (db.checkAccess(1))
             {
-                AddFacultyForm form = new AddFacultyForm();
+                AddGroupForm form = new AddGroupForm();
                 form.ShowDialog();
 
                 if (form.add_result)
@@ -54,13 +54,13 @@ namespace UniversityApp.Forms.Groups
                         dataGridView1.Rows.Add(s);
                     }
 
-                    FacultiesData db_faculty = new FacultiesData(connection);
-                    data_groups = db_faculty.getAllData();
+                    GroupsData db_group = new GroupsData(connection);
+                    data_groups = db_group.getAllData();
                 }
             }
             else
             {
-                MessageBox.Show("Нет доступа к добавлению факультетов.");
+                MessageBox.Show("Нет прав доступа на добавление групп.");
             }
         }
 
@@ -105,13 +105,13 @@ namespace UniversityApp.Forms.Groups
             }
             else
             {
-                MessageBox.Show("Нет доступа к изменению факультетов.");
+                MessageBox.Show("Нет прав доступа на изменение групп.");
             }
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacultyRemovalConfirmationForm form = new FacultyRemovalConfirmationForm();
+            GroupRemovalConfirmationForm form = new GroupRemovalConfirmationForm();
             form.ShowDialog();
 
             if (form.result)
@@ -121,7 +121,7 @@ namespace UniversityApp.Forms.Groups
 
                 if (rows > index)
                 {
-                    FacultiesData db = new FacultiesData(connection);
+                    GroupsData db = new GroupsData(connection);
                     string faculty_name = dataGridView1[0, index].Value.ToString();  // название факультета
 
                     if (db.checkAccess(3))
@@ -148,7 +148,7 @@ namespace UniversityApp.Forms.Groups
                     }
                     else
                     {
-                        MessageBox.Show("Нет доступа к удалению факультетов.");
+                        MessageBox.Show("Нет прав доступа на удаление групп.");
                     }
                 }
                 else

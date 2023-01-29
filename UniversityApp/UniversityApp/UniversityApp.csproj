@@ -87,6 +87,12 @@
       <DependentUpon>FacultiesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Faculties\FacultiesData.cs" />
+    <Compile Include="Forms\Groups\AddGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Groups\AddGroupForm.Designer.cs">
+      <DependentUpon>AddGroupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Groups\GroupRemovalConfirmationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Faculties\FacultyRemovalConfirmationForm.resx">
       <DependentUpon>FacultyRemovalConfirmationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Groups\AddGroupForm.resx">
+      <DependentUpon>AddGroupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Groups\GroupRemovalConfirmationForm.resx">
       <DependentUpon>GroupRemovalConfirmationForm.cs</DependentUpon>
