@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.Faculties;
 using UniversityApp.Forms.FacyltiesGroups_form;
 using UniversityApp.Forms.Groups;
 
@@ -14,9 +16,24 @@ namespace UniversityApp.Forms.Facylties
 {
     public partial class FacultiesForm : Form
     {
+        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
+        List<string[]> data_faculty = new List<string[]>();
+
         public FacultiesForm()
         {
             InitializeComponent();
+            loadData();
+        }
+
+        private void loadData()
+        {
+            FacultiesData db_faculty = new FacultiesData(connection);
+            data_faculty = db_faculty.getAllData();
+
+            for (int i = 0; i < data_faculty.Count(); ++i)
+            {
+                dataGridView1.Rows.Add(data_faculty[i][1]);
+            }
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -58,7 +75,7 @@ namespace UniversityApp.Forms.Facylties
         private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AuthorizationForm form = new AuthorizationForm();
-            form.NameForm = form.facylties_groups_line;  // не закрывать приложение при закрытии окна авторизации
+            form.NameForm = form.faculties_line;  // не закрывать приложение при закрытии окна авторизации
             form.ShowDialog();
         }
 
@@ -107,13 +124,63 @@ namespace UniversityApp.Forms.Facylties
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FacultyRemovalConfirmationForm form = new FacultyRemovalConfirmationForm();
+            form.ShowDialog();
 
+            if (form.result)
+            {
+                int index = dataGridView1.CurrentCell.RowIndex;                  // номер выделенной пользователем строки
+                int rows = dataGridView1.Rows.Count - 1;                         // запрос количества строк
+
+                if (rows > index)
+                {
+                    FacultiesData db = new FacultiesData(connection);
+                    string faculty_name = dataGridView1[0, index].Value.ToString();  // название факультета
+
+                    if (db.checkAccess(3))
+                    {
+                        string id = "";
+
+                        for (int i = 0; i < data_faculty.Count(); ++i)
+                        {
+                            if (faculty_name == data_faculty[i][1])
+                            {
+                                id = data_faculty[i][0];
+                                break;
+                            }
+                        }
+
+                        if (db.delete(id))                            // метод удаления факультета из базы данных
+                        {
+                            dataGridView1.Rows.RemoveAt(index);       // удаление факультета из таблицы
+                        }
+                        else
+                        {
+                            MessageBox.Show("Удаление не удалось.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Нет доступа к удалению факультетов.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы применили удаление к пустой строке.");
+                }
+            }
         }
-
 
         private void updateFaculties_Click(object sender, EventArgs e)
         {
+            int rows_count = dataGridView1.Rows.Count - 2;
 
+            for (int i = rows_count; i >= 0; --i)
+            {
+                dataGridView1.Rows.RemoveAt(i);
+            }
+
+            loadData();
         }
     }
 }

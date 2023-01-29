@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.Facylties;
 using UniversityApp.Forms.FacyltiesGroups_form;
+using UniversityApp.Forms.Groups;
 using UniversityApp.Forms.Main_form;
 
 namespace UniversityApp
@@ -21,7 +23,9 @@ namespace UniversityApp
 
         public string users_line = "user";
         public string students_line = "student";
-        public string facylties_groups_line = "facylties_groups";
+        public string faculties_groups_line = "faculties_groups";
+        public string faculties_line = "faculties";
+        public string groups_line = "groups";
         public AuthorizationForm()
         {
             InitializeComponent();
@@ -112,10 +116,20 @@ namespace UniversityApp
                         StudentsForm studentsForm = new StudentsForm();
                         studentsForm.Show();
                     }
-                    else if (name_form == facylties_groups_line)
+                    else if (name_form == faculties_groups_line)
                     {
                         FacultiesGroupsForm facyltiesGroupsForm = new FacultiesGroupsForm();
                         facyltiesGroupsForm.Show();
+                    }
+                    else if (name_form == faculties_line)
+                    {
+                        FacultiesForm facultiesForm = new FacultiesForm();
+                        facultiesForm.Show();
+                    }
+                    else if (name_form == groups_line)
+                    {
+                        GroupsForm groupsForm = new GroupsForm();
+                        groupsForm.Show();
                     }
                     else
                     {

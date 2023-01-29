@@ -73,7 +73,7 @@ namespace UniversityApp
 
             return false;
         }
-        public List<string[]> getAllData()
+        public override List<string[]> getAllData()
         {
             if (readFile())
             {

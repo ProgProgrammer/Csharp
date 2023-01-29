@@ -58,7 +58,7 @@ namespace UniversityApp.Forms.Groups
         private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AuthorizationForm form = new AuthorizationForm();
-            form.NameForm = form.facylties_groups_line;  // не закрывать приложение при закрытии окна авторизации
+            form.NameForm = form.groups_line;  // не закрывать приложение при закрытии окна авторизации
             form.ShowDialog();
         }
 

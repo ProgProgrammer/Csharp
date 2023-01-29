@@ -20,7 +20,7 @@ namespace UniversityApp
             access_column_abs_class = access_column;
         }
 
-        public List<string[]> getAllData()
+        public override List<string[]> getAllData()
         {
             UserData db = new UserData(connection);
 

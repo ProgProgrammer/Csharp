@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -85,7 +86,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
         private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AuthorizationForm form = new AuthorizationForm();
-            form.NameForm = form.facylties_groups_line;  // не закрывать приложение при закрытии окна авторизации
+            form.NameForm = form.faculties_groups_line;  // не закрывать приложение при закрытии окна авторизации
             form.ShowDialog();
         }
 
@@ -129,20 +130,30 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
             if (form.result)
             {
-                int index = dataGridView1.CurrentCell.RowIndex;             // номер выделенной пользователем строки
-                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+                int index = dataGridView1.CurrentCell.RowIndex;                // номер выделенной пользователем строки
+                int rows = dataGridView1.Rows.Count - 1;                       // запрос количества строк
 
                 if (rows > index)
                 {
                     FacultiesGroupsData db = new FacultiesGroupsData(connection);
+                    string group_name = dataGridView1[1, index].Value.ToString();  // название группы факультета
 
                     if (db.checkAccess(3))
                     {
-                        string id = data_faculty_groups[index][0];  // id
+                        string id = "";
 
-                        if (db.delete(id))                            // метод удаления пользователя из базы данных
+                        for (int i = 0; i < data_faculty_groups.Count(); ++i)
                         {
-                            dataGridView1.Rows.RemoveAt(index);       // удаление пользователя из таблицы
+                            if (group_name == data_faculty_groups[i][2])
+                            {
+                                id = data_faculty_groups[i][0];
+                                break;
+                            }
+                        }
+
+                        if (db.delete(id))                            // метод удаления связи из базы данных
+                        {
+                            dataGridView1.Rows.RemoveAt(index);       // удаление связи из таблицы
                         }
                         else
                         {

@@ -173,6 +173,8 @@ namespace UniversityApp
 
             return false;
         }
+
+        public abstract List<string[]> getAllData();
         public abstract bool add(List<string> data);
         public abstract bool change(string index, List<string> data);
         public abstract bool delete(string index);

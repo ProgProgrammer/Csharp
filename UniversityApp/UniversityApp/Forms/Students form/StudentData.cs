@@ -55,7 +55,7 @@ namespace UniversityApp
             return new List<string[]>();
         }
 
-        public List<string[]> getAllData()
+        public override List<string[]> getAllData()
         {
             UserData db = new UserData(connection);
 
