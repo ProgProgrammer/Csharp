@@ -46,6 +46,7 @@ namespace UniversityApp
                     if (this.list_faculties[i][1] == this.list_faculties[a][1])
                     {
                         this.list_faculties.RemoveAt(a);
+                        a = i;
                     }
                 }
             }

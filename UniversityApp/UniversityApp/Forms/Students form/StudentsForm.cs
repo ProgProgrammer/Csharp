@@ -36,87 +36,6 @@ namespace UniversityApp
             }
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void closeButton_MouseHover(object sender, EventArgs e)
-        {
-            this.closeButton.ForeColor = Color.Cyan;
-        }
-
-        private void closeButton_MouseLeave(object sender, EventArgs e)
-        {
-            this.closeButton.ForeColor = Color.FromArgb(239, 239, 239);
-        }
-
-        private void closeButton_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.closeButton.ForeColor = Color.FromArgb(243, 0, 33);
-        }
-
-        Point lastPoint;
-
-        private void topLabelPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            lastPoint = new Point(e.X, e.Y);
-        }
-
-        private void topLabelPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
-            }
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AuthorizationForm form = new AuthorizationForm();
-            form.NameForm = form.students_line;  // не закрывать приложение при закрытии окна авторизации
-            form.ShowDialog();
-        }
-
-        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UsersForm form = new UsersForm();
-            this.Close();
-            form.Show();
-        }
-
-        private void facultiesGroupsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FacultiesGroupsForm form = new FacultiesGroupsForm();
-            this.Close();
-            form.Show();
-        }
-
-        private void facultiesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FacultiesForm form = new FacultiesForm();
-            this.Close();
-            form.Show();
-        }
-
-        private void groupsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GroupsForm form = new GroupsForm();
-            this.Close();
-            form.Show();
-        }
-
-        private void aboutProgram_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Программа создана Андреевым Владимиром Александровичем, студентом группы ВМ-20, ВолгГТУ. 2023 год.");
-        }
-
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StudentData db = new StudentData(connection);
@@ -248,6 +167,87 @@ namespace UniversityApp
             }
 
             loadData();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void closeButton_MouseHover(object sender, EventArgs e)
+        {
+            this.closeButton.ForeColor = Color.Cyan;
+        }
+
+        private void closeButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.closeButton.ForeColor = Color.FromArgb(239, 239, 239);
+        }
+
+        private void closeButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.closeButton.ForeColor = Color.FromArgb(243, 0, 33);
+        }
+
+        Point lastPoint;
+
+        private void topLabelPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void topLabelPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AuthorizationForm form = new AuthorizationForm();
+            form.NameForm = form.students_line;  // не закрывать приложение при закрытии окна авторизации
+            form.ShowDialog();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsersForm form = new UsersForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void facultiesGroupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacultiesGroupsForm form = new FacultiesGroupsForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void facultiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacultiesForm form = new FacultiesForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void groupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GroupsForm form = new GroupsForm();
+            this.Close();
+            form.Show();
+        }
+
+        private void aboutProgram_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа создана Андреевым Владимиром Александровичем, студентом группы ВМ-20, ВолгГТУ. 2023 год.");
         }
     }
 }

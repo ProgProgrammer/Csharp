@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FacultiesGroups form\AddFacultiesGroupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FacultiesGroups form\AddFacultiesGroupsForm.Designer.cs">
+      <DependentUpon>AddFacultiesGroupsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FacultiesGroups form\FacultiesGroupsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     <Compile Include="Forms\Users form\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\FacultiesGroups form\AddFacultiesGroupsForm.resx">
+      <DependentUpon>AddFacultiesGroupsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FacultiesGroups form\FacultiesGroupsForm.resx">
       <DependentUpon>FacultiesGroupsForm.cs</DependentUpon>
     </EmbeddedResource>

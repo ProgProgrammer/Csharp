@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniversityApp.Forms.FacultiesGroups_form;
 using UniversityApp.Forms.Facylties;
 using UniversityApp.Forms.Groups;
 using UniversityApp.Users_form;
@@ -45,6 +46,149 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
             {
                 dataGridView1.Rows.Add(s);
             }
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacultiesGroupsData db = new FacultiesGroupsData(connection);
+
+            if (db.checkAccess(1))
+            {
+                AddFacultiesGroupsForm form = new AddFacultiesGroupsForm();
+                form.ShowDialog();
+
+                if (form.add_result)
+                {
+                    List<string[]> data = form.data_result;
+
+                    foreach (string[] s in data)
+                    {
+                        dataGridView1.Rows.Add(s);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет доступа к добавлению факультетов и групп.");
+            }
+        }
+
+        private void changeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StudentData db = new StudentData(connection);
+
+            if (db.checkAccess(2))
+            {
+                int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
+                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+
+
+                ChangeStudentForm form = new ChangeStudentForm();
+                int num_column = dataGridView1.Columns.Count - 1;         // номер колонки
+
+                if (rows > index)
+                {
+                    form.GroupCombo = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.FacultyStudent = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.SurnameStudent = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.NameStudent = dataGridView1[num_column, index].Value.ToString();
+                    --num_column;
+                    form.StudentID = dataGridView1[num_column, index].Value.ToString();
+                    form.index = dataGridView1[num_column, index].Value.ToString();
+                    form.ShowDialog();
+
+                    if (form.change_result)
+                    {
+                        List<string> data = form.data;
+                        int column = data.Count;
+                        int count = data.Count - 1;
+
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                        --count;
+                        --column;
+                        dataGridView1[column, index].Value = data[count];
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы применили изменение к пустой строке.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет доступа к изменению студентов.");
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacultiesGroupsRemovalConfirmationForm form = new FacultiesGroupsRemovalConfirmationForm();
+            form.ShowDialog();
+
+            if (form.result)
+            {
+                int index = dataGridView1.CurrentCell.RowIndex;                // номер выделенной пользователем строки
+                int rows = dataGridView1.Rows.Count - 1;                       // запрос количества строк
+
+                if (rows > index)
+                {
+                    FacultiesGroupsData db = new FacultiesGroupsData(connection);
+                    string group_name = dataGridView1[1, index].Value.ToString();  // название группы факультета
+
+                    if (db.checkAccess(3))
+                    {
+                        string id = "";
+
+                        for (int i = 0; i < data_faculty_groups.Count(); ++i)
+                        {
+                            if (group_name == data_faculty_groups[i][2])
+                            {
+                                id = data_faculty_groups[i][0];
+                                break;
+                            }
+                        }
+
+                        if (db.delete(id))                            // метод удаления связи из базы данных
+                        {
+                            dataGridView1.Rows.RemoveAt(index);       // удаление связи из таблицы
+                        }
+                        else
+                        {
+                            MessageBox.Show("Удаление не удалось.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Нет доступа к удалению связи.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы применили удаление к пустой строке.");
+                }
+
+            }
+        }
+
+        private void updateUsers_Click(object sender, EventArgs e)
+        {
+            int rows_count = dataGridView1.Rows.Count - 2;
+
+            for (int i = rows_count; i >= 0; --i)
+            {
+                dataGridView1.Rows.RemoveAt(i);
+            }
+
+            loadData();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -121,68 +265,6 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
         private void aboutProgram_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Программа создана Андреевым Владимиром Александровичем, студентом группы ВМ-20, ВолгГТУ. 2023 год.");
-        }
-
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FacultiesGroupsRemovalConfirmationForm form = new FacultiesGroupsRemovalConfirmationForm();
-            form.ShowDialog();
-
-            if (form.result)
-            {
-                int index = dataGridView1.CurrentCell.RowIndex;                // номер выделенной пользователем строки
-                int rows = dataGridView1.Rows.Count - 1;                       // запрос количества строк
-
-                if (rows > index)
-                {
-                    FacultiesGroupsData db = new FacultiesGroupsData(connection);
-                    string group_name = dataGridView1[1, index].Value.ToString();  // название группы факультета
-
-                    if (db.checkAccess(3))
-                    {
-                        string id = "";
-
-                        for (int i = 0; i < data_faculty_groups.Count(); ++i)
-                        {
-                            if (group_name == data_faculty_groups[i][2])
-                            {
-                                id = data_faculty_groups[i][0];
-                                break;
-                            }
-                        }
-
-                        if (db.delete(id))                            // метод удаления связи из базы данных
-                        {
-                            dataGridView1.Rows.RemoveAt(index);       // удаление связи из таблицы
-                        }
-                        else
-                        {
-                            MessageBox.Show("Удаление не удалось.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Нет доступа к удалению связи.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Вы применили удаление к пустой строке.");
-                }
-
-            }
-        }
-
-        private void updateUsers_Click(object sender, EventArgs e)
-        {
-            int rows_count = dataGridView1.Rows.Count - 2;
-
-            for (int i = rows_count; i >= 0; --i)
-            {
-                dataGridView1.Rows.RemoveAt(i);
-            }
-
-            loadData();
         }
     }
 }

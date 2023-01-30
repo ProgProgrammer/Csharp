@@ -220,6 +220,7 @@
             this.addUser.Name = "addUser";
             this.addUser.Size = new System.Drawing.Size(197, 22);
             this.addUser.Text = "Добавить новую свзяь";
+            this.addUser.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // changeToolStripMenuItem
             // 
