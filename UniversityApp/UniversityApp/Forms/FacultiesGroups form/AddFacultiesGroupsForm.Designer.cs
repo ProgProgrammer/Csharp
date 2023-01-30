@@ -120,6 +120,7 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(136)))), ((int)(((byte)(210)))));
             this.panel2.Controls.Add(this.closeButton);
             this.panel2.Controls.Add(this.topLabelPanel);
+            this.panel2.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -157,6 +158,8 @@
             this.topLabelPanel.TabIndex = 3;
             this.topLabelPanel.Text = "Добавление факультетов и групп";
             this.topLabelPanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.topLabelPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseDown);
+            this.topLabelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseMove);
             // 
             // AddFacultiesGroupsForm
             // 

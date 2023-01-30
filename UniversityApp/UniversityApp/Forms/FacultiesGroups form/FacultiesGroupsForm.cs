@@ -65,6 +65,9 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
                     {
                         dataGridView1.Rows.Add(s);
                     }
+
+                    FacultiesGroupsData db_fac_gr = new FacultiesGroupsData(connection);
+                    data_faculty_groups = db_fac_gr.getAllData();
                 }
             }
             else
