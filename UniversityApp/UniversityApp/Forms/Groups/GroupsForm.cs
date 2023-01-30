@@ -75,15 +75,15 @@ namespace UniversityApp.Forms.Groups
 
                 if (rows > index)
                 {
-                    ChangeFacultyForm form = new ChangeFacultyForm();
+                    ChangeGroupForm form = new ChangeGroupForm();
                     int num_column = dataGridView1.Columns.Count - 1;
-                    form.NameFaculty = dataGridView1[num_column, index].Value.ToString();
+                    form.NameGroup = dataGridView1[num_column, index].Value.ToString();
 
                     for (int i = 0; i < data_groups.Count(); ++i)
                     {
-                        if (data_groups[i][1] == form.NameFaculty)
+                        if (data_groups[i][1] == form.NameGroup)
                         {
-                            form.IdFaculty = data_groups[i][0];
+                            form.IdGroup = data_groups[i][0];
                         }
                     }
 
@@ -94,8 +94,8 @@ namespace UniversityApp.Forms.Groups
                         List<string> data = form.data_result;
                         dataGridView1[0, index].Value = data[0];
 
-                        FacultiesData db_faculty = new FacultiesData(connection);
-                        data_groups = db_faculty.getAllData();
+                        GroupsData db_group = new GroupsData(connection);
+                        data_groups = db_group.getAllData();
                     }
                 }
                 else
