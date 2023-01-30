@@ -72,54 +72,56 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
             }
             else
             {
-                MessageBox.Show("Нет доступа к добавлению факультетов и групп.");
+                MessageBox.Show("Нет прав доступа на добавление факультетов и групп.");
             }
         }
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StudentData db = new StudentData(connection);
+            FacultiesGroupsData db = new FacultiesGroupsData(connection);
 
             if (db.checkAccess(2))
             {
                 int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
                 int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
 
-
-                ChangeStudentForm form = new ChangeStudentForm();
-                int num_column = dataGridView1.Columns.Count - 1;         // номер колонки
-
                 if (rows > index)
                 {
+                    ChangeFacultiesGroupsForm form = new ChangeFacultiesGroupsForm();
+                    int num_column = dataGridView1.Columns.Count - 1;         // номер колонки
                     form.GroupCombo = dataGridView1[num_column, index].Value.ToString();
+                    string group_name = dataGridView1[num_column, index].Value.ToString();
                     --num_column;
-                    form.FacultyStudent = dataGridView1[num_column, index].Value.ToString();
-                    --num_column;
-                    form.SurnameStudent = dataGridView1[num_column, index].Value.ToString();
-                    --num_column;
-                    form.NameStudent = dataGridView1[num_column, index].Value.ToString();
-                    --num_column;
-                    form.StudentID = dataGridView1[num_column, index].Value.ToString();
-                    form.index = dataGridView1[num_column, index].Value.ToString();
+                    form.FacultyCombo = dataGridView1[num_column, index].Value.ToString();
+
+                    string id;
+
+                    for (int i = 0; i < data_faculty_groups.Count(); ++i)
+                    {
+                        if (data_faculty_groups[i][2] == group_name)
+                        {
+                            id = data_faculty_groups[i][0];
+                            form.FacultyGroupId = id;
+                            break;
+                        }
+                    }
+
                     form.ShowDialog();
 
                     if (form.change_result)
                     {
                         List<string> data = form.data;
-                        int column = data.Count;
-                        int count = data.Count - 1;
+                        int column = data.Count - 1;
+                        int count = column;
 
                         dataGridView1[column, index].Value = data[count];
                         --count;
                         --column;
                         dataGridView1[column, index].Value = data[count];
-                        --count;
-                        --column;
-                        dataGridView1[column, index].Value = data[count];
-                        --count;
-                        --column;
-                        dataGridView1[column, index].Value = data[count];
                     }
+
+                    FacultiesGroupsData db_fac_gr = new FacultiesGroupsData(connection);
+                    data_faculty_groups = db_fac_gr.getAllData();
                 }
                 else
                 {
@@ -128,7 +130,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
             }
             else
             {
-                MessageBox.Show("Нет доступа к изменению студентов.");
+                MessageBox.Show("Нет прав доступа на изменение факультетов и групп.");
             }
         }
 

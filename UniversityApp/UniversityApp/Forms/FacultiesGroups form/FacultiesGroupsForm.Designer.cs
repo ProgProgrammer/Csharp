@@ -227,6 +227,7 @@
             this.changeToolStripMenuItem.Name = "changeToolStripMenuItem";
             this.changeToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.changeToolStripMenuItem.Text = "Изменить связь";
+            this.changeToolStripMenuItem.Click += new System.EventHandler(this.changeToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 

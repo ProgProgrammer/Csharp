@@ -1,6 +1,6 @@
 ﻿namespace UniversityApp.Forms.FacultiesGroups_form
 {
-    partial class AddFacultiesGroupsForm
+    partial class ChangeFacultiesGroupsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.addFacultiesGroups = new System.Windows.Forms.Button();
+            this.changeFacultiesGroups = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupCombo = new System.Windows.Forms.ComboBox();
             this.facultyCombo = new System.Windows.Forms.ComboBox();
@@ -47,15 +47,15 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(156)))), ((int)(((byte)(210)))));
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.addFacultiesGroups);
+            this.panel1.Controls.Add(this.changeFacultiesGroups);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.groupCombo);
             this.panel1.Controls.Add(this.facultyCombo);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(1, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(483, 374);
-            this.panel1.TabIndex = 4;
+            this.panel1.TabIndex = 5;
             // 
             // label6
             // 
@@ -77,17 +77,17 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Факультеты";
             // 
-            // addFacultiesGroups
+            // changeFacultiesGroups
             // 
-            this.addFacultiesGroups.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addFacultiesGroups.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.addFacultiesGroups.Location = new System.Drawing.Point(152, 306);
-            this.addFacultiesGroups.Name = "addFacultiesGroups";
-            this.addFacultiesGroups.Size = new System.Drawing.Size(169, 40);
-            this.addFacultiesGroups.TabIndex = 7;
-            this.addFacultiesGroups.Text = "ДОБАВИТЬ";
-            this.addFacultiesGroups.UseVisualStyleBackColor = true;
-            this.addFacultiesGroups.Click += new System.EventHandler(this.addFacultiesGroups_Click);
+            this.changeFacultiesGroups.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.changeFacultiesGroups.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.changeFacultiesGroups.Location = new System.Drawing.Point(149, 302);
+            this.changeFacultiesGroups.Name = "changeFacultiesGroups";
+            this.changeFacultiesGroups.Size = new System.Drawing.Size(169, 40);
+            this.changeFacultiesGroups.TabIndex = 7;
+            this.changeFacultiesGroups.Text = "ИЗМЕНИТЬ";
+            this.changeFacultiesGroups.UseVisualStyleBackColor = true;
+            this.changeFacultiesGroups.Click += new System.EventHandler(this.changeFacultiesGroups_Click);
             // 
             // label3
             // 
@@ -156,21 +156,21 @@
             this.topLabelPanel.Name = "topLabelPanel";
             this.topLabelPanel.Size = new System.Drawing.Size(480, 94);
             this.topLabelPanel.TabIndex = 3;
-            this.topLabelPanel.Text = "Добавление факультетов и групп";
+            this.topLabelPanel.Text = "Изменение факультетов и групп";
             this.topLabelPanel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.topLabelPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseDown);
             this.topLabelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topLabelPanel_MouseMove);
             // 
-            // AddFacultiesGroupsForm
+            // ChangeFacultiesGroupsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 374);
+            this.ClientSize = new System.Drawing.Size(485, 374);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AddFacultiesGroupsForm";
+            this.Name = "ChangeFacultiesGroupsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddFacultiesGroupsForm";
+            this.Text = "ChangeFacultiesGroupsForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -184,7 +184,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button addFacultiesGroups;
+        private System.Windows.Forms.Button changeFacultiesGroups;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox groupCombo;
         private System.Windows.Forms.ComboBox facultyCombo;

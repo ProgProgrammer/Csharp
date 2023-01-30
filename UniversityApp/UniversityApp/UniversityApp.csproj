@@ -56,6 +56,12 @@
     <Compile Include="Forms\FacultiesGroups form\AddFacultiesGroupsForm.Designer.cs">
       <DependentUpon>AddFacultiesGroupsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FacultiesGroups form\ChangeFacultiesGroupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FacultiesGroups form\ChangeFacultiesGroupsForm.Designer.cs">
+      <DependentUpon>ChangeFacultiesGroupsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FacultiesGroups form\FacultiesGroupsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\FacultiesGroups form\AddFacultiesGroupsForm.resx">
       <DependentUpon>AddFacultiesGroupsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FacultiesGroups form\ChangeFacultiesGroupsForm.resx">
+      <DependentUpon>ChangeFacultiesGroupsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FacultiesGroups form\FacultiesGroupsForm.resx">
       <DependentUpon>FacultiesGroupsForm.cs</DependentUpon>

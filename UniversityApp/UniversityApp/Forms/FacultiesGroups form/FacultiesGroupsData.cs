@@ -27,11 +27,14 @@ namespace UniversityApp
             FacultiesGroupsData db_faculties_groups = new FacultiesGroupsData(connection);
             List<string[]> data_faculties_groups = db_faculties_groups.getAllData();
 
-            for (int i = 0; i < data_faculties_groups.Count(); ++i)
+            if (data.Count() > 1)
             {
-                if (data_faculties_groups[i][2] == data[1])
+                for (int i = 0; i < data_faculties_groups.Count(); ++i)
                 {
-                    return false;
+                    if (data_faculties_groups[i][2] == data[1])
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -138,6 +141,59 @@ namespace UniversityApp
         }
         public override bool change(string index, List<string> data)
         {
+            UserData db = new UserData(connection);
+
+            if (readFile())
+            {
+                if (db.authorization(login, password))
+                {
+                    if (accessCheck(login, 2))
+                    {
+                        if (checkFacultiesGroups(data))
+                        {
+                            MySqlCommand command = new MySqlCommand();
+
+                            if (data.Count() > 1)
+                            {
+                                command = new MySqlCommand($"UPDATE `{name_table}` SET num_faculty = @num_faculty, num_group = @num_group WHERE id=@index", connection);
+                                command.Parameters.Add("@num_faculty", MySqlDbType.VarChar).Value = data[0];
+                                command.Parameters.Add("@num_group", MySqlDbType.VarChar).Value = data[1];
+                                command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
+                            }
+                            else
+                            {
+                                command = new MySqlCommand($"UPDATE `{name_table}` SET num_faculty = @num_faculty WHERE id=@index", connection);
+                                command.Parameters.Add("@num_faculty", MySqlDbType.VarChar).Value = data[0];
+                                command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
+                            }
+
+                            openConnection();
+
+                            if (command.ExecuteNonQuery() == 1)
+                            {
+                                MessageBox.Show("Изменения внесены.");
+                                closeConnection();
+
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Изменения не внесены.");
+                                closeConnection();
+
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Такая группа есть на другом факультете.");
+
+                            return false;
+                        }
+                    }
+                }
+            }
+
             return false;
         }
         public override bool delete(string index)
