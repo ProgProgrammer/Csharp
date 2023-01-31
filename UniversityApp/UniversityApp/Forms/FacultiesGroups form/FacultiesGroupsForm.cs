@@ -1,18 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UniversityApp.Forms.FacultiesGroups_form;
 using UniversityApp.Forms.Facylties;
 using UniversityApp.Forms.Groups;
-using UniversityApp.Users_form;
+using DataUniversity.DataClasses;
 
 namespace UniversityApp.Forms.FacyltiesGroups_form
 {

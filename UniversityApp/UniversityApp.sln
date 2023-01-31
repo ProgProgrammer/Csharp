@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityApp", "UniversityApp\UniversityApp.csproj", "{F9428A43-A52C-4873-B014-F0DDEFB22C1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataUniversity", "DataUniversity\DataUniversity.csproj", "{822D5EA2-D850-483D-9C10-A490D3E7339E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F9428A43-A52C-4873-B014-F0DDEFB22C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9428A43-A52C-4873-B014-F0DDEFB22C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9428A43-A52C-4873-B014-F0DDEFB22C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{822D5EA2-D850-483D-9C10-A490D3E7339E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{822D5EA2-D850-483D-9C10-A490D3E7339E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{822D5EA2-D850-483D-9C10-A490D3E7339E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{822D5EA2-D850-483D-9C10-A490D3E7339E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

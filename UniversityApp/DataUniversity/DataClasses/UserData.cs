@@ -1,21 +1,21 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DataUniversity.Interface;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UniversityApp
+namespace DataUniversity.DataClasses
 {
-    internal class UserData : ADataBase
+    public class UserData : ADataBase
     {
         private const string name_table = "users";
         private const string access_column = "access_user";
-        
+
         private bool checkUser(List<string> data)
         {
             DataTable table = new DataTable();
@@ -125,7 +125,7 @@ namespace UniversityApp
                     {
                         if (checkUser(data))
                         {
-                            MySqlCommand command = 
+                            MySqlCommand command =
                                 new MySqlCommand($"INSERT INTO `{name_table}`(login, password, name, surname, super_admin, access_user, access_student, access_faculties_groups) " +
                                 $"VALUES(@login, @password, @name, @surname, @super_admin, @access_user, @access_student, @access_faculties_groups)", connection);
                             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = data[0];

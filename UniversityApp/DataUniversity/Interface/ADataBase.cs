@@ -1,20 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
+using DataUniversity.DataClasses;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Runtime.InteropServices;
-using System.IO;
 using System.Windows.Forms;
 
-namespace UniversityApp
+namespace DataUniversity.Interface
 {
-    internal abstract class ADataBase : IDataBase
+    public abstract class ADataBase : IDataBase
     {
         protected string access_column_abs_class;  // название запрашиваемой ячейки с доступом
         protected const string file_path = @"authorization_data.txt";
@@ -25,7 +22,7 @@ namespace UniversityApp
         public ADataBase(MySqlConnection connection)
         {
             this.connection = connection;
-        }            
+        }
 
         protected bool readFile()
         {
@@ -74,7 +71,7 @@ namespace UniversityApp
             if (reader.Read())
             {
                 string access = reader[0].ToString();
-                
+
                 if (access[id] == '1')
                 {
                     reader.Close();

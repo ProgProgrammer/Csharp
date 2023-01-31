@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DataUniversity.Interface;
+using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UniversityApp.Forms.Groups
+namespace DataUniversity.DataClasses
 {
-    internal class GroupsData : ADataBase
+    public class GroupsData : ADataBase
     {
         private const string name_table = "groups";
         private const string access_column = "access_faculties_groups";

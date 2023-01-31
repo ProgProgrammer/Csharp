@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversityApp
+namespace DataUniversity.Interface
 {
-    internal interface IDataBase
+    public interface IDataBase
     {
         List<string[]> getAllData();
         bool add(List<string> data);

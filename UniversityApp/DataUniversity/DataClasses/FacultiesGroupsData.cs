@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DataUniversity.Interface;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,12 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UniversityApp.Forms.Facylties;
-using UniversityApp.Forms.Groups;
 
-namespace UniversityApp
+namespace DataUniversity.DataClasses
 {
-    internal class FacultiesGroupsData : ADataBase
+    public class FacultiesGroupsData : ADataBase
     {
         private const string name_table = "faculties_groups";
         private const string access_column = "access_faculties_groups";
@@ -105,7 +104,7 @@ namespace UniversityApp
                     if (accessCheck(login, 1))
                     {
                         if (checkFacultiesGroups(data))
-                        {                            
+                        {
                             MySqlCommand command = new MySqlCommand($"INSERT INTO `{name_table}`(num_faculty, num_group) VALUES(@num_faculty, @num_group)", connection);
                             command.Parameters.Add("@num_faculty", MySqlDbType.VarChar).Value = data[0];
                             command.Parameters.Add("@num_group", MySqlDbType.VarChar).Value = data[1];

@@ -98,7 +98,6 @@
     <Compile Include="Forms\Faculties\FacyltiesForm.Designer.cs">
       <DependentUpon>FacultiesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Faculties\FacultiesData.cs" />
     <Compile Include="Forms\Groups\AddGroupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,7 +116,6 @@
     <Compile Include="Forms\Groups\GroupRemovalConfirmationForm.Designer.cs">
       <DependentUpon>GroupRemovalConfirmationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Groups\GroupsData.cs" />
     <Compile Include="Forms\Groups\GroupsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,7 +128,6 @@
     <Compile Include="Forms\Main form\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interface\ADataBase.cs" />
     <Compile Include="Forms\Students form\AddStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,11 +159,8 @@
     <Compile Include="Forms\Users form\ChangeUserForm.Designer.cs">
       <DependentUpon>ChangeUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FacultiesGroups form\FacultiesGroupsData.cs" />
-    <Compile Include="Interface\IDataBase.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\Students form\StudentData.cs" />
     <Compile Include="Forms\Students form\StudentRemovalConfirmationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,7 +173,6 @@
     <Compile Include="Forms\Students form\StudentsForm.Designer.cs">
       <DependentUpon>StudentsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Users form\UserData.cs" />
     <Compile Include="Forms\Users form\UserRemovalConfirmationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +285,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataUniversity\DataUniversity.csproj">
+      <Project>{822d5ea2-d850-483d-9c10-a490d3e7339e}</Project>
+      <Name>DataUniversity</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
+﻿using DataUniversity.Interface;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UniversityApp
+namespace DataUniversity.DataClasses
 {
-    internal class StudentData : ADataBase
+    public class StudentData : ADataBase
     {
         private const string name_table = "students";
         private const string access_column = "access_student";

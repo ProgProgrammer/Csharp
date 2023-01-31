@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UniversityApp.Forms.Facylties;
 
-namespace UniversityApp
+namespace DataUniversity
 {
     internal static class Program
     {
@@ -17,7 +16,6 @@ namespace UniversityApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AuthorizationForm());
         }
     }
 }
