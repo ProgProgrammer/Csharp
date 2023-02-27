@@ -1,16 +1,14 @@
-﻿using Controller.Interfaces;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Controller.ControllerClasses
 {
-    public class Controller : IControl
+    internal class StudentController
     {
-        private IControllerInternal controller_obj;
-
-        public Controller(string nameTable)
-        {
-
-        }
+        public StudentController() { }
 
         public bool accessCheck(int id)
         {

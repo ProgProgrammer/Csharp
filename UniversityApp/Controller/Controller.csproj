@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E268F6FA-FE70-4938-92F8-D7C171D3E36D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>IController</RootNamespace>
-    <AssemblyName>IController</AssemblyName>
+    <RootNamespace>Controller</RootNamespace>
+    <AssemblyName>Controller</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllerClasses\Controller.cs" />
+    <Compile Include="ControllerClasses\FacyltiesController.cs" />
+    <Compile Include="ControllerClasses\FacyltiesGroupsController.cs" />
+    <Compile Include="ControllerClasses\GroupsController.cs" />
+    <Compile Include="ControllerClasses\StudentController.cs" />
     <Compile Include="ControllerClasses\UserController.cs" />
     <Compile Include="Interfaces\AControllerInternal.cs" />
     <Compile Include="Interfaces\IController.cs" />
@@ -61,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

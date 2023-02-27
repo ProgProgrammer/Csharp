@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IController.Interfaces
+namespace Controller.Interfaces
 {
     internal abstract class AControllerInternal : IControllerInternal
     {
@@ -15,6 +15,11 @@ namespace IController.Interfaces
         protected List<string[]> getFacultiesGroupsData()
         {
             return new List<string[]>();
+        }
+
+        public AControllerInternal()
+        {
+            
         }
 
         public abstract bool accessCheck(int id);
