@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,31 +7,29 @@ using System.Threading.Tasks;
 
 namespace Controller.ControllerClasses
 {
-    internal class FacyltiesController
+    internal class FacyltiesController : IControllerInternal
     {
-        public FacyltiesController() { }
-
         public bool accessCheck(int id)
         {
             return false;
         }
 
-        public List<string[]> getAllData(string nameTable)
+        public List<string[]> getAllData()
         {
             return new List<string[]>();
         }
 
-        public bool add(List<string> data, string nameTable)
+        public bool add(List<string> data)
         {
             return false;
         }
 
-        public bool change(string index, List<string> data, string nameTable)
+        public bool change(string index, List<string> data)
         {
             return false;
         }
 
-        public bool delete(string index, string nameTable)
+        public bool delete(string index)
         {
             return false;
         }
