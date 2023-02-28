@@ -38,27 +38,27 @@ namespace Controller.ControllerClasses
 
         public bool accessCheck(int id)
         {
-            return false;
+            return controller_obj.accessCheck(id);
         }
 
         public List<string[]> getAllData()
         {
-            return new List<string[]>();
+            return controller_obj.getAllData();
         }
 
         public bool add(List<string> data)
         {
-            return false;
+            return controller_obj.add(data);
         }
 
         public bool change(string index, List<string> data)
         {
-            return false;
+            return controller_obj.change(index, data);
         }
 
         public bool delete(string index)
         {
-            return false;
+            return controller_obj.delete(index);
         }
     }
 }
