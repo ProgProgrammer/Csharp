@@ -9,8 +9,8 @@ namespace Controller.Interfaces
     {
         private const string file_path = @"authorization_data.txt";
         private const string file_name = "authorization_data.txt";
-        private string login;
-        private string password;
+        public string login;
+        public string password;
 
         private bool readFile()
         {

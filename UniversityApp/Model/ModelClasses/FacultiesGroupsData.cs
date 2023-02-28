@@ -36,6 +36,16 @@ namespace Model.ModelClasses
             return true;
         }
 
+        public override bool userAccessCheck(string login, int id)
+        {
+            return accessCheck(login, id);
+        }
+
+        public override bool authorizationCheck(string login, string password)
+        {
+            return authorization(login, password);
+        }
+
         public override List<string[]> getAllData()
         {
             UserData db = new UserData();

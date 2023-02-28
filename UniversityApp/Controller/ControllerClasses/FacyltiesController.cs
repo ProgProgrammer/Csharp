@@ -3,53 +3,32 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Model.ModelClasses;
 using Model.Interface;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Controller.ControllerClasses
 {
     internal class FacyltiesController : AControllerInternal
     {
-        private IDataBase cont_internal = new FacultiesData();
+        private IDataBase model_obj = new FacultiesData();
 
         public override bool accessCheck(int id)
         {
-            return false;
+            return model_obj.userAccessCheck(login, id);
         }
+
         public override List<string[]> getAllData()
         {
-            /*if (cont_internal.authorization(this.login, password))
+            if (model_obj.authorizationCheck(login, password))
             {
                 if (accessCheck(0))
                 {
-                    MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` ORDER BY id", this.connection);
-                    List<string[]> data = new List<string[]>();
-
-                    openConnection();
-
-                    MySqlDataReader reader = command.ExecuteReader();
-                    int num_cell_data = reader.FieldCount;
-
-                    while (reader.Read())
-                    {
-                        data.Add(new string[num_cell_data]);
-
-                        for (int i = 0; i < num_cell_data; ++i)
-                        {
-                            data[data.Count - 1][i] = reader[i].ToString();
-                        }
-                    }
-
-                    reader.Close();
-                    closeConnection();
-
-                    return data;
+                    return model_obj.getAllData();
                 }
                 else
                 {
                     MessageBox.Show("Нет прав доступа на чтение.");
-
-                    return new List<string[]>();
                 }
-            }*/
+            }
 
             return new List<string[]>();
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Controller.ControllerClasses
 {
-    public class Controller : IControl
+    public class Controler : IControl
     {
         private IControllerInternal controller_obj;
         private string faculties = "faculties";
@@ -12,7 +12,7 @@ namespace Controller.ControllerClasses
         private string students = "students";
         private string users = "users";
 
-        public Controller(string name_table)
+        public Controler(string name_table)
         {
             if (name_table == faculties)
             {

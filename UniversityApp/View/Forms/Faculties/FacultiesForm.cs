@@ -8,6 +8,8 @@ using UniversityApp.Forms.Faculties;
 using UniversityApp.Forms.FacyltiesGroups_form;
 using UniversityApp.Forms.Groups;
 using Model.ModelClasses;
+using Controller.Interfaces;
+using Controller.ControllerClasses;
 
 namespace UniversityApp.Forms.Facylties
 {
@@ -15,6 +17,7 @@ namespace UniversityApp.Forms.Facylties
     {
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         List<string[]> data_faculties = new List<string[]>();
+        private const string name_table = "faculties";
 
         public FacultiesForm()
         {
@@ -24,7 +27,7 @@ namespace UniversityApp.Forms.Facylties
 
         private void loadData()
         {
-            FacultiesData db_faculty = new FacultiesData();
+            IControl db_faculty = new Controler(name_table);
             data_faculties = db_faculty.getAllData();
 
             for (int i = 0; i < data_faculties.Count(); ++i)

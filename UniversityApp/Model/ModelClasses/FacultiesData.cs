@@ -15,49 +15,40 @@ namespace Model.ModelClasses
             access_column_abs_class = access_column;
         }
 
+        public override bool userAccessCheck(string login, int id)
+        {
+            return accessCheck(login, id);
+        }
+
+        public override bool authorizationCheck(string login, string password)
+        {
+            return authorization(login, password);
+        }
+
         public override List<string[]> getAllData()
         {
-            UserData db = new UserData();
+            MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` ORDER BY id", this.connection);
+            List<string[]> data = new List<string[]>();
 
-            if (readFile())
+            openConnection();
+
+            MySqlDataReader reader = command.ExecuteReader();
+            int num_cell_data = reader.FieldCount;
+
+            while (reader.Read())
             {
-                if (db.authorization(login, password))
+                data.Add(new string[num_cell_data]);
+
+                for (int i = 0; i < num_cell_data; ++i)
                 {
-                    if (accessCheck(login, 0))
-                    {
-                        MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` ORDER BY id", this.connection);
-                        List<string[]> data = new List<string[]>();
-
-                        openConnection();
-
-                        MySqlDataReader reader = command.ExecuteReader();
-                        int num_cell_data = reader.FieldCount;
-
-                        while (reader.Read())
-                        {
-                            data.Add(new string[num_cell_data]);
-
-                            for (int i = 0; i < num_cell_data; ++i)
-                            {
-                                data[data.Count - 1][i] = reader[i].ToString();
-                            }
-                        }
-
-                        reader.Close();
-                        closeConnection();
-
-                        return data;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Нет прав доступа на чтение.");
-
-                        return new List<string[]>();
-                    }
+                    data[data.Count - 1][i] = reader[i].ToString();
                 }
             }
 
-            return new List<string[]>();
+            reader.Close();
+            closeConnection();
+
+            return data;
         }
 
         public override bool add(List<string> data)

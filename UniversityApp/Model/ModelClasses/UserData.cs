@@ -69,6 +69,17 @@ namespace Model.ModelClasses
 
             return false;
         }
+
+        public override bool userAccessCheck(string login, int id)
+        {
+            return accessCheck(login, id);
+        }
+
+        public override bool authorizationCheck(string login, string password)
+        {
+            return authorization(login, password);
+        }
+
         public override List<string[]> getAllData()
         {
             if (readFile())

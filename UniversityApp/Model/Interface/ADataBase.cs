@@ -18,42 +18,6 @@ namespace Model.Interface
         protected string password;
         protected MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
 
-        public bool authorization(string login, string password)
-        {
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand($"SELECT * FROM `{authorization_table}` WHERE login = @login AND password = @password", connection);  // создание команды
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;         // присвоение значения псевдониму
-            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;   // присвоение значения псевдониму
-
-            if (File.Exists(file_path))
-            {
-                if (this.userExistCheck(table, adapter, command))
-                {
-                    using (StreamWriter writer = new StreamWriter(file_path, false))
-                    {
-                        this.login = login;
-                        this.password = password;
-
-                        writer.WriteLineAsync(login);
-                        writer.WriteAsync(password);
-
-                        return true;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Нет такого пользователя в базе данных либо не правильный пароль.");
-
-                    return false;
-                }
-            }
-
-            MessageBox.Show("Нет такого файла.");
-
-            return false;
-        }
-
         protected bool readFile()
         {
             if (File.Exists(file_path))
@@ -90,6 +54,40 @@ namespace Model.Interface
                 return false;
             }
         }
+
+        protected bool authorization(string login, string password)
+        {
+            DataTable table = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand command = new MySqlCommand($"SELECT * FROM `{authorization_table}` WHERE login = @login AND password = @password", connection);  // создание команды
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;         // присвоение значения псевдониму
+            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;   // присвоение значения псевдониму
+
+            if (File.Exists(file_path))
+            {
+                if (this.userExistCheck(table, adapter, command))
+                {
+                    using (StreamWriter writer = new StreamWriter(file_path, false))
+                    {
+                        writer.WriteLineAsync(login);
+                        writer.WriteAsync(password);
+
+                        return true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Нет такого пользователя в базе данных либо не правильный пароль.");
+
+                    return false;
+                }
+            }
+
+            MessageBox.Show("Нет такого файла.");
+
+            return false;
+        }
+
         protected bool accessCheck(string login, int id)  // проверка доступа конкретного юзера
         {
             MySqlCommand command = new MySqlCommand($"SELECT `{access_column_abs_class}` FROM users WHERE login=@login", this.connection);
@@ -201,6 +199,8 @@ namespace Model.Interface
             return false;
         }
 
+        public abstract bool userAccessCheck(string login, int id);
+        public abstract bool authorizationCheck(string login, string password);
         public abstract List<string[]> getAllData();
         public abstract bool add(List<string> data);
         public abstract bool change(string index, List<string> data);
