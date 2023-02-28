@@ -24,7 +24,7 @@ namespace UniversityApp.Forms.Facylties
 
         private void loadData()
         {
-            FacultiesData db_faculty = new FacultiesData(connection);
+            FacultiesData db_faculty = new FacultiesData();
             data_faculties = db_faculty.getAllData();
 
             for (int i = 0; i < data_faculties.Count(); ++i)
@@ -35,7 +35,7 @@ namespace UniversityApp.Forms.Facylties
 
         private void addFaculty_Click(object sender, EventArgs e)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (db.checkAccess(1))
             {
@@ -51,7 +51,7 @@ namespace UniversityApp.Forms.Facylties
                         dataGridView1.Rows.Add(s);
                     }
 
-                    FacultiesData db_faculty = new FacultiesData(connection);
+                    FacultiesData db_faculty = new FacultiesData();
                     data_faculties = db_faculty.getAllData();
                 }
             }
@@ -63,7 +63,7 @@ namespace UniversityApp.Forms.Facylties
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (db.checkAccess(2))
             {
@@ -91,7 +91,7 @@ namespace UniversityApp.Forms.Facylties
                         List<string> data = form.data_result;
                         dataGridView1[0, index].Value = data[0];
 
-                        FacultiesData db_faculty = new FacultiesData(connection);
+                        FacultiesData db_faculty = new FacultiesData();
                         data_faculties = db_faculty.getAllData();
                     }
                 }
@@ -118,7 +118,7 @@ namespace UniversityApp.Forms.Facylties
 
                 if (rows > index)
                 {
-                    FacultiesData db = new FacultiesData(connection);
+                    FacultiesData db = new FacultiesData();
                     string faculty_name = dataGridView1[0, index].Value.ToString();  // название факультета
 
                     if (db.checkAccess(3))

@@ -24,7 +24,7 @@ namespace UniversityApp
 
         private void loadData()
         {
-            StudentData db = new StudentData(connection);
+            StudentData db = new StudentData();
             data_groups = db.getFGData();
 
             for (int i = 0; i < data_groups.Count; ++i)
@@ -87,7 +87,7 @@ namespace UniversityApp
                     }
                 }
 
-                StudentData db = new StudentData(connection);
+                StudentData db = new StudentData();
                 if (db.add(data))
                 {
                     int count = data.Count - 1;

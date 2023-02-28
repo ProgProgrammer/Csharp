@@ -23,7 +23,7 @@ namespace UniversityApp.Forms.Groups
 
         private void loadData()
         {
-            GroupsData db_group = new GroupsData(connection);
+            GroupsData db_group = new GroupsData();
             data_groups = db_group.getAllData();
 
             for (int i = 0; i < data_groups.Count(); ++i)
@@ -34,7 +34,7 @@ namespace UniversityApp.Forms.Groups
 
         private void addGroup_Click(object sender, EventArgs e)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (db.checkAccess(1))
             {
@@ -50,7 +50,7 @@ namespace UniversityApp.Forms.Groups
                         dataGridView1.Rows.Add(s);
                     }
 
-                    GroupsData db_group = new GroupsData(connection);
+                    GroupsData db_group = new GroupsData();
                     data_groups = db_group.getAllData();
                 }
             }
@@ -62,7 +62,7 @@ namespace UniversityApp.Forms.Groups
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (db.checkAccess(2))
             {
@@ -90,7 +90,7 @@ namespace UniversityApp.Forms.Groups
                         List<string> data = form.data_result;
                         dataGridView1[0, index].Value = data[0];
 
-                        GroupsData db_group = new GroupsData(connection);
+                        GroupsData db_group = new GroupsData();
                         data_groups = db_group.getAllData();
                     }
                 }
@@ -117,7 +117,7 @@ namespace UniversityApp.Forms.Groups
 
                 if (rows > index)
                 {
-                    GroupsData db = new GroupsData(connection);
+                    GroupsData db = new GroupsData();
                     string faculty_name = dataGridView1[0, index].Value.ToString();  // название факультета
 
                     if (db.checkAccess(3))

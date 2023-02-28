@@ -87,7 +87,7 @@ namespace UniversityApp
                 this.loginField.BackColor = Color.White;
                 this.passwordField.BackColor = Color.White;
 
-                UserData db = new UserData(connection);
+                UserData db = new UserData();
 
                 if (db.authorization(login, password))
                 {

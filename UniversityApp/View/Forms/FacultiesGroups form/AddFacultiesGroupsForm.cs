@@ -25,13 +25,13 @@ namespace UniversityApp.Forms.FacultiesGroups_form
 
         private void loadData()
         {
-            FacultiesData db_faculties = new FacultiesData(connection);
+            FacultiesData db_faculties = new FacultiesData();
             data_faculties = db_faculties.getAllData();
 
-            GroupsData db_groups = new GroupsData(connection);
+            GroupsData db_groups = new GroupsData();
             data_groups = db_groups.getAllData();
 
-            FacultiesGroupsData db_faculties_groups = new FacultiesGroupsData(connection);
+            FacultiesGroupsData db_faculties_groups = new FacultiesGroupsData();
             data_faculties_groups = db_faculties_groups.getAllData();
 
             for (int i = 0; i < data_faculties_groups.Count(); ++i)
@@ -84,7 +84,7 @@ namespace UniversityApp.Forms.FacultiesGroups_form
                 this.facultyCombo.BackColor = Color.White;
                 this.groupCombo.BackColor = Color.White;
 
-                FacultiesGroupsData db = new FacultiesGroupsData(connection);
+                FacultiesGroupsData db = new FacultiesGroupsData();
 
                 if (db.add(data))
                 {

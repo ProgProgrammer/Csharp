@@ -12,14 +12,14 @@ namespace Model.ModelClasses
         private const string name_table = "faculties_groups";
         private const string access_column = "access_faculties_groups";
 
-        public FacultiesGroupsData(MySqlConnection connection) : base(connection)
+        public FacultiesGroupsData()
         {
             access_column_abs_class = access_column;
         }
 
         private bool checkFacultiesGroups(List<string> data)
         {
-            FacultiesGroupsData db_faculties_groups = new FacultiesGroupsData(connection);
+            FacultiesGroupsData db_faculties_groups = new FacultiesGroupsData();
             List<string[]> data_faculties_groups = db_faculties_groups.getAllData();
 
             if (data.Count() > 1)
@@ -38,7 +38,7 @@ namespace Model.ModelClasses
 
         public override List<string[]> getAllData()
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -91,7 +91,7 @@ namespace Model.ModelClasses
 
         public override bool add(List<string> data)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -136,7 +136,7 @@ namespace Model.ModelClasses
         }
         public override bool change(string index, List<string> data)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -193,7 +193,7 @@ namespace Model.ModelClasses
         }
         public override bool delete(string index)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {

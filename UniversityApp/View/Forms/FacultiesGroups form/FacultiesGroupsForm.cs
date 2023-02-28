@@ -23,7 +23,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
         }
         private void loadData()
         {
-            FacultiesGroupsData db_fac_gr = new FacultiesGroupsData(connection);
+            FacultiesGroupsData db_fac_gr = new FacultiesGroupsData();
             data_faculty_groups = db_fac_gr.getAllData();
             List<string[]> data = new List<string[]>();
 
@@ -45,7 +45,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacultiesGroupsData db = new FacultiesGroupsData(connection);
+            FacultiesGroupsData db = new FacultiesGroupsData();
 
             if (db.checkAccess(1))
             {
@@ -61,7 +61,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
                         dataGridView1.Rows.Add(s);
                     }
 
-                    FacultiesGroupsData db_fac_gr = new FacultiesGroupsData(connection);
+                    FacultiesGroupsData db_fac_gr = new FacultiesGroupsData();
                     data_faculty_groups = db_fac_gr.getAllData();
                 }
             }
@@ -73,7 +73,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacultiesGroupsData db = new FacultiesGroupsData(connection);
+            FacultiesGroupsData db = new FacultiesGroupsData();
 
             if (db.checkAccess(2))
             {
@@ -115,7 +115,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
                         dataGridView1[column, index].Value = data[count];
                     }
 
-                    FacultiesGroupsData db_fac_gr = new FacultiesGroupsData(connection);
+                    FacultiesGroupsData db_fac_gr = new FacultiesGroupsData();
                     data_faculty_groups = db_fac_gr.getAllData();
                 }
                 else
@@ -141,7 +141,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
                 if (rows > index)
                 {
-                    FacultiesGroupsData db = new FacultiesGroupsData(connection);
+                    FacultiesGroupsData db = new FacultiesGroupsData();
                     string group_name = dataGridView1[1, index].Value.ToString();  // название группы факультета
 
                     if (db.checkAccess(3))

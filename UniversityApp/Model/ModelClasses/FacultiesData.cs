@@ -10,14 +10,14 @@ namespace Model.ModelClasses
         private const string name_table = "faculties";
         private const string access_column = "access_faculties_groups";
 
-        public FacultiesData(MySqlConnection connection) : base(connection)
+        public FacultiesData()
         {
             access_column_abs_class = access_column;
         }
 
         public override List<string[]> getAllData()
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -62,7 +62,7 @@ namespace Model.ModelClasses
 
         public override bool add(List<string> data)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -98,7 +98,7 @@ namespace Model.ModelClasses
 
         public override bool change(string index, List<string> data)   // изменение данных о студенте
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -134,7 +134,7 @@ namespace Model.ModelClasses
         }
         public override bool delete(string index)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {

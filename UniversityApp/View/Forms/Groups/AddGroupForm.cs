@@ -28,7 +28,7 @@ namespace UniversityApp.Forms.Groups
             {
                 this.nameFaculty.BackColor = Color.White;
 
-                GroupsData db = new GroupsData(connection);
+                GroupsData db = new GroupsData();
                 List<string[]> data_groups = db.getAllData();
 
                 for (int i = 0; i < data_groups.Count(); ++i)

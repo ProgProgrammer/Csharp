@@ -29,7 +29,7 @@ namespace Model.ModelClasses
             return true;
         }
 
-        public UserData(MySqlConnection connection) : base(connection)
+        public UserData()
         {
             access_column_abs_class = access_column;
         }
@@ -203,7 +203,7 @@ namespace Model.ModelClasses
         }
         public override bool delete(string index)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {

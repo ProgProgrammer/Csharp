@@ -22,7 +22,7 @@ namespace UniversityApp
 
         private void loadData()
         {
-            StudentData db_student = new StudentData(connection);
+            StudentData db_student = new StudentData();
             List<string[]> data = db_student.getAllData();
 
             foreach (string[] s in data)
@@ -33,7 +33,7 @@ namespace UniversityApp
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StudentData db = new StudentData(connection);
+            StudentData db = new StudentData();
 
             if (db.checkAccess(1))
             {
@@ -58,7 +58,7 @@ namespace UniversityApp
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StudentData db = new StudentData(connection);
+            StudentData db = new StudentData();
 
             if (db.checkAccess(2))
             {
@@ -124,7 +124,7 @@ namespace UniversityApp
 
                 if (rows > index)
                 {
-                    StudentData db = new StudentData(connection);
+                    StudentData db = new StudentData();
 
                     if (db.checkAccess(3))
                     {

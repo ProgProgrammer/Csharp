@@ -23,7 +23,7 @@ namespace UniversityApp
 
         private void loadData()
         {
-            UserData db_users = new UserData(connection);
+            UserData db_users = new UserData();
             List<string[]> data_users = db_users.getAllData();
 
             foreach (string[] s in data_users)
@@ -110,7 +110,7 @@ namespace UniversityApp
 
         private void addUser_Click(object sender, EventArgs e)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (db.checkAccess(1))
             {
@@ -135,7 +135,7 @@ namespace UniversityApp
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (db.checkAccess(2))
             {
@@ -209,7 +209,7 @@ namespace UniversityApp
 
             if (form.result)
             {
-                UserData db = new UserData(connection);
+                UserData db = new UserData();
 
                 if (db.checkAccess(3))
                 {

@@ -40,7 +40,7 @@ namespace UniversityApp.Forms.Groups
             {
                 this.nameGroup.BackColor = Color.White;
 
-                GroupsData db = new GroupsData(connection);
+                GroupsData db = new GroupsData();
                 List<string[]> data_faculties = db.getAllData();
 
                 for (int i = 0; i < data_faculties.Count(); ++i)

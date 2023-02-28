@@ -114,7 +114,7 @@ namespace UniversityApp
                 this.accessStudent.BackColor = Color.White;
                 this.accessFacultiesGroups.BackColor = Color.White;
 
-                UserData db = new UserData(connection);
+                UserData db = new UserData();
 
                 if (db.change(this.index, data))
                 {

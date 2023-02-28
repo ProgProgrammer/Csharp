@@ -28,14 +28,14 @@ namespace Model.ModelClasses
             return true;
         }
 
-        public StudentData(MySqlConnection connection) : base(connection)
+        public StudentData()
         {
             access_column_abs_class = access_column;
         }
 
         public List<string[]> getFGData()  // метод для проверки доступа перед запросом информации о факультетах и группах в БД
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -53,7 +53,7 @@ namespace Model.ModelClasses
 
         public override List<string[]> getAllData()
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -126,7 +126,7 @@ namespace Model.ModelClasses
 
         public override bool add(List<string> data)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -182,7 +182,7 @@ namespace Model.ModelClasses
 
         public override bool change(string index, List<string> data)   // изменение данных о студенте
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
@@ -237,7 +237,7 @@ namespace Model.ModelClasses
         }
         public override bool delete(string index)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {

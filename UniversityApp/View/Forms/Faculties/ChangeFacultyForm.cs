@@ -40,7 +40,7 @@ namespace UniversityApp.Forms.Faculties
             {
                 this.nameFaculty.BackColor = Color.White;
 
-                FacultiesData db = new FacultiesData(connection);
+                FacultiesData db = new FacultiesData();
                 List<string[]> data_faculties = db.getAllData();
 
                 for (int i = 0; i < data_faculties.Count(); ++i)

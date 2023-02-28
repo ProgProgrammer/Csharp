@@ -5,20 +5,53 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Model.Interface
 {
     public abstract class ADataBase : IDataBase
     {
+        private const string authorization_table = "users";
         protected string access_column_abs_class;  // название запрашиваемой ячейки с доступом
         protected const string file_path = @"authorization_data.txt";
         protected string login;
         protected string password;
-        protected MySqlConnection connection;
+        protected MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
 
-        public ADataBase(MySqlConnection connection)
+        public bool authorization(string login, string password)
         {
-            this.connection = connection;
+            DataTable table = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            MySqlCommand command = new MySqlCommand($"SELECT * FROM `{authorization_table}` WHERE login = @login AND password = @password", connection);  // создание команды
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;         // присвоение значения псевдониму
+            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;   // присвоение значения псевдониму
+
+            if (File.Exists(file_path))
+            {
+                if (this.userExistCheck(table, adapter, command))
+                {
+                    using (StreamWriter writer = new StreamWriter(file_path, false))
+                    {
+                        this.login = login;
+                        this.password = password;
+
+                        writer.WriteLineAsync(login);
+                        writer.WriteAsync(password);
+
+                        return true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Нет такого пользователя в базе данных либо не правильный пароль.");
+
+                    return false;
+                }
+            }
+
+            MessageBox.Show("Нет такого файла.");
+
+            return false;
         }
 
         protected bool readFile()
@@ -152,7 +185,7 @@ namespace Model.Interface
 
         public bool checkAccess(int id)
         {
-            UserData db = new UserData(connection);
+            UserData db = new UserData();
 
             if (readFile())
             {
