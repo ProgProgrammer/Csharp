@@ -38,7 +38,7 @@ namespace Controller.ControllerClasses
 
         public bool authorization(string login, string password)
         {
-            return false;
+            return controller_obj.authorization(login, password);
         }
 
         public bool accessCheck(int id)

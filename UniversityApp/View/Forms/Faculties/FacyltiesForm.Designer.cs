@@ -208,28 +208,28 @@
             // addFaculty
             // 
             this.addFaculty.Name = "addFaculty";
-            this.addFaculty.Size = new System.Drawing.Size(197, 22);
-            this.addFaculty.Text = "Добавить новую свзяь";
+            this.addFaculty.Size = new System.Drawing.Size(187, 22);
+            this.addFaculty.Text = "Добавить факультет";
             this.addFaculty.Click += new System.EventHandler(this.addFaculty_Click);
             // 
             // changeToolStripMenuItem
             // 
             this.changeToolStripMenuItem.Name = "changeToolStripMenuItem";
-            this.changeToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.changeToolStripMenuItem.Text = "Изменить связь";
+            this.changeToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.changeToolStripMenuItem.Text = "Изменить факультет";
             this.changeToolStripMenuItem.Click += new System.EventHandler(this.changeToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.deleteToolStripMenuItem.Text = "Удалить связь";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.deleteToolStripMenuItem.Text = "Удалить факультет";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // updateFaculties
             // 
             this.updateFaculties.Name = "updateFaculties";
-            this.updateFaculties.Size = new System.Drawing.Size(197, 22);
+            this.updateFaculties.Size = new System.Drawing.Size(187, 22);
             this.updateFaculties.Text = "Обновить таблицу";
             this.updateFaculties.Click += new System.EventHandler(this.updateFaculties_Click);
             // 

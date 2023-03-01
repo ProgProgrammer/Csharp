@@ -53,108 +53,69 @@ namespace Model.ModelClasses
 
         public override bool add(List<string> data)
         {
-            UserData db = new UserData();
+            MySqlCommand command = new MySqlCommand($"INSERT INTO `{name_table}`(name) VALUES(@name_faculty)", connection);
+            command.Parameters.Add("@name_faculty", MySqlDbType.VarChar).Value = data[0];
 
-            if (readFile())
+            openConnection();
+
+            if (command.ExecuteNonQuery() == 1)
             {
-                if (db.authorization(login, password))
-                {
-                    if (accessCheck(login, 1))
-                    {
-                        MySqlCommand command = new MySqlCommand($"INSERT INTO `{name_table}`(name) VALUES(@name_faculty)", connection);
-                        command.Parameters.Add("@name_faculty", MySqlDbType.VarChar).Value = data[0];
+                MessageBox.Show("Факультет добавлен.");
+                closeConnection();
 
-                        openConnection();
-
-                        if (command.ExecuteNonQuery() == 1)
-                        {
-                            MessageBox.Show("Факультет добавлен.");
-                            closeConnection();
-
-                            return true;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Факультет не добавлен.");
-                            closeConnection();
-
-                            return false;
-                        }
-                    }
-                }
+                return true;
             }
+            else
+            {
+                MessageBox.Show("Факультет не добавлен.");
+                closeConnection();
 
-            return false;
+                return false;
+            }
         }
 
         public override bool change(string index, List<string> data)   // изменение данных о студенте
         {
-            UserData db = new UserData();
+            MySqlCommand command = new MySqlCommand($"UPDATE `{name_table}` SET name = @name WHERE id=@index", connection);
+            command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
+            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[0];
 
-            if (readFile())
+            openConnection();
+
+            if (command.ExecuteNonQuery() == 1)
             {
-                if (db.authorization(login, password))
-                {
-                    if (accessCheck(login, 2))
-                    {
-                        MySqlCommand command = new MySqlCommand($"UPDATE `{name_table}` SET name = @name WHERE id=@index", connection);
-                        command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
-                        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[0];
+                MessageBox.Show("Факультет изменен.");
+                closeConnection();
 
-                        openConnection();
-
-                        if (command.ExecuteNonQuery() == 1)
-                        {
-                            MessageBox.Show("Факультет изменен.");
-                            closeConnection();
-
-                            return true;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Факультет не изменен.");
-                            closeConnection();
-
-                            return false;
-                        }
-                    }
-                }
+                return true;
             }
+            else
+            {
+                MessageBox.Show("Факультет не изменен.");
+                closeConnection();
 
-            return false;
+                return false;
+            }
         }
         public override bool delete(string index)
         {
-            UserData db = new UserData();
+            MySqlCommand command = new MySqlCommand($"DELETE FROM `{name_table}` WHERE id = @id_faculty", connection);
+            command.Parameters.Add("@id_faculty", MySqlDbType.VarChar).Value = index;
 
-            if (readFile())
+            openConnection();
+
+            if (command.ExecuteNonQuery() == 1)
             {
-                if (db.authorization(login, password))
-                {
-                    if (accessCheck(login, 3))
-                    {
-                        MySqlCommand command = new MySqlCommand($"DELETE FROM `{name_table}` WHERE id = @id_faculty", connection);
-                        command.Parameters.Add("@id_faculty", MySqlDbType.VarChar).Value = index;
+                closeConnection();
 
-                        openConnection();
-
-                        if (command.ExecuteNonQuery() == 1)
-                        {
-                            closeConnection();
-
-                            return true;
-                        }
-                        else
-                        {
-                            closeConnection();
-
-                            return false;
-                        }
-                    }
-                }
+                return true;
             }
+            else
+            {
+                closeConnection();
 
-            return false;
+                return false;
+            }
         }
     }
 }

@@ -208,28 +208,28 @@
             // addUser
             // 
             this.addUser.Name = "addUser";
-            this.addUser.Size = new System.Drawing.Size(197, 22);
-            this.addUser.Text = "Добавить новую свзяь";
+            this.addUser.Size = new System.Drawing.Size(180, 22);
+            this.addUser.Text = "Добавить группу";
             this.addUser.Click += new System.EventHandler(this.addGroup_Click);
             // 
             // changeToolStripMenuItem
             // 
             this.changeToolStripMenuItem.Name = "changeToolStripMenuItem";
-            this.changeToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.changeToolStripMenuItem.Text = "Изменить связь";
+            this.changeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeToolStripMenuItem.Text = "Изменить группу";
             this.changeToolStripMenuItem.Click += new System.EventHandler(this.changeToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.deleteToolStripMenuItem.Text = "Удалить связь";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Удалить группу";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // updateUsers
             // 
             this.updateUsers.Name = "updateUsers";
-            this.updateUsers.Size = new System.Drawing.Size(197, 22);
+            this.updateUsers.Size = new System.Drawing.Size(180, 22);
             this.updateUsers.Text = "Обновить таблицу";
             this.updateUsers.Click += new System.EventHandler(this.updateGroups_Click);
             // 

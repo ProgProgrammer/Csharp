@@ -82,86 +82,60 @@ namespace Model.ModelClasses
 
         public override List<string[]> getAllData()
         {
-            if (readFile())
+            MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` ORDER BY id", this.connection);
+            List<string[]> data = new List<string[]>();
+
+            openConnection();
+
+            MySqlDataReader reader = command.ExecuteReader();
+            int num_cell_data = reader.FieldCount - 1;
+
+            while (reader.Read())
             {
-                if (this.authorization(login, password))
+                data.Add(new string[num_cell_data]);
+
+                for (int i = 0; i < num_cell_data; ++i)
                 {
-                    if (accessCheck(login, 0))
-                    {
-                        MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` ORDER BY id", this.connection);
-                        List<string[]> data = new List<string[]>();
-
-                        openConnection();
-
-                        MySqlDataReader reader = command.ExecuteReader();
-                        int num_cell_data = reader.FieldCount - 1;
-
-                        while (reader.Read())
-                        {
-                            data.Add(new string[num_cell_data]);
-
-                            for (int i = 0; i < num_cell_data; ++i)
-                            {
-                                data[data.Count - 1][i] = reader[i + 1].ToString();
-                            }
-                        }
-
-                        reader.Close();
-                        closeConnection();
-
-                        return data;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Нет прав доступа на чтение.");
-
-                        return new List<string[]>();
-                    }
+                    data[data.Count - 1][i] = reader[i + 1].ToString();
                 }
             }
 
-            return new List<string[]>();
+            reader.Close();
+            closeConnection();
+
+            return data;
         }
         public override bool add(List<string> data)
         {
-            if (readFile())
+            if (checkUser(data))
             {
-                if (authorization(login, password))
+                MySqlCommand command =
+                    new MySqlCommand($"INSERT INTO `{name_table}`(login, password, name, surname, super_admin, access_user, access_student, access_faculties_groups) " +
+                    $"VALUES(@login, @password, @name, @surname, @super_admin, @access_user, @access_student, @access_faculties_groups)", connection);
+                command.Parameters.Add("@login", MySqlDbType.VarChar).Value = data[0];
+                command.Parameters.Add("@password", MySqlDbType.VarChar).Value = data[1];
+                command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[2];
+                command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = data[3];
+                command.Parameters.Add("@super_admin", MySqlDbType.VarChar).Value = data[4];
+                command.Parameters.Add("@access_user", MySqlDbType.VarChar).Value = data[5];
+                command.Parameters.Add("@access_student", MySqlDbType.VarChar).Value = data[6];
+                command.Parameters.Add("@access_faculties_groups", MySqlDbType.VarChar).Value = data[7];
+
+                openConnection();
+
+                if (command.ExecuteNonQuery() == 1)
                 {
-                    if (accessCheck(login, 1))
-                    {
-                        if (checkUser(data))
-                        {
-                            MySqlCommand command =
-                                new MySqlCommand($"INSERT INTO `{name_table}`(login, password, name, surname, super_admin, access_user, access_student, access_faculties_groups) " +
-                                $"VALUES(@login, @password, @name, @surname, @super_admin, @access_user, @access_student, @access_faculties_groups)", connection);
-                            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = data[0];
-                            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = data[1];
-                            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[2];
-                            command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = data[3];
-                            command.Parameters.Add("@super_admin", MySqlDbType.VarChar).Value = data[4];
-                            command.Parameters.Add("@access_user", MySqlDbType.VarChar).Value = data[5];
-                            command.Parameters.Add("@access_student", MySqlDbType.VarChar).Value = data[6];
-                            command.Parameters.Add("@access_faculties_groups", MySqlDbType.VarChar).Value = data[7];
+                    MessageBox.Show("Пользователь добавлен.");
+                    closeConnection();
 
-                            openConnection();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не добавлен.");
+                    closeConnection();
 
-                            if (command.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Пользователь добавлен.");
-                                closeConnection();
-
-                                return true;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Пользователь не добавлен.");
-                                closeConnection();
-
-                                return false;
-                            }
-                        }
-                    }
+                    return false;
                 }
             }
 
@@ -169,44 +143,35 @@ namespace Model.ModelClasses
         }
         public override bool change(string index, List<string> data)
         {
-            if (readFile())
+            if (checkUser(data))
             {
-                if (authorization(login, password))
+                MySqlCommand command = new MySqlCommand($"UPDATE `{name_table}` SET password = @password, " +
+                    $"name = @name, surname = @surname, super_admin = @super_admin, access_user = @access_user, " +
+                    $"access_student = @access_student, access_faculties_groups = @access_faculties_groups WHERE login = @index", connection);
+                command.Parameters.Add("@password", MySqlDbType.VarChar).Value = data[0];
+                command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[1];
+                command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = data[2];
+                command.Parameters.Add("@super_admin", MySqlDbType.VarChar).Value = "0";
+                command.Parameters.Add("@access_user", MySqlDbType.VarChar).Value = data[3];
+                command.Parameters.Add("@access_student", MySqlDbType.VarChar).Value = data[4];
+                command.Parameters.Add("@access_faculties_groups", MySqlDbType.VarChar).Value = data[5];
+                command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
+
+                openConnection();
+
+                if (command.ExecuteNonQuery() == 1)
                 {
-                    if (accessCheck(login, 2))
-                    {
-                        if (checkUser(data))
-                        {
-                            MySqlCommand command = new MySqlCommand($"UPDATE `{name_table}` SET password = @password, " +
-                                $"name = @name, surname = @surname, super_admin = @super_admin, access_user = @access_user, " +
-                                $"access_student = @access_student, access_faculties_groups = @access_faculties_groups WHERE login = @index", connection);
-                            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = data[0];
-                            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[1];
-                            command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = data[2];
-                            command.Parameters.Add("@super_admin", MySqlDbType.VarChar).Value = "0";
-                            command.Parameters.Add("@access_user", MySqlDbType.VarChar).Value = data[3];
-                            command.Parameters.Add("@access_student", MySqlDbType.VarChar).Value = data[4];
-                            command.Parameters.Add("@access_faculties_groups", MySqlDbType.VarChar).Value = data[5];
-                            command.Parameters.Add("@index", MySqlDbType.VarChar).Value = index;
+                    MessageBox.Show("Пользователь изменен.");
+                    closeConnection();
 
-                            openConnection();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не изменен.");
+                    closeConnection();
 
-                            if (command.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Пользователь изменен.");
-                                closeConnection();
-
-                                return true;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Пользователь не изменен.");
-                                closeConnection();
-
-                                return false;
-                            }
-                        }
-                    }
+                    return false;
                 }
             }
 
@@ -214,37 +179,24 @@ namespace Model.ModelClasses
         }
         public override bool delete(string index)
         {
-            UserData db = new UserData();
+            MySqlCommand command = new MySqlCommand($"DELETE FROM `{name_table}` WHERE login = @login", connection);
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = index;
 
-            if (readFile())
+            openConnection();
+
+            if (command.ExecuteNonQuery() == 1)
             {
-                if (db.authorization(login, password))
-                {
-                    if (accessCheck(login, 3))
-                    {
-                        MySqlCommand command = new MySqlCommand($"DELETE FROM `{name_table}` WHERE login = @login", connection);
-                        command.Parameters.Add("@login", MySqlDbType.VarChar).Value = index;
+                closeConnection();
 
-                        openConnection();
-
-                        if (command.ExecuteNonQuery() == 1)
-                        {
-                            closeConnection();
-
-                            return true;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Пользователь не был удален.");
-                            closeConnection();
-
-                            return false;
-                        }
-                    }
-                }
+                return true;
             }
+            else
+            {
+                MessageBox.Show("Пользователь не был удален.");
+                closeConnection();
 
-            return false;
+                return false;
+            }
         }
     }
 }

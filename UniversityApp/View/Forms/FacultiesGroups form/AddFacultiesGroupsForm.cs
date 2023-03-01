@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Model.ModelClasses;
+using Controller.Interfaces;
+using Controller.ControllerClasses;
 
 namespace UniversityApp.Forms.FacultiesGroups_form
 {
@@ -14,6 +16,9 @@ namespace UniversityApp.Forms.FacultiesGroups_form
         private List<string[]> data_faculties = new List<string[]>();
         private List<string[]> data_groups = new List<string[]>();
         private List<string[]> data_faculties_groups = new List<string[]>();
+        private string faculties = "faculties";
+        private string faculties_groups = "faculties_groups";
+        private string groups = "groups";
         public List<string[]> data_result = new List<string[]>();
         public bool add_result = false;
 
@@ -25,13 +30,13 @@ namespace UniversityApp.Forms.FacultiesGroups_form
 
         private void loadData()
         {
-            FacultiesData db_faculties = new FacultiesData();
+            IControl db_faculties = new Controler(faculties);
             data_faculties = db_faculties.getAllData();
 
-            GroupsData db_groups = new GroupsData();
+            IControl db_groups = new Controler(groups);
             data_groups = db_groups.getAllData();
 
-            FacultiesGroupsData db_faculties_groups = new FacultiesGroupsData();
+            IControl db_faculties_groups = new Controler(faculties_groups);
             data_faculties_groups = db_faculties_groups.getAllData();
 
             for (int i = 0; i < data_faculties_groups.Count(); ++i)
@@ -70,6 +75,7 @@ namespace UniversityApp.Forms.FacultiesGroups_form
                     if (faculty_combo == data_faculties[i][1])
                     {
                         data.Add(data_faculties[i][0]);
+                        break;
                     }
                 }
 
@@ -78,13 +84,14 @@ namespace UniversityApp.Forms.FacultiesGroups_form
                     if (group_combo == data_groups[i][1])
                     {
                         data.Add(data_groups[i][0]);
+                        break;
                     }
                 }
 
                 this.facultyCombo.BackColor = Color.White;
                 this.groupCombo.BackColor = Color.White;
 
-                FacultiesGroupsData db = new FacultiesGroupsData();
+                IControl db = new Controler(faculties_groups);
 
                 if (db.add(data))
                 {

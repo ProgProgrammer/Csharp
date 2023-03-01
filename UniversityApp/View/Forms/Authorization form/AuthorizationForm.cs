@@ -7,6 +7,9 @@ using UniversityApp.Forms.FacyltiesGroups_form;
 using UniversityApp.Forms.Groups;
 using UniversityApp.Forms.Main_form;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
+using System.Xml;
 
 namespace UniversityApp
 {
@@ -16,7 +19,7 @@ namespace UniversityApp
         private static string empty_line = "";
         private string name_form = empty_line;
 
-        public string users_line = "user";
+        public string users_line = "users";
         public string students_line = "student";
         public string faculties_groups_line = "faculties_groups";
         public string faculties_line = "faculties";
@@ -87,7 +90,7 @@ namespace UniversityApp
                 this.loginField.BackColor = Color.White;
                 this.passwordField.BackColor = Color.White;
 
-                UserData db = new UserData();
+                IControl db = new Controler(users_line);
 
                 if (db.authorization(login, password))
                 {

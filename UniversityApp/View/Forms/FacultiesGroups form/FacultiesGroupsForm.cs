@@ -8,6 +8,8 @@ using UniversityApp.Forms.FacultiesGroups_form;
 using UniversityApp.Forms.Facylties;
 using UniversityApp.Forms.Groups;
 using Model.ModelClasses;
+using Controller.Interfaces;
+using Controller.ControllerClasses;
 
 namespace UniversityApp.Forms.FacyltiesGroups_form
 {
@@ -15,6 +17,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
     {
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         private List<string[]> data_faculty_groups;
+        private const string name_table = "faculties_groups";
 
         public FacultiesGroupsForm()
         {
@@ -23,7 +26,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
         }
         private void loadData()
         {
-            FacultiesGroupsData db_fac_gr = new FacultiesGroupsData();
+            IControl db_fac_gr = new Controler(name_table);
             data_faculty_groups = db_fac_gr.getAllData();
             List<string[]> data = new List<string[]>();
 
@@ -45,9 +48,9 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacultiesGroupsData db = new FacultiesGroupsData();
+            IControl db = new Controler(name_table);
 
-            if (db.checkAccess(1))
+            if (db.accessCheck(1))
             {
                 AddFacultiesGroupsForm form = new AddFacultiesGroupsForm();
                 form.ShowDialog();
@@ -61,7 +64,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
                         dataGridView1.Rows.Add(s);
                     }
 
-                    FacultiesGroupsData db_fac_gr = new FacultiesGroupsData();
+                    IControl db_fac_gr = new Controler(name_table);
                     data_faculty_groups = db_fac_gr.getAllData();
                 }
             }
@@ -73,14 +76,14 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FacultiesGroupsData db = new FacultiesGroupsData();
+            int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
+            int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
 
-            if (db.checkAccess(2))
+            if (rows > index)
             {
-                int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
-                int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
+                IControl db = new Controler(name_table);
 
-                if (rows > index)
+                if (db.accessCheck(2))
                 {
                     ChangeFacultiesGroupsForm form = new ChangeFacultiesGroupsForm();
                     int num_column = dataGridView1.Columns.Count - 1;         // номер колонки
@@ -115,7 +118,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
                         dataGridView1[column, index].Value = data[count];
                     }
 
-                    FacultiesGroupsData db_fac_gr = new FacultiesGroupsData();
+                    IControl db_fac_gr = new Controler(name_table);
                     data_faculty_groups = db_fac_gr.getAllData();
                 }
                 else
@@ -141,10 +144,10 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
                 if (rows > index)
                 {
-                    FacultiesGroupsData db = new FacultiesGroupsData();
+                    IControl db = new Controler(name_table);
                     string group_name = dataGridView1[1, index].Value.ToString();  // название группы факультета
 
-                    if (db.checkAccess(3))
+                    if (db.accessCheck(3))
                     {
                         string id = "";
 
