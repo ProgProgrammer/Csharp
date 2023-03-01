@@ -5,6 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
+using System.Xml;
 
 namespace UniversityApp
 {
@@ -12,10 +15,10 @@ namespace UniversityApp
     {
         private List<string[]> list_faculties = new List<string[]>();
         private List<string[]> data_groups;
-        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         public string index;
         public bool change_result = false;
         public List<string> data;
+        private const string name_table = "students";
 
         public ChangeStudentForm()
         {
@@ -57,7 +60,7 @@ namespace UniversityApp
         {
             this.numberStudent.ReadOnly = true;
 
-            StudentData db = new StudentData();
+            IControl db = new Controler(name_table);
             data_groups = db.getFGData();
 
             for (int i = 0; i < data_groups.Count; ++i)
@@ -175,7 +178,8 @@ namespace UniversityApp
                     }
                 }
 
-                StudentData db = new StudentData();
+                IControl db = new Controler(name_table);
+
                 if (db.change(this.index, data))
                 {
                     int count = data.Count - 1;
