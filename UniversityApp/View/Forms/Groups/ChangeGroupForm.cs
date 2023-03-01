@@ -5,6 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
+using System.Xml;
 
 namespace UniversityApp.Forms.Groups
 {
@@ -14,6 +17,7 @@ namespace UniversityApp.Forms.Groups
         private string id_group;
         public List<string> data_result = new List<string>();
         public bool change_result = false;
+        private const string name_table = "groups";
 
         public ChangeGroupForm()
         {
@@ -40,7 +44,7 @@ namespace UniversityApp.Forms.Groups
             {
                 this.nameGroup.BackColor = Color.White;
 
-                GroupsData db = new GroupsData();
+                IControl db = new Controler(name_table);
                 List<string[]> data_faculties = db.getAllData();
 
                 for (int i = 0; i < data_faculties.Count(); ++i)

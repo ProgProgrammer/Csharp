@@ -8,18 +8,24 @@ namespace Controller.ControllerClasses
 {
     internal class UserController : AControllerInternal
     {
-        private IDataBase model_obj = new UserData();
+        private IDataBase db_model = new UserData();
+
+        public override List<string[]> getFGData()
+        {
+            StudentData db = new StudentData();
+            return db.getFGData();
+        }
 
         public override bool authorization(string login, string password)
         {
-            return model_obj.authorizationCheck(login, password);
+            return db_model.authorizationCheck(login, password);
         }
 
         public override bool accessCheck(int id)
         {
-            if (model_obj.authorizationCheck(login, password))
+            if (db_model.authorizationCheck(login, password))
             {
-                return model_obj.userAccessCheck(login, id);
+                return db_model.userAccessCheck(login, id);
             }
 
             return false;
@@ -29,7 +35,7 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(0))
             {
-                return model_obj.getAllData();
+                return db_model.getAllData();
             }
             else
             {
@@ -43,7 +49,7 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(1))
             {
-                return model_obj.add(data);
+                return db_model.add(data);
             }
             else
             {
@@ -57,7 +63,7 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(2))
             {
-                return model_obj.change(index, data);
+                return db_model.change(index, data);
             }
             else
             {
@@ -71,7 +77,7 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(3))
             {
-                return model_obj.delete(index);
+                return db_model.delete(index);
             }
             else
             {

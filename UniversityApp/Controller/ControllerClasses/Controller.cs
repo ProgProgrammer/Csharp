@@ -5,7 +5,7 @@ namespace Controller.ControllerClasses
 {
     public class Controler : IControl
     {
-        private IControllerInternal controller_obj;
+        private IControllerInternal db_controller;
         private string faculties = "faculties";
         private string faculties_groups = "faculties_groups";
         private string groups = "groups";
@@ -16,54 +16,59 @@ namespace Controller.ControllerClasses
         {
             if (name_table == faculties)
             {
-                controller_obj = new FacyltiesController();
+                db_controller = new FacyltiesController();
             }
             else if (name_table == faculties_groups)
             {
-                controller_obj = new FacyltiesGroupsController();
+                db_controller = new FacyltiesGroupsController();
             }
             else if (name_table == groups)
             {
-                controller_obj = new GroupsController();
+                db_controller = new GroupsController();
             }
             else if (name_table == students)
             {
-                controller_obj = new StudentController();
+                db_controller = new StudentController();
             }
             else if (name_table == users)
             {
-                controller_obj = new UserController();
+                db_controller = new UserController();
             }
+        }
+
+        public List<string[]> getFGData()
+        {
+            return db_controller.getFGData();
         }
 
         public bool authorization(string login, string password)
         {
-            return controller_obj.authorization(login, password);
+            return db_controller.authorization(login, password);
         }
 
         public bool accessCheck(int id)
         {
-            return controller_obj.accessCheck(id);
+            return db_controller.accessCheck(id);
         }
 
         public List<string[]> getAllData()
         {
-            return controller_obj.getAllData();
+            return db_controller.getAllData();
         }
 
         public bool add(List<string> data)
         {
-            return controller_obj.add(data);
+            return db_controller.add(data);
         }
 
         public bool change(string index, List<string> data)
         {
-            return controller_obj.change(index, data);
+            return db_controller.change(index, data);
         }
 
         public bool delete(string index)
         {
-            return controller_obj.delete(index);
+            return db_controller.delete(index);
         }
     }
 }

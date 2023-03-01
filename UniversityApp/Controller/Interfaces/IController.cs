@@ -4,6 +4,7 @@ namespace Controller.Interfaces
 {
     public interface IControl
     {
+        List<string[]> getFGData();
         bool authorization(string login, string password);
         bool accessCheck(int id);
         List<string[]> getAllData();

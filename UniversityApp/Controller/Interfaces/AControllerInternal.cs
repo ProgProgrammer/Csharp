@@ -47,11 +47,6 @@ namespace Controller.Interfaces
             }
         }
 
-        protected List<string[]> getFacultiesGroupsData()
-        {
-            return new List<string[]>();
-        }
-
         public AControllerInternal()
         {
             try
@@ -66,6 +61,7 @@ namespace Controller.Interfaces
 
         }
 
+        public abstract List<string[]> getFGData();
         public abstract bool authorization(string login, string password);
         public abstract bool accessCheck(int id);
         public abstract List<string[]> getAllData();

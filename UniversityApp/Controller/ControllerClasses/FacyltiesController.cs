@@ -10,18 +10,24 @@ namespace Controller.ControllerClasses
 {
     internal class FacyltiesController : AControllerInternal
     {
-        private IDataBase model_obj = new FacultiesData();
+        private IDataBase db_model = new FacultiesData();
+
+        public override List<string[]> getFGData()
+        {
+            StudentData db = new StudentData();
+            return db.getFGData();
+        }
 
         public override bool authorization(string login, string password)
         {
-            return model_obj.authorizationCheck(login, password);
+            return db_model.authorizationCheck(login, password);
         }
 
         public override bool accessCheck(int id)
         {
-            if (model_obj.authorizationCheck(login, password))
+            if (db_model.authorizationCheck(login, password))
             {
-                return model_obj.userAccessCheck(login, id);
+                return db_model.userAccessCheck(login, id);
             }
 
             return false;
@@ -31,7 +37,7 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(0))
             {
-                return model_obj.getAllData();
+                return db_model.getAllData();
             }
             else
             {
@@ -45,7 +51,16 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(1))
             {
-                return model_obj.add(data);
+                if (db_model.add(data))
+                {
+                    MessageBox.Show("Факультет добавлен.");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Факультет не добавлен.");
+                    return false;
+                }
             }
             else
             {
@@ -59,7 +74,16 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(2))
             {
-                return model_obj.change(index, data);
+                if (db_model.change(index, data))
+                {
+                    MessageBox.Show("Факультет изменен.");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Факультет не изменен.");
+                    return false;
+                }
             }
             else
             {
@@ -73,7 +97,10 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(3))
             {
-                return model_obj.delete(index);
+                if (!db_model.delete(index))
+                {
+                    MessageBox.Show("Пользователь не удален.");
+                }
             }
             else
             {

@@ -60,16 +60,12 @@ namespace Model.ModelClasses
 
             if (command.ExecuteNonQuery() == 1)
             {
-                MessageBox.Show("Группа добавлена.");
                 closeConnection();
-
                 return true;
             }
             else
             {
-                MessageBox.Show("Группа не добавлена.");
                 closeConnection();
-
                 return false;
             }
         }
@@ -84,51 +80,32 @@ namespace Model.ModelClasses
 
             if (command.ExecuteNonQuery() == 1)
             {
-                MessageBox.Show("Группа изменена.");
                 closeConnection();
-
                 return true;
             }
             else
             {
-                MessageBox.Show("Группа не изменена.");
                 closeConnection();
-
                 return false;
             }
         }
         public override bool delete(string index)
         {
-            UserData db = new UserData();
+            MySqlCommand command = new MySqlCommand($"DELETE FROM `{name_table}` WHERE id = @id_faculty", connection);
+            command.Parameters.Add("@id_faculty", MySqlDbType.VarChar).Value = index;
 
-            if (readFile())
+            openConnection();
+
+            if (command.ExecuteNonQuery() == 1)
             {
-                if (db.authorization(login, password))
-                {
-                    if (accessCheck(login, 3))
-                    {
-                        MySqlCommand command = new MySqlCommand($"DELETE FROM `{name_table}` WHERE id = @id_faculty", connection);
-                        command.Parameters.Add("@id_faculty", MySqlDbType.VarChar).Value = index;
-
-                        openConnection();
-
-                        if (command.ExecuteNonQuery() == 1)
-                        {
-                            closeConnection();
-
-                            return true;
-                        }
-                        else
-                        {
-                            closeConnection();
-
-                            return false;
-                        }
-                    }
-                }
+                closeConnection();
+                return true;
             }
-
-            return false;
+            else
+            {
+                closeConnection();
+                return false;
+            }
         }
     }
 }

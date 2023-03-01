@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
 
 namespace UniversityApp
 {
@@ -12,9 +14,10 @@ namespace UniversityApp
     {
         private List<string[]> list_faculties = new List<string[]>();
         private List<string[]> data_groups;
-        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         public bool add_result = false;
         public List<string[]> data_result = new List<string[]>();
+        private const string name_table = "students";
+        private IControl db = new Controler(name_table);
 
         public AddStudentForm()
         {
@@ -24,7 +27,7 @@ namespace UniversityApp
 
         private void loadData()
         {
-            StudentData db = new StudentData();
+            IControl db = new Controler(name_table);
             data_groups = db.getFGData();
 
             for (int i = 0; i < data_groups.Count; ++i)
@@ -87,7 +90,8 @@ namespace UniversityApp
                     }
                 }
 
-                StudentData db = new StudentData();
+                IControl db = new Controler(name_table);
+
                 if (db.add(data))
                 {
                     int count = data.Count - 1;

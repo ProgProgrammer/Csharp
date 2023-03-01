@@ -147,39 +147,6 @@ namespace Model.Interface
                 return false;
             }
         }
-        protected List<string[]> getFacultiesGroupsData()  // предоставляет список из факультетов и групп таблицы "faculties_groups" (проверки нет для уменьшения нагрузки на БД)
-        {
-            MySqlCommand command_groups_num = new MySqlCommand("SELECT COUNT(*) FROM groups", connection);
-
-            openConnection();
-            int numRowsGroups = Convert.ToInt32(command_groups_num.ExecuteScalar());
-            closeConnection();
-
-            List<string[]> data = new List<string[]>();
-            MySqlCommand command = new MySqlCommand("SELECT faculties.id, faculties.name, groups.id, groups.name FROM faculties_groups JOIN faculties ON faculties_groups.num_faculty = faculties.id JOIN groups ON faculties_groups.num_group = groups.id", connection);
-
-            openConnection();
-            MySqlDataReader reader = command.ExecuteReader();
-            int num_cell_data = reader.FieldCount;
-
-            for (int i = 0; i < numRowsGroups; ++i)
-            {
-                if (reader.Read())
-                {
-                    data.Add(new string[num_cell_data]);
-
-                    for (int a = 0; a < num_cell_data; ++a)
-                    {
-                        data[data.Count - 1][a] = reader[a].ToString();
-                    }
-                }
-            }
-
-            reader.Close();
-            closeConnection();
-
-            return data;
-        }
 
         public bool checkAccess(int id)
         {

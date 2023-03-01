@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,13 +6,16 @@ using System.Windows.Forms;
 using UniversityApp.Forms.Facylties;
 using UniversityApp.Forms.FacyltiesGroups_form;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
 
 namespace UniversityApp.Forms.Groups
 {
     public partial class GroupsForm : Form
     {
-        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         List<string[]> data_groups = new List<string[]>();
+        private const string name_table = "groups";
+        private IControl db = new Controler(name_table);
 
         public GroupsForm()
         {
@@ -23,8 +25,7 @@ namespace UniversityApp.Forms.Groups
 
         private void loadData()
         {
-            GroupsData db_group = new GroupsData();
-            data_groups = db_group.getAllData();
+            data_groups = db.getAllData();
 
             for (int i = 0; i < data_groups.Count(); ++i)
             {
@@ -34,9 +35,7 @@ namespace UniversityApp.Forms.Groups
 
         private void addGroup_Click(object sender, EventArgs e)
         {
-            UserData db = new UserData();
-
-            if (db.checkAccess(1))
+            if (db.accessCheck(1))
             {
                 AddGroupForm form = new AddGroupForm();
                 form.ShowDialog();
@@ -50,8 +49,7 @@ namespace UniversityApp.Forms.Groups
                         dataGridView1.Rows.Add(s);
                     }
 
-                    GroupsData db_group = new GroupsData();
-                    data_groups = db_group.getAllData();
+                    data_groups = db.getAllData();
                 }
             }
             else
@@ -62,9 +60,7 @@ namespace UniversityApp.Forms.Groups
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserData db = new UserData();
-
-            if (db.checkAccess(2))
+            if (db.accessCheck(2))
             {
                 int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
                 int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк
@@ -90,8 +86,7 @@ namespace UniversityApp.Forms.Groups
                         List<string> data = form.data_result;
                         dataGridView1[0, index].Value = data[0];
 
-                        GroupsData db_group = new GroupsData();
-                        data_groups = db_group.getAllData();
+                        data_groups = db.getAllData();
                     }
                 }
                 else
@@ -117,10 +112,9 @@ namespace UniversityApp.Forms.Groups
 
                 if (rows > index)
                 {
-                    GroupsData db = new GroupsData();
                     string faculty_name = dataGridView1[0, index].Value.ToString();  // название факультета
 
-                    if (db.checkAccess(3))
+                    if (db.accessCheck(3))
                     {
                         string id = "";
 

@@ -60,16 +60,12 @@ namespace Model.ModelClasses
 
             if (command.ExecuteNonQuery() == 1)
             {
-                MessageBox.Show("Факультет добавлен.");
                 closeConnection();
-
                 return true;
             }
             else
             {
-                MessageBox.Show("Факультет не добавлен.");
                 closeConnection();
-
                 return false;
             }
         }
@@ -84,16 +80,12 @@ namespace Model.ModelClasses
 
             if (command.ExecuteNonQuery() == 1)
             {
-                MessageBox.Show("Факультет изменен.");
                 closeConnection();
-
                 return true;
             }
             else
             {
-                MessageBox.Show("Факультет не изменен.");
                 closeConnection();
-
                 return false;
             }
         }
@@ -107,13 +99,11 @@ namespace Model.ModelClasses
             if (command.ExecuteNonQuery() == 1)
             {
                 closeConnection();
-
                 return true;
             }
             else
             {
                 closeConnection();
-
                 return false;
             }
         }

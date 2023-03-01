@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -14,9 +13,9 @@ namespace UniversityApp.Forms.Facylties
 {
     public partial class FacultiesForm : Form
     {
-        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         List<string[]> data_faculties = new List<string[]>();
         private const string name_table = "faculties";
+        private IControl db = new Controler(name_table);
 
         public FacultiesForm()
         {
@@ -26,8 +25,7 @@ namespace UniversityApp.Forms.Facylties
 
         private void loadData()
         {
-            IControl db_faculty = new Controler(name_table);
-            data_faculties = db_faculty.getAllData();
+            data_faculties = db.getAllData();
 
             for (int i = 0; i < data_faculties.Count(); ++i)
             {
@@ -37,8 +35,6 @@ namespace UniversityApp.Forms.Facylties
 
         private void addFaculty_Click(object sender, EventArgs e)
         {
-            IControl db = new Controler(name_table);
-
             if (db.accessCheck(1))
             {
                 AddFacultyForm form = new AddFacultyForm();
@@ -53,8 +49,7 @@ namespace UniversityApp.Forms.Facylties
                         dataGridView1.Rows.Add(s);
                     }
 
-                    IControl db_faculty = new Controler(name_table);
-                    data_faculties = db_faculty.getAllData();
+                    data_faculties = db.getAllData();
                 }
             }
             else
@@ -65,8 +60,6 @@ namespace UniversityApp.Forms.Facylties
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IControl db = new Controler(name_table);
-
             if (db.accessCheck(2))
             {
                 int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
@@ -120,7 +113,6 @@ namespace UniversityApp.Forms.Facylties
 
                 if (rows > index)
                 {
-                    IControl db = new Controler(name_table);
                     string faculty_name = dataGridView1[0, index].Value.ToString();  // название факультета
 
                     if (db.accessCheck(3))

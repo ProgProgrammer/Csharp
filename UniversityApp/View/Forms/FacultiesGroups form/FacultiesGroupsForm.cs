@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -15,9 +14,9 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 {
     public partial class FacultiesGroupsForm : Form
     {
-        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         private List<string[]> data_faculty_groups;
         private const string name_table = "faculties_groups";
+        private IControl db = new Controler(name_table);
 
         public FacultiesGroupsForm()
         {
@@ -26,8 +25,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
         }
         private void loadData()
         {
-            IControl db_fac_gr = new Controler(name_table);
-            data_faculty_groups = db_fac_gr.getAllData();
+            data_faculty_groups = db.getAllData();
             List<string[]> data = new List<string[]>();
 
             for (int i = 0; i < data_faculty_groups.Count; ++i)
@@ -48,8 +46,6 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IControl db = new Controler(name_table);
-
             if (db.accessCheck(1))
             {
                 AddFacultiesGroupsForm form = new AddFacultiesGroupsForm();
@@ -81,8 +77,6 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
             if (rows > index)
             {
-                IControl db = new Controler(name_table);
-
                 if (db.accessCheck(2))
                 {
                     ChangeFacultiesGroupsForm form = new ChangeFacultiesGroupsForm();
@@ -118,8 +112,7 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
                         dataGridView1[column, index].Value = data[count];
                     }
 
-                    IControl db_fac_gr = new Controler(name_table);
-                    data_faculty_groups = db_fac_gr.getAllData();
+                    data_faculty_groups = db.getAllData();
                 }
                 else
                 {
@@ -144,7 +137,6 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
 
                 if (rows > index)
                 {
-                    IControl db = new Controler(name_table);
                     string group_name = dataGridView1[1, index].Value.ToString();  // название группы факультета
 
                     if (db.accessCheck(3))

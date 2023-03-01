@@ -8,18 +8,24 @@ namespace Controller.ControllerClasses
 {
     internal class StudentController : AControllerInternal
     {
-        private IDataBase model_obj = new StudentData();
+        private IDataBase db_model = new StudentData();
+
+        public override List<string[]> getFGData()
+        {
+            StudentData db = new StudentData();
+            return db.getFGData();
+        }
 
         public override bool authorization(string login, string password)
         {
-            return model_obj.authorizationCheck(login, password);
+            return db_model.authorizationCheck(login, password);
         }
 
         public override bool accessCheck(int id)
         {
-            if (model_obj.authorizationCheck(login, password))
+            if (db_model.authorizationCheck(login, password))
             {
-                return model_obj.userAccessCheck(login, id);
+                return db_model.userAccessCheck(login, id);
             }
 
             return false;
@@ -29,7 +35,7 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(0))
             {
-                return model_obj.getAllData();
+                return db_model.getAllData();
             }
             else
             {
@@ -43,7 +49,37 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(1))
             {
-                return model_obj.add(data);
+                StudentData db_student = new StudentData();
+
+                if (db_student.checkStudent(data))
+                {
+                    List<string[]> list_faculties_groups = db_student.getFacultiesGroupsData();
+
+                    for (int i = 0; i < list_faculties_groups.Count; ++i)
+                    {
+                        if (list_faculties_groups[i][0] == data[3]
+                            && list_faculties_groups[i][2] == data[4])  // проверка на то, есть ли переданная группа в переданном факультете или нет
+                        {
+                            if (db_model.add(data))
+                            {
+                                MessageBox.Show("Студент добавлен.");
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Студент не добавлен.");
+                                return false;
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("На этом факультете нет такой группы.");
+                }
+                else
+                {
+                    MessageBox.Show("Студент с таким номером студенческого билета уже существует в базе данных.");
+                    return false;
+                }
             }
             else
             {
@@ -57,7 +93,29 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(2))
             {
-                return model_obj.change(index, data);
+                StudentData db_student = new StudentData();
+
+                if (db_student.checkStudent(data))
+                {
+                    List<string[]> list_faculties_groups = db_student.getFacultiesGroupsData();
+
+                    for (int i = 0; i < list_faculties_groups.Count; ++i)
+                    {
+                        if (list_faculties_groups[i][0] == data[2]
+                        && list_faculties_groups[i][2] == data[3])  // проверка на то, есть ли переданная группа в переданном факультете или нет
+                        {
+                            if (db_model.change(index, data))
+                            {
+                                MessageBox.Show("Студент изменен.");
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
             }
             else
             {
@@ -71,7 +129,15 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(3))
             {
-                return model_obj.delete(index);
+                if (db_model.delete(index))
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Студент не был удален.");
+                    return false;
+                }
             }
             else
             {

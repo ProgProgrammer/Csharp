@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -7,12 +6,15 @@ using UniversityApp.Forms.Facylties;
 using UniversityApp.Forms.FacyltiesGroups_form;
 using UniversityApp.Forms.Groups;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
 
 namespace UniversityApp
 {
     public partial class StudentsForm : Form
     {
-        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
+        private const string name_table = "students";
+        private IControl db = new Controler(name_table);
 
         public StudentsForm()
         {
@@ -22,8 +24,7 @@ namespace UniversityApp
 
         private void loadData()
         {
-            StudentData db_student = new StudentData();
-            List<string[]> data = db_student.getAllData();
+            List<string[]> data = db.getAllData();
 
             foreach (string[] s in data)
             {
@@ -33,9 +34,7 @@ namespace UniversityApp
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StudentData db = new StudentData();
-
-            if (db.checkAccess(1))
+            if (db.accessCheck(1))
             {
                 AddStudentForm form = new AddStudentForm();
                 form.ShowDialog();
@@ -58,9 +57,7 @@ namespace UniversityApp
 
         private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StudentData db = new StudentData();
-
-            if (db.checkAccess(2))
+            if (db.accessCheck(2))
             {
                 int index = dataGridView1.CurrentCell.RowIndex;             // номер строки
                 int rows = dataGridView1.Rows.Count - 1;                    // запрос количества строк

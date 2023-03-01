@@ -55,7 +55,8 @@ namespace Model.ModelClasses
             closeConnection();
 
             List<string[]> data = new List<string[]>();
-            MySqlCommand command = new MySqlCommand("SELECT faculties_groups.id, faculties.name, groups.name FROM faculties_groups JOIN faculties ON faculties_groups.num_faculty = faculties.id JOIN groups ON faculties_groups.num_group = groups.id", connection);
+            MySqlCommand command = new MySqlCommand("SELECT faculties_groups.id, faculties.name, groups.name FROM faculties_groups JOIN faculties ON faculties_groups.num_faculty = faculties.id " +
+                "JOIN groups ON faculties_groups.num_group = groups.id", connection);
 
             openConnection();
             MySqlDataReader reader = command.ExecuteReader();
@@ -92,16 +93,12 @@ namespace Model.ModelClasses
 
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Связь добавлена.");
                     closeConnection();
-
                     return true;
                 }
                 else
                 {
-                    MessageBox.Show("Связь не добавлена.");
                     closeConnection();
-
                     return false;
                 }
             }
@@ -136,16 +133,12 @@ namespace Model.ModelClasses
 
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Изменения внесены.");
                     closeConnection();
-
                     return true;
                 }
                 else
                 {
-                    MessageBox.Show("Изменения не внесены.");
                     closeConnection();
-
                     return false;
                 }
             }
@@ -166,13 +159,11 @@ namespace Model.ModelClasses
             if (command.ExecuteNonQuery() == 1)
             {
                 closeConnection();
-
                 return true;
             }
             else
             {
                 closeConnection();
-
                 return false;
             }
         }
