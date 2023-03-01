@@ -12,6 +12,11 @@ namespace Controller.ControllerClasses
     {
         private IDataBase model_obj = new FacultiesData();
 
+        public override bool authorization(string login, string password)
+        {
+            return model_obj.authorizationCheck(login, password);
+        }
+
         public override bool accessCheck(int id)
         {
             if (model_obj.authorizationCheck(login, password))

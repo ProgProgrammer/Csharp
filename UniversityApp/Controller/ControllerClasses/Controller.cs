@@ -36,6 +36,11 @@ namespace Controller.ControllerClasses
             }
         }
 
+        public bool authorization(string login, string password)
+        {
+            return false;
+        }
+
         public bool accessCheck(int id)
         {
             return controller_obj.accessCheck(id);

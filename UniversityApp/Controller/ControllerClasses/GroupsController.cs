@@ -1,11 +1,18 @@
 ﻿using Controller.Interfaces;
+using Model.Interface;
+using Model.ModelClasses;
 using System.Collections.Generic;
 
 namespace Controller.ControllerClasses
 {
     internal class GroupsController : AControllerInternal
     {
-        public GroupsController() { }
+        private IDataBase model_obj = new GroupsData();
+
+        public override bool authorization(string login, string password)
+        {
+            return model_obj.authorizationCheck(login, password);
+        }
 
         public override bool accessCheck(int id)
         {

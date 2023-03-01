@@ -66,6 +66,7 @@ namespace Controller.Interfaces
 
         }
 
+        public abstract bool authorization(string login, string password);
         public abstract bool accessCheck(int id);
         public abstract List<string[]> getAllData();
         public abstract bool add(List<string> data);
