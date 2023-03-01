@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
 
 namespace UniversityApp
 {
@@ -11,8 +13,9 @@ namespace UniversityApp
     {
         public string index;
         public bool change_result = false;
-        private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         public List<string> data = new List<string>();
+        private const string name_table = "users";
+        private IControl db = new Controler(name_table);
 
         public ChangeUserForm()
         {
@@ -62,49 +65,13 @@ namespace UniversityApp
             set { accessFacultiesGroups.Text = value; }
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void closeButton_MouseHover(object sender, EventArgs e)
-        {
-            this.closeButton.ForeColor = Color.Cyan;
-        }
-
-        private void closeButton_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.closeButton.ForeColor = Color.FromArgb(243, 0, 33);
-        }
-
-        private void closeButton_MouseLeave(object sender, EventArgs e)
-        {
-            this.closeButton.ForeColor = Color.FromArgb(239, 239, 239);
-        }
-
-        Point lastPoint;
-
-        private void topLabelPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            lastPoint = new Point(e.X, e.Y);
-        }
-
-        private void topLabelPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
-            }
-        }
-
         private void changeUser_Click(object sender, EventArgs e)
         {
             List<string> data = new List<string>() { this.password.Text, this.name.Text, this.surname.Text, this.accessUser.Text,
                                                     this.accessStudent.Text, this.accessFacultiesGroups.Text };
 
-            if (this.password.Text.Length > 4 && this.name.Text.Length > 1 
-                && this.surname.Text.Length > 2 && this.accessUser.Text.Length == 4 
+            if (this.password.Text.Length > 4 && this.name.Text.Length > 1
+                && this.surname.Text.Length > 2 && this.accessUser.Text.Length == 4
                 && this.accessStudent.Text.Length == 4 && this.accessFacultiesGroups.Text.Length == 4)
             {
                 this.password.BackColor = Color.White;
@@ -113,8 +80,6 @@ namespace UniversityApp
                 this.accessUser.BackColor = Color.White;
                 this.accessStudent.BackColor = Color.White;
                 this.accessFacultiesGroups.BackColor = Color.White;
-
-                UserData db = new UserData();
 
                 if (db.change(this.index, data))
                 {
@@ -155,7 +120,6 @@ namespace UniversityApp
             }
 
 
-
             if (this.password.Text.Length < 5)
             {
                 this.password.BackColor = Color.FromArgb(243, 0, 33);
@@ -184,6 +148,42 @@ namespace UniversityApp
             if (this.accessFacultiesGroups.Text.Length != 4)
             {
                 this.accessFacultiesGroups.BackColor = Color.FromArgb(243, 0, 33);
+            }
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void closeButton_MouseHover(object sender, EventArgs e)
+        {
+            this.closeButton.ForeColor = Color.Cyan;
+        }
+
+        private void closeButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.closeButton.ForeColor = Color.FromArgb(243, 0, 33);
+        }
+
+        private void closeButton_MouseLeave(object sender, EventArgs e)
+        {
+            this.closeButton.ForeColor = Color.FromArgb(239, 239, 239);
+        }
+
+        Point lastPoint;
+
+        private void topLabelPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void topLabelPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
             }
         }
     }

@@ -116,12 +116,12 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
                 }
                 else
                 {
-                    MessageBox.Show("Вы применили изменение к пустой строке.");
+                    MessageBox.Show("Нет прав доступа на изменение факультетов и групп.");
                 }
             }
             else
             {
-                MessageBox.Show("Нет прав доступа на изменение факультетов и групп.");
+                MessageBox.Show("Вы применили изменение к пустой строке.");
             }
         }
 
