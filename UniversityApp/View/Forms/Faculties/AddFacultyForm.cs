@@ -5,6 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
+using System.Xml;
 
 namespace UniversityApp.Forms.Faculties
 {
@@ -13,6 +16,7 @@ namespace UniversityApp.Forms.Faculties
         private MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
         public bool add_result = false;
         public List<string> data_result = new List<string>();
+        private const string name_table = "faculties";
 
         public AddFacultyForm()
         {
@@ -28,8 +32,8 @@ namespace UniversityApp.Forms.Faculties
             {
                 this.nameFaculty.BackColor = Color.White;
 
-                FacultiesData db = new FacultiesData();
-                List<string[]> data_faculties = db.getAllData();
+                IControl db_faculty = new Controler(name_table);
+                List<string[]> data_faculties = db_faculty.getAllData();
 
                 for (int i = 0; i < data_faculties.Count(); ++i)
                 {
@@ -41,7 +45,7 @@ namespace UniversityApp.Forms.Faculties
 
                     if (i == data_faculties.Count() - 1)
                     {
-                        if (db.add(faculty_name))
+                        if (db_faculty.add(faculty_name))
                         {
                             data_result.Add(faculty_name[0]);
                             add_result = true;

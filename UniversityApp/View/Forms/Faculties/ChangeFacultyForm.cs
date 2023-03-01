@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Model.ModelClasses;
+using Controller.ControllerClasses;
+using Controller.Interfaces;
 
 namespace UniversityApp.Forms.Faculties
 {
@@ -14,6 +16,7 @@ namespace UniversityApp.Forms.Faculties
         private string id_faculty;
         public List<string> data_result = new List<string>();
         public bool change_result = false;
+        private const string name_table = "faculties";
 
         public ChangeFacultyForm()
         {
@@ -40,7 +43,7 @@ namespace UniversityApp.Forms.Faculties
             {
                 this.nameFaculty.BackColor = Color.White;
 
-                FacultiesData db = new FacultiesData();
+                IControl db = new Controler(name_table);
                 List<string[]> data_faculties = db.getAllData();
 
                 for (int i = 0; i < data_faculties.Count(); ++i)
