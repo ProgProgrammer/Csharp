@@ -130,10 +130,6 @@ namespace UniversityApp
                         {
                             dataGridView1.Rows.RemoveAt(index);       // удаление студента из таблицы
                         }
-                        else
-                        {
-                            MessageBox.Show("Удаление не удалось.");
-                        }
                     }
                     else
                     {

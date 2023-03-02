@@ -131,10 +131,6 @@ namespace UniversityApp.Forms.Groups
                         {
                             dataGridView1.Rows.RemoveAt(index);       // удаление факультета из таблицы
                         }
-                        else
-                        {
-                            MessageBox.Show("Удаление не удалось.");
-                        }
                     }
                     else
                     {

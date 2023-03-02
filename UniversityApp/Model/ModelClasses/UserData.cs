@@ -133,12 +133,11 @@ namespace Model.ModelClasses
         public override bool change(string index, List<string> data)
         {
             MySqlCommand command = new MySqlCommand($"UPDATE `{name_table}` SET password = @password, " +
-                $"name = @name, surname = @surname, super_admin = @super_admin, access_user = @access_user, " +
+                $"name = @name, surname = @surname, access_user = @access_user, " +
                 $"access_student = @access_student, access_faculties_groups = @access_faculties_groups WHERE login = @index", connection);
             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = data[0];
             command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data[1];
             command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = data[2];
-            command.Parameters.Add("@super_admin", MySqlDbType.VarChar).Value = "0";
             command.Parameters.Add("@access_user", MySqlDbType.VarChar).Value = data[3];
             command.Parameters.Add("@access_student", MySqlDbType.VarChar).Value = data[4];
             command.Parameters.Add("@access_faculties_groups", MySqlDbType.VarChar).Value = data[5];

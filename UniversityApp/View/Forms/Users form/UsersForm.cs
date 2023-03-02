@@ -145,14 +145,6 @@ namespace UniversityApp
                         {
                             dataGridView1.Rows.RemoveAt(index);       // удаление пользователя из таблицы
                         }
-                        else
-                        {
-                            MessageBox.Show("Удаление не удалось.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Вы применили удаление к пустой строке.");
                     }
                 }
                 else

@@ -156,10 +156,6 @@ namespace UniversityApp.Forms.FacyltiesGroups_form
                         {
                             dataGridView1.Rows.RemoveAt(index);       // удаление связи из таблицы
                         }
-                        else
-                        {
-                            MessageBox.Show("Удаление не удалось.");
-                        }
                     }
                     else
                     {

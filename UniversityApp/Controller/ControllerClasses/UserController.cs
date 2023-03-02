@@ -74,53 +74,69 @@ namespace Controller.ControllerClasses
 
         public override bool change(string index, List<string> data)
         {
-            if (accessCheck(2))
+            if (index != this.login)
             {
-                UserData db = new UserData();
-
-                if (db.checkUser(data))
+                if (accessCheck(2))
                 {
-                    if (db_model.change(index, data))
+                    UserData db = new UserData();
+
+                    if (db.checkUser(data))
                     {
-                        MessageBox.Show("Пользователь изменен.");
-                        return true;
+                        if (db_model.change(index, data))
+                        {
+                            MessageBox.Show("Пользователь изменен.");
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пользователь не изменен.");
+                            return false;
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Пользователь не изменен.");
+                        MessageBox.Show("Пользователь с таким логином уже существует в базе данных.");
                         return false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь с таким логином уже существует в базе данных.");
+                    MessageBox.Show("Нет прав доступа на изменение.");
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("Нет прав доступа на изменение.");
+                MessageBox.Show("Пользователь не может изменить самого себя.");
                 return false;
             }
         }
 
         public override bool delete(string index)
         {
-            if (accessCheck(3))
+            if (index != this.login)
             {
-                if (db_model.delete(index))
+                if (accessCheck(3))
                 {
-                    return true;
+                    if (db_model.delete(index))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пользователь не был удален.");
+                        return false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь не был удален.");
+                    MessageBox.Show("Нет прав доступа на удаление.");
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("Нет прав доступа на удаление.");
+                MessageBox.Show("Пользователь не может удалить самого себя.");
                 return false;
             }
         }
