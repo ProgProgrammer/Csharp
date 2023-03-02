@@ -14,8 +14,6 @@ namespace Model.Interface
         private const string authorization_table = "users";
         protected string access_column_abs_class;  // название запрашиваемой ячейки с доступом
         protected const string file_path = @"authorization_data.txt";
-        protected string login;
-        protected string password;
         protected MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
 
         protected bool userExistCheck(DataTable table, MySqlDataAdapter adapter, MySqlCommand command)

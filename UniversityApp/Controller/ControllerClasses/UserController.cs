@@ -9,6 +9,7 @@ namespace Controller.ControllerClasses
     internal class UserController : AControllerInternal
     {
         private IDataBase db_model = new UserData();
+        private const string super_admin = "1";
 
         public override List<string[]> getFGData()
         {
@@ -54,16 +55,24 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(1))
             {
-                if (db_model.add(data))
+                UserData db = new UserData();
+
+                if (db.checkUser(data))
                 {
-                    MessageBox.Show("Пользователь добавлен.");
-                    return true;
+                    if (db_model.add(data))
+                    {
+                        MessageBox.Show("Пользователь добавлен.");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пользователь не добавлен.");
+                        return false;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Пользователь не добавлен.");
-                    return false;
-                }
+
+                MessageBox.Show("Пользователь с таким логином уже существует.");
+                return false;
             }
             else
             {
@@ -82,16 +91,24 @@ namespace Controller.ControllerClasses
 
                     if (db.checkUser(data))
                     {
-                        if (db_model.change(index, data))
+                        string super_admin_value = db.getSuperAdmin(index);
+
+                        if (super_admin_value != super_admin)
                         {
-                            MessageBox.Show("Пользователь изменен.");
-                            return true;
+                            if (db_model.change(index, data))
+                            {
+                                MessageBox.Show("Пользователь изменен.");
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Пользователь не изменен.");
+                                return false;
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show("Пользователь не изменен.");
-                            return false;
-                        }
+
+                        MessageBox.Show("Супер-админа невозможно изменить.");
+                        return false;
                     }
                     else
                     {
@@ -118,15 +135,24 @@ namespace Controller.ControllerClasses
             {
                 if (accessCheck(3))
                 {
-                    if (db_model.delete(index))
+                    UserData db = new UserData();
+                    string super_admin_value = db.getSuperAdmin(index);
+
+                    if (super_admin_value != super_admin)
                     {
-                        return true;
+                        if (db_model.delete(index))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пользователь не был удален.");
+                            return false;
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Пользователь не был удален.");
-                        return false;
-                    }
+
+                    MessageBox.Show("Супер-админа невозможно удалить.");
+                    return false;
                 }
                 else
                 {

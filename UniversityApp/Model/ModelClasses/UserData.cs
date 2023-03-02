@@ -12,6 +12,27 @@ namespace Model.ModelClasses
         private const string name_table = "users";
         private const string access_column = "access_user";
 
+        public string getSuperAdmin(string login)
+        {
+            MySqlCommand command = new MySqlCommand($"SELECT super_admin FROM `{name_table}` WHERE login = @login", connection);
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;
+
+            openConnection();
+
+            MySqlDataReader reader = command.ExecuteReader();
+            string super_admin = "";
+
+            if (reader.Read())
+            {
+                super_admin = reader[0].ToString();
+            }
+
+            reader.Close();
+            closeConnection();
+
+            return super_admin;
+        }
+
         public bool checkUser(List<string> data)
         {
             DataTable table = new DataTable();
@@ -46,9 +67,6 @@ namespace Model.ModelClasses
                 {
                     using (StreamWriter writer = new StreamWriter(file_path, false))
                     {
-                        this.login = login;
-                        this.password = password;
-
                         writer.WriteLineAsync(login);
                         writer.WriteAsync(password);
 
