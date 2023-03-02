@@ -54,7 +54,16 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(1))
             {
-                return db_model.add(data);
+                if (db_model.add(data))
+                {
+                    MessageBox.Show("Пользователь добавлен.");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не добавлен.");
+                    return false;
+                }
             }
             else
             {
@@ -67,7 +76,26 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(2))
             {
-                return db_model.change(index, data);
+                UserData db = new UserData();
+
+                if (db.checkUser(data))
+                {
+                    if (db_model.change(index, data))
+                    {
+                        MessageBox.Show("Пользователь изменен.");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пользователь не изменен.");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь с таким логином уже существует в базе данных.");
+                    return false;
+                }
             }
             else
             {
@@ -80,7 +108,15 @@ namespace Controller.ControllerClasses
         {
             if (accessCheck(3))
             {
-                return db_model.delete(index);
+                if (db_model.delete(index))
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не был удален.");
+                    return false;
+                }
             }
             else
             {
