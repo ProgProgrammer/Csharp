@@ -46,55 +46,68 @@ namespace Controller.ControllerClasses
             else
             {
                 MessageBox.Show("Нет прав доступа на чтение.");
+                return new List<string[]>();
             }
-
-            return new List<string[]>();
         }
 
         public override bool add(List<string> data)
         {
             if (accessCheck(1))
             {
-                if (db_model.add(data))
+                FacultiesGroupsData db = new FacultiesGroupsData();
+
+                if (db.checkFacultiesGroups(data))
                 {
-                    MessageBox.Show("Связь добавлена.");
-                    return true;
+                    if (db_model.add(data))
+                    {
+                        MessageBox.Show("Связь добавлена.");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Связь не добавлена.");
+                        return false;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Связь не добавлена.");
-                    return false;
-                }
+                
+                MessageBox.Show("Такая группа есть на этом/другом факультете.");
+                return false;
             }
             else
             {
                 MessageBox.Show("Нет прав доступа на добавление.");
+                return false;
             }
-
-            return false;
         }
 
         public override bool change(string index, List<string> data)
         {
             if (accessCheck(2))
             {
-                if (db_model.change(index, data))
+                FacultiesGroupsData db = new FacultiesGroupsData();
+
+                if (db.checkFacultiesGroups(data))
                 {
-                    MessageBox.Show("Изменения внесены.");
-                    return true;
+                    if (db_model.change(index, data))
+                    {
+                        MessageBox.Show("Изменения внесены.");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Изменения не внесены.");
+                        return false;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Изменения не внесены.");
-                    return false;
-                }
+
+                MessageBox.Show("Такая группа есть на другом факультете.");
+                return false;
             }
             else
             {
                 MessageBox.Show("Нет прав доступа на изменение.");
+                return false;
             }
-
-            return false;
         }
 
         public override bool delete(string index)
@@ -104,14 +117,16 @@ namespace Controller.ControllerClasses
                 if (!db_model.delete(index))
                 {
                     MessageBox.Show("Связь не удалена.");
+                    return false;
                 }
+
+                return true;
             }
             else
             {
                 MessageBox.Show("Нет прав доступа на удаление.");
+                return false;
             }
-
-            return false;
         }
     }
 }

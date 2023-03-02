@@ -64,9 +64,8 @@ namespace Controller.ControllerClasses
             else
             {
                 MessageBox.Show("Нет прав доступа на чтение.");
+                return new List<string[]>();
             }
-
-            return new List<string[]>();
         }
 
         public override bool add(List<string> data)
@@ -166,9 +165,8 @@ namespace Controller.ControllerClasses
             else
             {
                 MessageBox.Show("Нет прав доступа на удаление.");
+                return false;
             }
-
-            return false;
         }
     }
 }

@@ -46,9 +46,13 @@ namespace UniversityApp.Forms.FacultiesGroups_form
                     if (data_faculties_groups[i][2] == data_groups[a][1])
                     {
                         data_groups.RemoveAt(a);
+                        --a;
                     }
                 }
             }
+
+            facultyCombo.Items.Clear();
+            groupCombo.Items.Clear();
 
             for (int i = 0; i < data_faculties.Count(); ++i)
             {
@@ -107,6 +111,8 @@ namespace UniversityApp.Forms.FacultiesGroups_form
                     }
 
                     add_result = true;
+                    this.groupCombo.Text = "";
+                    loadData();
                 }
             }
 

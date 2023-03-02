@@ -48,9 +48,8 @@ namespace Controller.ControllerClasses
             else
             {
                 MessageBox.Show("Нет прав доступа на чтение.");
+                return new List<string[]>();
             }
-
-            return new List<string[]>();
         }
 
         public override bool add(List<string> data)
@@ -94,9 +93,8 @@ namespace Controller.ControllerClasses
             else
             {
                 MessageBox.Show("Нет прав доступа на изменение.");
+                return false;
             }
-
-            return false;
         }
 
         public override bool delete(string index)
@@ -106,14 +104,16 @@ namespace Controller.ControllerClasses
                 if (!db_model.delete(index))
                 {
                     MessageBox.Show("Пользователь не удален.");
+                    return false;
                 }
+
+                return true;
             }
             else
             {
                 MessageBox.Show("Нет прав доступа на удаление.");
+                return false;
             }
-
-            return false;
         }
     }
 }
