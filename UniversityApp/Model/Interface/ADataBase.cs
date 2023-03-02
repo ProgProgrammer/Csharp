@@ -18,39 +18,19 @@ namespace Model.Interface
         protected string password;
         protected MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=root;database=itproger");
 
-        protected bool readFile()
+        protected bool userExistCheck(DataTable table, MySqlDataAdapter adapter, MySqlCommand command)
         {
-            if (File.Exists(file_path))
+            openConnection();                 // открытие соединение с БД
+            adapter.SelectCommand = command;  // отправка команды в БД на выполнение
+            adapter.Fill(table);              // запись в объект table информации о том, что совпадение найдено / не найдено
+            closeConnection();                // закрытие соединения с БД, чтобы не перегружать БД
+
+            if (table.Rows.Count > 0)
             {
-                int i = 0;
-
-                using (StreamReader fs = new StreamReader(file_path))
-                {
-                    while (true)
-                    {
-                        string temp = fs.ReadLine();  // Читаем строку из файла во временную переменную.                    
-                        if (temp == null) break;      // Если достигнут конец файла, прерываем считывание.
-
-                        if (i == 0)
-                        {
-                            login = temp;             // Пишем считанную строку в итоговую переменную.
-                        }
-                        else
-                        {
-                            password = temp;          // Пишем считанную строку в итоговую переменную.
-                            break;
-                        }
-
-                        ++i;
-                    }
-                }
-
                 return true;
             }
             else
             {
-                MessageBox.Show("Нет файла 'authorization_data.txt' с логином и паролем по адресу: " + file_path + ".");
-
                 return false;
             }
         }
@@ -63,29 +43,19 @@ namespace Model.Interface
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;         // присвоение значения псевдониму
             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;   // присвоение значения псевдониму
 
-            if (File.Exists(file_path))
+            if (this.userExistCheck(table, adapter, command))
             {
-                if (this.userExistCheck(table, adapter, command))
+                using (StreamWriter writer = new StreamWriter(file_path, false))
                 {
-                    using (StreamWriter writer = new StreamWriter(file_path, false))
-                    {
-                        writer.WriteLineAsync(login);
-                        writer.WriteAsync(password);
-
-                        return true;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Нет такого пользователя в базе данных либо не правильный пароль.");
-
-                    return false;
+                    writer.WriteLineAsync(login);
+                    writer.WriteAsync(password);
+                    return true;
                 }
             }
-
-            MessageBox.Show("Нет такого файла.");
-
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         protected bool accessCheck(string login, int id)  // проверка доступа конкретного юзера
@@ -129,41 +99,6 @@ namespace Model.Interface
             {
                 connection.Close();
             }
-        }
-
-        protected bool userExistCheck(DataTable table, MySqlDataAdapter adapter, MySqlCommand command)
-        {
-            openConnection();                 // открытие соединение с БД
-            adapter.SelectCommand = command;  // отправка команды в БД на выполнение
-            adapter.Fill(table);              // запись в объект table информации о том, что совпадение найдено / не найдено
-            closeConnection();                // закрытие соединения с БД, чтобы не перегружать БД
-
-            if (table.Rows.Count > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public bool checkAccess(int id)
-        {
-            UserData db = new UserData();
-
-            if (readFile())
-            {
-                if (db.authorization(login, password))
-                {
-                    if (accessCheck(login, id))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
         }
 
         public abstract bool userAccessCheck(string login, int id);

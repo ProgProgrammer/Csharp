@@ -2,6 +2,7 @@
 using Model.Interface;
 using Model.ModelClasses;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Controller.ControllerClasses
@@ -9,16 +10,39 @@ namespace Controller.ControllerClasses
     internal class StudentController : AControllerInternal
     {
         private IDataBase db_model = new StudentData();
+        private const string file_path = @"authorization_data.txt";
 
         public override List<string[]> getFGData()
         {
             StudentData db = new StudentData();
-            return db.getFGData();
+
+            if (accessCheck(0))
+            {
+                return db.getFacultiesGroupsData();
+            }
+
+            return new List<string[]>();
         }
 
         public override bool authorization(string login, string password)
         {
-            return db_model.authorizationCheck(login, password);
+            if (File.Exists(file_path))
+            {
+                if (db_model.authorizationCheck(login, password))
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Нет такого пользователя в базе данных либо не правильный пароль.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет такого файла.");
+                return false;
+            }
         }
 
         public override bool accessCheck(int id)

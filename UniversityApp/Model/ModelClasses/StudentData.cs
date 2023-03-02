@@ -67,24 +67,6 @@ namespace Model.ModelClasses
             return data;
         }
 
-        public List<string[]> getFGData()  // метод для проверки доступа перед запросом информации о факультетах и группах в БД
-        {
-            UserData db = new UserData();
-
-            if (readFile())
-            {
-                if (db.authorization(login, password))
-                {
-                    if (accessCheck(login, 0))
-                    {
-                        return getFacultiesGroupsData();
-                    }
-                }
-            }
-
-            return new List<string[]>();
-        }
-
         public override bool userAccessCheck(string login, int id)
         {
             return accessCheck(login, id);

@@ -121,9 +121,7 @@ namespace UniversityApp
 
                 if (rows > index)
                 {
-                    StudentData db = new StudentData();
-
-                    if (db.checkAccess(3))
+                    if (db.accessCheck(3))
                     {
                         int column = dataGridView1.CurrentCell.ColumnIndex;         // номер выделенной пользователем колонки
                         string id = dataGridView1[column, index].Value.ToString();  // номер студенческого билета
