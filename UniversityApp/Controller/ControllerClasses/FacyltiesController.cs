@@ -15,7 +15,13 @@ namespace Controller.ControllerClasses
         public override List<string[]> getFGData()
         {
             StudentData db = new StudentData();
-            return db.getFacultiesGroupsData();
+
+            if (accessCheck(0))
+            {
+                return db.getFacultiesGroupsData();
+            }
+
+            return new List<string[]>();
         }
 
         public override bool authorization(string login, string password)
