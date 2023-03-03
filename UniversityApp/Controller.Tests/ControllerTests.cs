@@ -27,7 +27,7 @@ namespace Controller.Tests
             autotification.Add("12345");
             autotification.Add("admin123");
             autotification.Add("12345");
-            autotification.Add("dgfgrg");
+            autotification.Add("admin2");
             autotification.Add("12345A");
             autotification.Add("admin_f");
             autotification.Add("12345");
