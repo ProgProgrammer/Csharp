@@ -12,6 +12,11 @@ namespace Model.ModelClasses
         private const string name_table = "users";
         private const string access_column = "access_user";
 
+        public UserData()
+        {
+            access_column_abs_class = access_column;
+        }
+
         public string getSuperAdmin(string login)
         {
             MySqlCommand command = new MySqlCommand($"SELECT super_admin FROM `{name_table}` WHERE login = @login", connection);
@@ -46,44 +51,6 @@ namespace Model.ModelClasses
             }
 
             return true;
-        }
-
-        public UserData()
-        {
-            access_column_abs_class = access_column;
-        }
-
-        public bool authorization(string login, string password)
-        {
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand($"SELECT * FROM `{name_table}` WHERE login = @login AND password = @password", connection);  // создание команды
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;         // присвоение значения псевдониму
-            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;   // присвоение значения псевдониму
-
-            if (File.Exists(file_path))
-            {
-                if (this.userExistCheck(table, adapter, command))
-                {
-                    using (StreamWriter writer = new StreamWriter(file_path, false))
-                    {
-                        writer.WriteLineAsync(login);
-                        writer.WriteAsync(password);
-
-                        return true;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Нет такого пользователя в базе данных либо не правильный пароль.");
-
-                    return false;
-                }
-            }
-
-            MessageBox.Show("Нет такого файла.");
-
-            return false;
         }
 
         public override bool userAccessCheck(string login, int id)

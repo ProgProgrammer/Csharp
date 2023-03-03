@@ -3,6 +3,7 @@ using Model.Interface;
 using Model.ModelClasses;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Controller.ControllerClasses
 {
@@ -25,7 +26,23 @@ namespace Controller.ControllerClasses
 
         public override bool authorization(string login, string password)
         {
-            return db_model.authorizationCheck(login, password);
+            if (File.Exists(file_path))
+            {
+                if (db_model.authorizationCheck(login, password))
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Нет такого пользователя в базе данных либо не правильный пароль.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет такого файла.");
+                return false;
+            }
         }
 
         public override bool accessCheck(int id)

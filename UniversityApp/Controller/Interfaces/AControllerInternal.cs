@@ -7,8 +7,8 @@ namespace Controller.Interfaces
 {
     internal abstract class AControllerInternal : IControllerInternal
     {
-        private const string file_path = @"authorization_data.txt";
         private const string file_name = "authorization_data.txt";
+        protected const string file_path = @"authorization_data.txt";
         public string login;
         public string password;
 
@@ -57,8 +57,6 @@ namespace Controller.Interfaces
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
         public abstract List<string[]> getFGData();
